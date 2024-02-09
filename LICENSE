@@ -2,6 +2,8 @@
                            Version 2.0, January 2004
                         http://www.apache.org/licenses/
 
+## Apache 2.0 License with Non-Commercial and Attribution Clause
+
    TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
 
    1. Definitions.
@@ -173,6 +175,16 @@
       incurred by, or claims asserted against, such Contributor by reason
       of your accepting any such warranty or additional liability.
 
+  10. Non-Commercial and Attribution Clause:
+      The Software and its derivatives may not be used for commercial purposes without
+      the explicit permission of the copyright holder. Commercial use includes, but is
+      not limited to, selling the Software or its derivatives, using the Software in
+      commercial products or services, or using the Software in a commercial environment
+      or for financial gain.
+
+      When redistributing the Software or its derivatives, you must include attribution
+      to the original copyright holder and indicate any modifications made to the Software.
+
    END OF TERMS AND CONDITIONS
 
    APPENDIX: How to apply the Apache License to your work.
@@ -186,7 +198,7 @@
       same "printed page" as the copyright notice for easier
       identification within third-party archives.
 
-   Copyright [yyyy] [name of copyright owner]
+   Copyright [2024] [ViruzUniT]
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
