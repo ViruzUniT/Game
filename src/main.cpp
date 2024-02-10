@@ -44,7 +44,7 @@ int main(int argc, char* argv[]) {
     //
     // accumulator += deltaTime;
     Time.StartMeasure();
-    Time.ShowFPS();
+    // Time.ShowFPS();
     while (Time.accumulator >= Time.timeStep) {
       while (SDL_PollEvent(&Game.currentevent)) {
         if (Game.currentevent.type == SDL_QUIT) {
@@ -59,7 +59,7 @@ int main(int argc, char* argv[]) {
     window.Display();
 
     Time.SecondMeasure();
-    // Time.FrameLimitPause();
+    Time.FrameLimitPause();
     // frameTicks = SDL_GetTicks() - frameStart;
     // if (frameTicks < frameDelay) {
     //   SDL_Delay(frameDelay - frameTicks);
