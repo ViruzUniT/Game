@@ -14,21 +14,6 @@ void InitSDL() {
 }
 
 int main(int argc, char* argv[]) {
-  // RenderWindow window("Game v0.1", 852, 480);
-  //
-  // bool isRunning = true;
-  // SDL_Event currentevent;
-  //
-  // const int refreshRate = window.GetRefreshrate();
-  // const float frameDelay = 1000.0f / refreshRate;
-  //
-  // float newTime;
-  // float deltaTime;
-  // float currentTime = window.HiresTimeInSec();
-  // int frameStart;
-  // int frameTicks;
-  // constexpr float timeStep = 0.01f;
-  // float accumulator = 0;
   Game Game("Game v0.1", 825, 480);
   Time Time(Game.GetWindow());
   RenderWindow window = Game.GetWindow();
@@ -36,15 +21,7 @@ int main(int argc, char* argv[]) {
   Entity Player(100, 100, playerTexture);
 
   while (Game.isRunning == true) {
-    // frameStart = SDL_GetTicks();
-    //
-    // newTime = window.HiresTimeInSec();
-    // deltaTime = newTime - currentTime;
-    // currentTime = window.HiresTimeInSec();
-    //
-    // accumulator += deltaTime;
     Time.StartMeasure();
-    // Time.ShowFPS();
     while (Time.accumulator >= Time.timeStep) {
       while (SDL_PollEvent(&Game.currentevent)) {
         if (Game.currentevent.type == SDL_QUIT) {
@@ -60,10 +37,6 @@ int main(int argc, char* argv[]) {
 
     Time.SecondMeasure();
     Time.FrameLimitPause();
-    // frameTicks = SDL_GetTicks() - frameStart;
-    // if (frameTicks < frameDelay) {
-    //   SDL_Delay(frameDelay - frameTicks);
-    // }
   }
   window.CleanUp();
   window.DestroyWindowAndRenderer();
