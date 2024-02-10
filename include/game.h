@@ -12,9 +12,10 @@ struct Game {
   Game(const char* WindowName, int Width, int Height) : WindowName(WindowName), Width(Width), Height(Height) {}
 
   bool isRunning = true;
-  SDL_Event currentevent;
 
   RenderWindow& GetWindow() { return window; }
+
+  void HandleSDLEvent(Time& Time);
 
  private:
   const char* WindowName;
@@ -22,4 +23,6 @@ struct Game {
   int Height;
 
   RenderWindow window = RenderWindow(WindowName, Width, Height);
+
+  SDL_Event currentevent;
 };

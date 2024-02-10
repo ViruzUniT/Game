@@ -26,32 +26,7 @@ int main(int argc, char* argv[]) {
     Time.StartMeasure();
 
     while (Time.accumulator >= Time.timeStep) {
-      while (SDL_PollEvent(&Game.currentevent)) {
-        switch (Game.currentevent.type) {
-          case SDL_QUIT:
-            Game.isRunning = false;
-            break;
-          case SDL_KEYDOWN:
-            std::cout << "Key Pressed" << std::endl;
-
-            switch (Game.currentevent.key.keysym.sym) {
-              case SDLK_RIGHT:
-                std::cout << "Right was pressed" << std::endl;
-                break;
-              default:
-                break;
-            }
-            break;
-
-          default:
-            break;
-        }
-      }
-      if (Game.isRunning == false) {
-        break;
-      }
-
-      Time.accumulator -= Time.timeStep;
+      Game.HandleSDLEvent(Time);
     }
 
     window.Clear();
