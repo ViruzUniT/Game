@@ -16,21 +16,44 @@ void InitSDL() {
 int main(int argc, char* argv[]) {
   Game Game("Game v0.1", 825, 480);
   Time Time(Game.GetWindow());
+
   RenderWindow window = Game.GetWindow();
+
   SDL_Texture* playerTexture = window.LoadTexture("F:/c++ game/sprites/Fighter/Idle.png");
   Entity Player(100, 100, playerTexture);
 
   while (Game.isRunning == true) {
     Time.StartMeasure();
+
     while (Time.accumulator >= Time.timeStep) {
       while (SDL_PollEvent(&Game.currentevent)) {
-        if (Game.currentevent.type == SDL_QUIT) {
-          Game.isRunning = false;
-          break;
+        switch (Game.currentevent.type) {
+          case SDL_QUIT:
+            Game.isRunning = false;
+            break;
+          case SDL_KEYDOWN:
+            std::cout << "Key Pressed" << std::endl;
+
+            switch (Game.currentevent.key.keysym.sym) {
+              case SDLK_RIGHT:
+                std::cout << "Right was pressed" << std::endl;
+                break;
+              default:
+                break;
+            }
+            break;
+
+          default:
+            break;
         }
       }
+      if (Game.isRunning == false) {
+        break;
+      }
+
       Time.accumulator -= Time.timeStep;
     }
+
     window.Clear();
     window.Render(Player);
     window.Display();
