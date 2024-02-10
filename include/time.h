@@ -3,18 +3,6 @@
 #include "renderer.h"
 
 struct Time {
- private:
-  RenderWindow window;
-
-  const int refreshRate = window.GetRefreshrate();
-  const float frameDelay = 1000.0f / refreshRate;
-  float currentTime = window.HiresTimeInSec();
-
-  float newTime;
-  int frameStart;
-  int frameTicks;
-
- public:
   Time(RenderWindow& window) : window(window) {}
 
   const float timeStep = 0.01f;
@@ -30,4 +18,15 @@ struct Time {
   }
 
   inline void ShowFPS() { std::cout << 1 / deltaTime << std::endl; }
+
+ private:
+  RenderWindow window;
+
+  const int refreshRate = window.GetRefreshrate();
+  const float frameDelay = 1000.0f / refreshRate;
+  float currentTime = window.HiresTimeInSec();
+
+  float newTime;
+  int frameStart;
+  int frameTicks;
 };
