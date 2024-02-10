@@ -6,8 +6,9 @@
 
 #include "SDL.h"
 #include "renderer.h"
+#include "time.h"
 
-class Game {
+struct Game {
  private:
   const char* WindowName;
   int Width;

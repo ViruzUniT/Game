@@ -2,7 +2,7 @@
 
 #include "renderer.h"
 
-class Time {
+struct Time {
  private:
   RenderWindow window;
 
