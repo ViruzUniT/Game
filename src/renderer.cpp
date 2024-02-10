@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-RenderWindow::RenderWindow(const char* WindowName, const int WindowWidth, const int WindowHeight) : window(nullptr), renderer(nullptr) {
+RenderWindow::RenderWindow(const char* WindowName, const int& WindowWidth, const int& WindowHeight) : window(nullptr), renderer(nullptr) {
   window = SDL_CreateWindow(WindowName, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WindowWidth, WindowHeight, SDL_WINDOW_SHOWN);
   if (window == nullptr) {
     std::cout << "Something went wrong: " << SDL_GetError() << std::endl;

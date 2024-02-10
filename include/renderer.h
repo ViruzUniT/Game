@@ -4,7 +4,7 @@
 #include "entity.h"
 class RenderWindow {
  public:
-  RenderWindow(const char* WindowName, const int WindowWidth, const int WindowHeight);
+  RenderWindow(const char* WindowName, const int& WindowWidth, const int& WindowHeight);
 
   inline SDL_Window* GetWindow() { return window; };
   inline SDL_Renderer* GetRenderer() { return renderer; };

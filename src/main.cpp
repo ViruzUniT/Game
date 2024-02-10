@@ -2,7 +2,7 @@
 #include <ostream>
 
 #include "../include/entity.h"
-#include "../include/renderer.h"
+#include "../include/game.h"
 #include "C:/SDL2-w64/include/SDL2/SDL.h"
 
 void InitSDL() {
@@ -14,51 +14,56 @@ void InitSDL() {
 }
 
 int main(int argc, char* argv[]) {
-  RenderWindow window("Game v0.1", 852, 480);
-
-  bool isRunning = true;
-  SDL_Event currentevent;
-
-  const int refreshRate = window.GetRefreshrate();
-  const float frameDelay = 1000.0f / refreshRate;
-
-  float newTime;
-  float deltaTime;
-  float currentTime = window.HiresTimeInSec();
-  int frameStart;
-  int frameTicks;
-  constexpr float timeStep = 0.01f;
-  float accumulator = 0;
-
+  // RenderWindow window("Game v0.1", 852, 480);
+  //
+  // bool isRunning = true;
+  // SDL_Event currentevent;
+  //
+  // const int refreshRate = window.GetRefreshrate();
+  // const float frameDelay = 1000.0f / refreshRate;
+  //
+  // float newTime;
+  // float deltaTime;
+  // float currentTime = window.HiresTimeInSec();
+  // int frameStart;
+  // int frameTicks;
+  // constexpr float timeStep = 0.01f;
+  // float accumulator = 0;
+  Game Game("Game v0.1", 825, 480);
+  Time Time(Game.GetWindow());
+  RenderWindow window = Game.GetWindow();
   SDL_Texture* playerTexture = window.LoadTexture("F:/c++ game/sprites/Fighter/Idle.png");
   Entity Player(100, 100, playerTexture);
 
-  while (isRunning == true) {
-    frameStart = SDL_GetTicks();
-
-    newTime = window.HiresTimeInSec();
-    deltaTime = newTime - currentTime;
-    currentTime = window.HiresTimeInSec();
-
-    accumulator += deltaTime;
-    while (accumulator >= timeStep) {
-      while (SDL_PollEvent(&currentevent)) {
-        if (currentevent.type == SDL_QUIT) {
-          isRunning = false;
+  while (Game.isRunning == true) {
+    // frameStart = SDL_GetTicks();
+    //
+    // newTime = window.HiresTimeInSec();
+    // deltaTime = newTime - currentTime;
+    // currentTime = window.HiresTimeInSec();
+    //
+    // accumulator += deltaTime;
+    Time.StartMeasure();
+    Time.ShowFPS();
+    while (Time.accumulator >= Time.timeStep) {
+      while (SDL_PollEvent(&Game.currentevent)) {
+        if (Game.currentevent.type == SDL_QUIT) {
+          Game.isRunning = false;
           break;
         }
       }
-      accumulator -= timeStep;
+      Time.accumulator -= Time.timeStep;
     }
     window.Clear();
     window.Render(Player);
     window.Display();
 
-    frameTicks = SDL_GetTicks() - frameStart;
-    if (frameTicks < frameDelay) {
-      SDL_Delay(frameDelay - frameTicks);
-    }
-    isRunning = false;
+    Time.SecondMeasure();
+    // Time.FrameLimitPause();
+    // frameTicks = SDL_GetTicks() - frameStart;
+    // if (frameTicks < frameDelay) {
+    //   SDL_Delay(frameDelay - frameTicks);
+    // }
   }
   window.CleanUp();
   window.DestroyWindowAndRenderer();
