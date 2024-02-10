@@ -15,7 +15,7 @@ struct Game {
 
   RenderWindow& GetWindow() { return window; }
 
-  void HandleSDLEvent(Time& Time);
+  void HandleSDLEvents(Time& Time);
 
  private:
   const char* WindowName;

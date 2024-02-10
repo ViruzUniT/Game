@@ -26,7 +26,7 @@ int main(int argc, char* argv[]) {
     Time.StartMeasure();
 
     while (Time.accumulator >= Time.timeStep) {
-      Game.HandleSDLEvent(Time);
+      Game.HandleSDLEvents(Time);
     }
 
     window.Clear();
