@@ -17,6 +17,8 @@ struct Game {
 
   void HandleSDLEvents(Time& Time);
 
+  void ControlHandler();
+
  private:
   const char* WindowName;
   int Width;

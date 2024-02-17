@@ -28,6 +28,10 @@ class Entity {
     CurrentFrame.w = 30;
     CurrentFrame.h = 81;
   }
+  Entity(const Entity&) = delete;
+  Entity(Entity&&) = delete;
+
+  ~Entity() { Texture = nullptr; }
 
   inline Vector2 GetPosition() const { return Position; }
 
