@@ -13,8 +13,8 @@ struct Vector2 {
   }
 
   Vector2(Vector2&& other) noexcept : x(other.x), y(other.y) {
-    other.x = NULL;
-    other.y = NULL;
+    other.x = 0;
+    other.y = 0;
   }
 
   double x, y;
