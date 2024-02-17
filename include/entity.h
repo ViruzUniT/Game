@@ -7,28 +7,35 @@ struct Vector2 {
   Vector2() : x(0), y(0) {}
   Vector2(double x, double y) : x(x), y(y) {}
 
- private:
+  Vector2(const Vector2& Original) {
+    x = Original.x;
+    y = Original.y;
+  }
+
+  Vector2(Vector2&& other) noexcept : x(other.x), y(other.y) {
+    other.x = NULL;
+    other.y = NULL;
+  }
+
   double x, y;
 };
 
 class Entity {
  public:
-  // Entity();
-  Entity(double x, double y, SDL_Texture* texture) : x(x), y(y), Texture(texture) {
+  Entity(Vector2 position, SDL_Texture* texture) : Position(position), Texture(texture) {
     CurrentFrame.x = 100 - 54;
     CurrentFrame.y = 47;
     CurrentFrame.w = 30;
     CurrentFrame.h = 81;
   }
 
-  inline float GetX() const { return x; }
-  inline float GetY() const { return y; }
+  inline Vector2 GetPosition() const { return Position; }
 
   inline SDL_Texture* GetTexture() const { return Texture; }
   inline SDL_Rect GetCurrentFrame() const { return CurrentFrame; }
 
  private:
-  double x, y;
+  Vector2 Position;
   SDL_Texture* Texture;
   SDL_Rect CurrentFrame;
 };
