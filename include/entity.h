@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cstring>
+
 #include "SDL.h"
 
 struct Vector2 {
@@ -23,7 +25,7 @@ struct Vector2 {
 class Entity {
  public:
   Entity(Vector2 position, SDL_Texture* texture) : Position(position), Texture(texture) {
-    CurrentFrame.x = 100 - 54;
+    CurrentFrame.x = 46;
     CurrentFrame.y = 47;
     CurrentFrame.w = 30;
     CurrentFrame.h = 81;
@@ -31,7 +33,12 @@ class Entity {
   Entity(const Entity&) = delete;
   Entity(Entity&&) = delete;
 
-  ~Entity() { Texture = nullptr; }
+  ~Entity() {
+    if (Texture != nullptr) {
+      SDL_DestroyTexture(Texture);
+      Texture = nullptr;
+    }
+  }
 
   inline Vector2 GetPosition() const { return Position; }
 
