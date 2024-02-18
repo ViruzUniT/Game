@@ -41,6 +41,7 @@ class Entity {
   }
 
   inline Vector2 GetPosition() const { return Position; }
+  inline void SetPosition(Vector2& NewPosition) { Position = NewPosition; }
 
   inline SDL_Texture* GetTexture() const { return Texture; }
   inline const SDL_Rect* GetCurrentFrame() const { return &CurrentFrame; }
