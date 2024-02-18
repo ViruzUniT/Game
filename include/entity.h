@@ -3,6 +3,7 @@
 #include <cstring>
 
 #include "SDL.h"
+#include "eventhandler.h"
 
 struct Vector2 {
  public:
