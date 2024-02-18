@@ -44,12 +44,6 @@ void RenderWindow::CleanUp() { SDL_DestroyWindow(window); }
 void RenderWindow::Clear() { SDL_RenderClear(renderer); }
 
 void RenderWindow::Render(const Entity& Entity) {
-  // SDL_Rect src;
-  // src.x = Entity.GetCurrentFrame().x;
-  // src.y = Entity.GetCurrentFrame().y;
-  // src.w = Entity.GetCurrentFrame().w;
-  // src.h = Entity.GetCurrentFrame().h;
-
   SDL_Rect dst;
   dst.x = Entity.GetPosition().x;
   dst.y = Entity.GetPosition().y;
