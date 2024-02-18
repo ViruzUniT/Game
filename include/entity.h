@@ -9,16 +9,6 @@ struct Vector2 {
   Vector2() : x(0), y(0) {}
   Vector2(double x, double y) : x(x), y(y) {}
 
-  Vector2(const Vector2& Original) {
-    x = Original.x;
-    y = Original.y;
-  }
-
-  Vector2(Vector2&& other) noexcept : x(other.x), y(other.y) {
-    other.x = 0;
-    other.y = 0;
-  }
-
   double x, y;
 };
 
@@ -39,7 +29,6 @@ class Entity {
       Texture = nullptr;
     }
   }
-
   inline Vector2 GetPosition() const { return Position; }
   inline void SetPosition(Vector2& NewPosition) { Position = NewPosition; }
 
