@@ -7,7 +7,7 @@ void Game::HandleSDLEvents(Time& Time) {
         isRunning = false;
         break;
       case SDL_KEYDOWN:
-        std::cout << "Key Pressed: " << currentevent.key.keysym.sym << " Right: " << SDLK_RIGHT << "\n";
+        std::cout << "Key Pressed\n";
 
         switch (currentevent.key.keysym.sym) {
           case SDLK_w:
@@ -21,6 +21,24 @@ void Game::HandleSDLEvents(Time& Time) {
             break;
           case SDLK_d:
             std::cout << "D was pressed\n";
+            break;
+          default:
+            break;
+        }
+        break;
+      case SDL_KEYUP:
+        switch (currentevent.key.keysym.sym) {
+          case SDLK_w:
+            std::cout << "W was released\n";
+            break;
+          case SDLK_a:
+            std::cout << "A was released\n";
+            break;
+          case SDLK_s:
+            std::cout << "S was released\n";
+            break;
+          case SDLK_d:
+            std::cout << "D was released\n";
             break;
           default:
             break;
