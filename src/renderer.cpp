@@ -44,11 +44,11 @@ void RenderWindow::CleanUp() { SDL_DestroyWindow(window); }
 void RenderWindow::Clear() { SDL_RenderClear(renderer); }
 
 void RenderWindow::Render(const Entity& Entity) {
-  SDL_Rect src;
-  src.x = Entity.GetCurrentFrame().x;
-  src.y = Entity.GetCurrentFrame().y;
-  src.w = Entity.GetCurrentFrame().w;
-  src.h = Entity.GetCurrentFrame().h;
+  // SDL_Rect src;
+  // src.x = Entity.GetCurrentFrame().x;
+  // src.y = Entity.GetCurrentFrame().y;
+  // src.w = Entity.GetCurrentFrame().w;
+  // src.h = Entity.GetCurrentFrame().h;
 
   SDL_Rect dst;
   dst.x = Entity.GetPosition().x;
@@ -56,7 +56,7 @@ void RenderWindow::Render(const Entity& Entity) {
   dst.w = 30;
   dst.h = 81;
 
-  SDL_RenderCopy(renderer, Entity.GetTexture(), &src, &dst);
+  SDL_RenderCopy(renderer, Entity.GetTexture(), Entity.GetCurrentFrame(), &dst);
 }
 
 void RenderWindow::Display() { SDL_RenderPresent(renderer); }
