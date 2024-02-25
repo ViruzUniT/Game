@@ -8,11 +8,11 @@
 
 class Entity {
  public:
-  Entity(Vector2 position, SDL_Texture* texture) : Position(position), Texture(texture) {
-    CurrentFrame.x = 46;
-    CurrentFrame.y = 47;
-    CurrentFrame.w = 30;
-    CurrentFrame.h = 81;
+  Entity(Vector2 position, SDL_Texture* texture, Vector4 currentFrame) : Position(position), Texture(texture) {
+    CurrentFrame.x = currentFrame.x;
+    CurrentFrame.y = currentFrame.y;
+    CurrentFrame.w = currentFrame.w;
+    CurrentFrame.h = currentFrame.h;
   }
   Entity(const Entity&) = delete;
   Entity(Entity&&) = delete;

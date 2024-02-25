@@ -20,7 +20,7 @@ int main(int argc, char* argv[]) {
   RenderWindow window = Game.GetWindow();
 
   SDL_Texture* playerTexture = window.LoadTexture("F:/c++ game/sprites/Fighter/Idle.png");
-  Entity Player(Vector2(100, 100), playerTexture);
+  Entity Player(Vector2(100, 100), playerTexture, Vector4(46, 47, 30, 81));
 
   while (Game.isRunning == true) {
     Time.StartMeasure();
