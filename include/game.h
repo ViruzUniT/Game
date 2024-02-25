@@ -10,7 +10,9 @@
 
 struct Game {
   Game(const char* WindowName, int Width, int Height) : WindowName(WindowName), Width(Width), Height(Height) {}
-
+  ~Game() {
+    delete WindowName;
+  }
   bool isRunning = true;
 
   RenderWindow& GetWindow() { return window; }
