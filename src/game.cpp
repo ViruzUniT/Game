@@ -1,6 +1,11 @@
 #include "../include/game.h"
 
-void Game::HandleSDLEvents(Time& Time) {
+static 
+static void MovePlayer(Player& Player) {
+  
+}
+
+void Game::HandleSDLEvents(Time& Time, Player& Player) {
   while (SDL_PollEvent(&currentevent)) {
     switch (currentevent.type) {
       case SDL_QUIT:

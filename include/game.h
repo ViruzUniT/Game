@@ -7,6 +7,8 @@
 #include "SDL.h"
 #include "renderer.h"
 #include "time.h"
+#include "entity.h"
+#include "player.h"
 
 struct Game {
   Game(const char* WindowName, int Width, int Height) : WindowName(WindowName), Width(Width), Height(Height) {}
@@ -17,7 +19,7 @@ struct Game {
 
   RenderWindow& GetWindow() { return window; }
 
-  void HandleSDLEvents(Time& Time);
+  void HandleSDLEvents(Time& Time, Player& Player);
 
   void ControlHandler();
 

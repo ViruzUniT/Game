@@ -29,7 +29,7 @@ class Entity {
   inline SDL_Texture* GetTexture() const { return Texture; }
   inline const SDL_Rect* GetCurrentFrame() const { return &CurrentFrame; }
 
- private:
+ protected:
   Vector2 Position;
   SDL_Texture* Texture;
   SDL_Rect CurrentFrame;
