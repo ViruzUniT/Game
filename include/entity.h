@@ -1,25 +1,36 @@
 #pragma once
 
+#include <cstring>
+
 #include "SDL.h"
+#include "eventhandler.h"
+#include "math.h"
 
 class Entity {
  public:
-  // Entity();
-  Entity(double x, double y, SDL_Texture* texture) : x(x), y(y), Texture(texture) {
-    CurrentFrame.x = 100 - 54;
-    CurrentFrame.y = 47;
-    CurrentFrame.w = 30;
-    CurrentFrame.h = 81;
+  Entity(Vector2 position, SDL_Texture* texture, Vector4 currentFrame) : Position(position), Texture(texture) {
+    CurrentFrame.x = currentFrame.x;
+    CurrentFrame.y = currentFrame.y;
+    CurrentFrame.w = currentFrame.w;
+    CurrentFrame.h = currentFrame.h;
   }
+  Entity(const Entity&) = delete;
+  Entity(Entity&&) = delete;
 
-  inline float GetX() const { return x; }
-  inline float GetY() const { return y; }
+  ~Entity() {
+    if (Texture != nullptr) {
+      SDL_DestroyTexture(Texture);
+      Texture = nullptr;
+    }
+  }
+  inline Vector2 GetPosition() const { return Position; }
+  inline void SetPosition(Vector2& NewPosition) { Position = NewPosition; }
 
   inline SDL_Texture* GetTexture() const { return Texture; }
-  inline SDL_Rect GetCurrentFrame() const { return CurrentFrame; }
+  inline const SDL_Rect* GetCurrentFrame() const { return &CurrentFrame; }
 
- private:
-  double x, y;
+ protected:
+  Vector2 Position;
   SDL_Texture* Texture;
   SDL_Rect CurrentFrame;
 };
