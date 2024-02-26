@@ -2,13 +2,13 @@
 
 struct Direction {
  public:
-  static bool up;
-  static bool down;
-  static bool left;
-  static bool right;
+  bool up;
+  bool down;
+  bool left;
+  bool right;
 };
 
-static Direction dir;
+Direction dir;
 static void MovePlayer(Time& Time, Player& Player) {
   if (!dir.up && !dir.down && !dir.left && !dir.right) {
     return;
@@ -38,22 +38,22 @@ void Game::HandleSDLEvents(Time& Time, Player& Player) {
           case SDLK_w:
             std::cout << "W was pressed\n";
             dir.up = true;
-            MovePlayer(Time, Player);
+            //MovePlayer(Time, Player);
             break;
           case SDLK_a:
             std::cout << "A was pressed\n";
             dir.left = true;
-            MovePlayer(Time, Player);
+            //MovePlayer(Time, Player);
             break;
           case SDLK_s:
             std::cout << "S was pressed\n";
             dir.down = true;
-            MovePlayer(Time, Player);
+            //MovePlayer(Time, Player);
             break;
           case SDLK_d:
             std::cout << "D was pressed\n";
             dir.right = true;
-            MovePlayer(Time, Player);
+            //MovePlayer(Time, Player);
             break;
           default:
             break;
@@ -85,5 +85,6 @@ void Game::HandleSDLEvents(Time& Time, Player& Player) {
         break;
     }
   }
+  MovePlayer(Time, Player);
   Time.accumulator -= Time.timeStep;
 }
