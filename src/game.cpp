@@ -15,9 +15,9 @@ static void MovePlayer(Time& Time, Player& Player) {
   }
   Vector2 Position = Player.GetPosition();
   if (dir.up)
-    Position.y += Player.MovementSpeed;
-  if (dir.down)
     Position.y -= Player.MovementSpeed;
+  if (dir.down)
+    Position.y += Player.MovementSpeed;
   if (dir.left)
     Position.x -= Player.MovementSpeed;
   if (dir.right)
