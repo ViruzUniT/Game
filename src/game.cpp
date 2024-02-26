@@ -15,13 +15,13 @@ static void MovePlayer(Time& Time, Player& Player) {
   }
   Vector2 Position = Player.GetPosition();
   if (dir.up)
-    Position.y -= Player.MovementSpeed;
+    Position.y -= Player.MovementSpeed * Time.deltaTime;
   if (dir.down)
-    Position.y += Player.MovementSpeed;
+    Position.y += Player.MovementSpeed * Time.deltaTime;
   if (dir.left)
-    Position.x -= Player.MovementSpeed;
+    Position.x -= Player.MovementSpeed * Time.deltaTime;
   if (dir.right)
-    Position.x += Player.MovementSpeed;
+    Position.x += Player.MovementSpeed * Time.deltaTime;
   Player.SetPosition(Position);
 }
 
@@ -38,22 +38,18 @@ void Game::HandleSDLEvents(Time& Time, Player& Player) {
           case SDLK_w:
             std::cout << "W was pressed\n";
             dir.up = true;
-            //MovePlayer(Time, Player);
             break;
           case SDLK_a:
             std::cout << "A was pressed\n";
             dir.left = true;
-            //MovePlayer(Time, Player);
             break;
           case SDLK_s:
             std::cout << "S was pressed\n";
             dir.down = true;
-            //MovePlayer(Time, Player);
             break;
           case SDLK_d:
             std::cout << "D was pressed\n";
             dir.right = true;
-            //MovePlayer(Time, Player);
             break;
           default:
             break;
