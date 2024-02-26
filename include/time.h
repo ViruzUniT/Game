@@ -3,6 +3,7 @@
 #include "renderer.h"
 
 struct Time {
+public:
   Time(RenderWindow& window) : window(window) {}
 
   const float timeStep = 0.01f;
