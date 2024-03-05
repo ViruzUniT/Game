@@ -23,6 +23,7 @@ class Entity {
       Texture = nullptr;
     }
   }
+
   inline Vector2 GetPosition() const { return Position; }
   inline void SetPosition(Vector2& NewPosition) { Position = NewPosition; }
 

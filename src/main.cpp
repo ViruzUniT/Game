@@ -47,6 +47,7 @@ int main(int argc, char* argv[]) {
 
     Time.SecondMeasure();
     Time.FrameLimitPause();
+    Time.ShowFPS();
   }
   window.CleanUp();
   window.DestroyWindowAndRenderer();

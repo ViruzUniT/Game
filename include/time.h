@@ -3,7 +3,7 @@
 #include "renderer.h"
 
 struct Time {
-public:
+ public:
   Time(RenderWindow& window) : window(window) {}
 
   const float timeStep = 0.01f;
@@ -18,7 +18,7 @@ public:
     }
   }
 
-  inline void ShowFPS() { std::cout << 1 / deltaTime << std::endl; }
+  void ShowFPS();
 
  private:
   RenderWindow window;

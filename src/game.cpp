@@ -1,5 +1,9 @@
 #include "../include/game.h"
 
+SDL_Texture* Game::LoadTexture(const char *SpriteLocation, const SDL_Rect &CurrentFrame, const int &FrameOffset, const RenderWindow& Window) {
+  // SDL_Texture* texture = window
+}
+
 struct Direction {
  public:
   bool up;
@@ -32,23 +36,18 @@ void Game::HandleSDLEvents(Time& Time, Player& Player) {
         isRunning = false;
         break;
       case SDL_KEYDOWN:
-        std::cout << "Key Pressed\n";
 
         switch (currentevent.key.keysym.sym) {
           case SDLK_w:
-            std::cout << "W was pressed\n";
             dir.up = true;
             break;
           case SDLK_a:
-            std::cout << "A was pressed\n";
             dir.left = true;
             break;
           case SDLK_s:
-            std::cout << "S was pressed\n";
             dir.down = true;
             break;
           case SDLK_d:
-            std::cout << "D was pressed\n";
             dir.right = true;
             break;
           default:
@@ -58,19 +57,15 @@ void Game::HandleSDLEvents(Time& Time, Player& Player) {
       case SDL_KEYUP:
         switch (currentevent.key.keysym.sym) {
           case SDLK_w:
-            std::cout << "W was released\n";
             dir.up = false;
             break;
           case SDLK_a:
-            std::cout << "A was released\n";
             dir.left = false;
             break;
           case SDLK_s:
-            std::cout << "S was released\n";
             dir.down = false;
             break;
           case SDLK_d:
-            std::cout << "D was released\n";
             dir.right = false;
             break;
           default:
