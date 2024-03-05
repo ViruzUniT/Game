@@ -2,9 +2,9 @@
 
 #include <cstring>
 
+#include "game.h"
 #include "SDL.h"
 #include "eventhandler.h"
-#include "game.h"
 #include "math.h"
 
 class Entity {
