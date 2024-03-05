@@ -32,7 +32,7 @@ int main(int argc, char* argv[]) {
 
   RenderWindow window = Game.GetWindow();
 
-  SDL_Texture* playerTexture = window.LoadTexture("F:/c++ game/sprites/Fighter/Idle.png");
+  SDL_Texture* playerTexture = window.LoadTexture("./sprites/Fighter/Idle.png");
   Player Player(Vector2(100, 100), playerTexture, Vector4(46, 47, 30, 81));
   delete timer;
   while (Game.isRunning == true) {
