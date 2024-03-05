@@ -26,7 +26,7 @@ struct Timer {
   };
 
 int main(int argc, char* argv[]) {
-  Timer* timer = new Timer();
+  Timer* startupTimer = new Timer();
   Game Game("Game v0.1", 825, 480);
   Time Time(Game.GetWindow());
 
@@ -34,7 +34,7 @@ int main(int argc, char* argv[]) {
 
   SDL_Texture* playerTexture = window.LoadTexture("./sprites/Fighter/Idle.png");
   Player Player(Vector2(100, 100), playerTexture, Vector4(46, 47, 30, 81));
-  delete timer;
+  delete startupTimer;
   while (Game.isRunning == true) {
     Time.StartMeasure();
     while (Time.accumulator >= Time.timeStep) {
