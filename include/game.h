@@ -10,6 +10,15 @@
 #include "renderer.h"
 #include "time.h"
 
+struct Texture {
+public:
+  Texture(SDL_Texture* texture, const SDL_Rect& currentFrame, const int& FrameOffset)
+  : texture(texture), CurrentFrame(currentFrame), frameOffset(FrameOffset) {}
+  SDL_Texture* texture;
+  SDL_Rect CurrentFrame;
+  int frameOffset;
+};
+
 struct Game {
  public:
   Game(const char* WindowName, int Width, int Height) : WindowName(WindowName), Width(Width), Height(Height) {}
@@ -20,7 +29,7 @@ struct Game {
 
   void HandleSDLEvents(Time& Time, Player& Player);
 
-  static SDL_Texture* LoadTexture(const char* SpriteLocation, const SDL_Rect& CurrentFrame, const int& FrameOffset,
+  Texture LoadTexture(const char* SpriteLocation, const SDL_Rect& CurrentFrame, const int& FrameOffset,
       const RenderWindow& Window);
 
  private:
@@ -33,11 +42,3 @@ struct Game {
   SDL_Event currentevent;
 };
 
-struct Texture {
- public:
-  Texture(SDL_Texture* texture, const SDL_Rect& currentFrame, const int& FrameOffset)
-      : texture(texture), CurrentFrame(currentFrame), frameOffset(FrameOffset) {}
-  SDL_Texture* texture;
-  SDL_Rect CurrentFrame;
-  int frameOffset;
-};
