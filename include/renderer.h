@@ -16,7 +16,7 @@ class RenderWindow {
 
   void CleanUp();
   void Clear();
-  void Render(const Entity& Enitity);
+  void Render(const Entity& Entity);
   void Display();
 
   void DestroyWindowAndRenderer();

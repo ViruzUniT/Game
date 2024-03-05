@@ -9,11 +9,11 @@
 
 class Entity {
  public:
-  Entity(Vector2 position, GameTexture texture, Vector4 currentFrame) : Position(position), Texture(texture) {
-    CurrentFrame.x = currentFrame.x;
-    CurrentFrame.y = currentFrame.y;
-    CurrentFrame.w = currentFrame.w;
-    CurrentFrame.h = currentFrame.h;
+  Entity(Vector2 position, GameTexture texture) : Position(position), Texture(texture) {
+    texture.CurrentFrame.x = Texture.CurrentFrame.x;
+    texture.CurrentFrame.y = Texture.CurrentFrame.y;
+    texture.CurrentFrame.w = Texture.CurrentFrame.w;
+    texture.CurrentFrame.h = Texture.CurrentFrame.h;
   }
   Entity(const Entity&) = delete;
   Entity(Entity&&) = delete;
@@ -29,10 +29,9 @@ class Entity {
   inline void SetPosition(Vector2& NewPosition) { Position = NewPosition; }
 
   inline SDL_Texture* GetTexture() const { return Texture.texture; }
-  inline const SDL_Rect* GetCurrentFrame() const { return &CurrentFrame; }
+  inline const SDL_Rect* GetCurrentFrame() const { return &Texture.CurrentFrame; }
 
  protected:
   Vector2 Position;
   GameTexture Texture;
-  SDL_Rect CurrentFrame;
 };

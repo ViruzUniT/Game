@@ -2,7 +2,7 @@
 
 class Player : public Entity {
 public:
-  Player(Vector2 position, GameTexture texture, Vector4 currentFrame): Entity(position, texture, currentFrame){}
+  Player(Vector2 position, GameTexture texture): Entity(position, texture){}
   float MovementSpeed = 5.0f; 
   
 private:

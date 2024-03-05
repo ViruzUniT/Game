@@ -1,16 +1,11 @@
 #pragma once
 
-#include <cstdint>
-#include <iostream>
-#include <ostream>
-
 #include "SDL.h"
-#include "entity.h"
 #include "player.h"
 #include "renderer.h"
 #include "time.h"
 
-struct GameTexture {
+class GameTexture {
  public:
   GameTexture(SDL_Texture* texture, const SDL_Rect& currentFrame, const int& FrameOffset)
       : texture(texture), CurrentFrame(currentFrame), frameOffset(FrameOffset) {}
@@ -29,7 +24,16 @@ struct Game {
 
   void HandleSDLEvents(Time& Time, Player& Player);
 
-  GameTexture LoadTexture(const char* SpriteLocation, const Vector4& CurrentFrame, const int& FrameOffset, const RenderWindow& Window);
+  GameTexture LoadTexture(const char* SpriteLocation, const Vector4& CurrentFrame, const int& FrameOffset, const RenderWindow& Window) {
+    SDL_Texture* texture = window.LoadTexture(SpriteLocation);
+
+    SDL_Rect currentFrame;
+    currentFrame.x = CurrentFrame.x;
+    currentFrame.y = CurrentFrame.y;
+    currentFrame.h = CurrentFrame.h;
+    currentFrame.w = CurrentFrame.w;
+    return GameTexture(texture, currentFrame, FrameOffset);
+  }
 
  private:
   const char* WindowName;
