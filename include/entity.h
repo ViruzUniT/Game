@@ -2,10 +2,10 @@
 
 #include <cstring>
 
-#include "game.h"
 #include "SDL.h"
 #include "eventhandler.h"
 #include "math.h"
+#include "utils.h"
 
 class Entity {
  public:
