@@ -1,8 +1,14 @@
 #include "../include/game.h"
 
-Texture Game::LoadTexture(const char *SpriteLocation, const SDL_Rect &CurrentFrame, const int &FrameOffset, const RenderWindow& Window) {
+Texture Game::LoadTexture(const char *SpriteLocation, const Vector4 &CurrentFrame, const int &FrameOffset, const RenderWindow& Window) {
   SDL_Texture* texture = window.LoadTexture(SpriteLocation);
-  return Texture(texture, CurrentFrame, FrameOffset);
+  
+  SDL_Rect currentFrame;
+  currentFrame.x = CurrentFrame.x;
+  currentFrame.y = CurrentFrame.y;
+  currentFrame.h = CurrentFrame.h;
+  currentFrame.w = CurrentFrame.w;
+  return Texture(texture, currentFrame, FrameOffset);
 }
 
 struct Direction {

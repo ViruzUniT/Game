@@ -33,6 +33,7 @@ int main(int argc, char* argv[]) {
   RenderWindow window = Game.GetWindow();
 
   SDL_Texture* playerTexture = window.LoadTexture("./sprites/Fighter/Idle.png");
+  Texture playerTexture = Game.LoadTexture("./sprites/Fighter/Idle.png", Vector4(46, 47, 30, 81), 98, window)
   Player Player(Vector2(100, 100), playerTexture, Vector4(46, 47, 30, 81));
   delete startupTimer;
   while (Game.isRunning == true) {

@@ -29,7 +29,7 @@ struct Game {
 
   void HandleSDLEvents(Time& Time, Player& Player);
 
-  Texture LoadTexture(const char* SpriteLocation, const SDL_Rect& CurrentFrame, const int& FrameOffset,
+  Texture LoadTexture(const char* SpriteLocation, const Vector4& CurrentFrame, const int& FrameOffset,
       const RenderWindow& Window);
 
  private:
