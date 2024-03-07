@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstring>
+#include <unordered_map>
 
 #include "SDL.h"
 #include "eventhandler.h"
@@ -9,29 +10,33 @@
 
 class Entity {
  public:
-  Entity(Vector2 position, GameTexture texture) : Position(position), Texture(texture) {
-    texture.CurrentFrame.x = Texture.CurrentFrame.x;
-    texture.CurrentFrame.y = Texture.CurrentFrame.y;
-    texture.CurrentFrame.w = Texture.CurrentFrame.w;
-    texture.CurrentFrame.h = Texture.CurrentFrame.h;
+  Entity(Vector2 position, GameTexture texture) : Position(position), CurrentTexture(texture) {
+    texture.CurrentFrame.x = CurrentTexture.CurrentFrame.x;
+    texture.CurrentFrame.y = CurrentTexture.CurrentFrame.y;
+    texture.CurrentFrame.w = CurrentTexture.CurrentFrame.w;
+    texture.CurrentFrame.h = CurrentTexture.CurrentFrame.h;
   }
   Entity(const Entity&) = delete;
   Entity(Entity&&) = delete;
 
   ~Entity() {
-    if (Texture.texture != nullptr) {
-      SDL_DestroyTexture(Texture.texture);
-      Texture.texture = nullptr;
+    if (CurrentTexture.texture != nullptr) {
+      SDL_DestroyTexture(CurrentTexture.texture);
+      CurrentTexture.texture = nullptr;
     }
   }
 
   inline Vector2 GetPosition() const { return Position; }
   inline void SetPosition(Vector2& NewPosition) { Position = NewPosition; }
 
-  inline SDL_Texture* GetTexture() const { return Texture.texture; }
-  inline const SDL_Rect* GetCurrentFrame() const { return &Texture.CurrentFrame; }
+  inline SDL_Texture* GetTexture() const { return CurrentTexture.texture; }
+  inline const SDL_Rect* GetCurrentFrame() const { return &CurrentTexture.CurrentFrame; }
+
+  void AddTexture(const char* TextureName, GameTexture Texture);
+  bool SwitchCurrentTexture(const char* NewTextureName);
 
  protected:
   Vector2 Position;
-  GameTexture Texture;
+  GameTexture CurrentTexture;
+  std::unordered_map<const char*, GameTexture> Textures;
 };
