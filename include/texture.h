@@ -1,7 +1,7 @@
 #pragma once
 #include "SDL.h"
 
-struct GameTexture {
+class GameTexture {
  public:
   GameTexture(const char* textureName, SDL_Texture* texture, const SDL_Rect& currentFrame, const int& frameOffset)
       : TextureName(textureName), Texture(texture), CurrentFrame(currentFrame), FrameOffset(frameOffset) {}

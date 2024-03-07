@@ -20,20 +20,22 @@ class Entity {
   Entity(Entity&&) = delete;
 
   ~Entity() {
-    if (CurrentTexture.texture != nullptr) {
-      SDL_DestroyTexture(CurrentTexture.texture);
-      CurrentTexture.texture = nullptr;
+    if (CurrentTexture.Texture != nullptr) {
+      SDL_DestroyTexture(CurrentTexture.Texture);
+      CurrentTexture.Texture = nullptr;
     }
   }
 
   inline Vector2 GetPosition() const { return Position; }
   inline void SetPosition(Vector2& NewPosition) { Position = NewPosition; }
 
-  inline SDL_Texture* GetTexture() const { return CurrentTexture.texture; }
+  inline SDL_Texture* GetTexture() const { return CurrentTexture.Texture; }
   inline const SDL_Rect* GetCurrentFrame() const { return &CurrentTexture.CurrentFrame; }
 
   void AddTexture(const char* TextureName, GameTexture Texture);
   bool SwitchCurrentTexture(const char* NewTextureName);
+  char* GetCurrentTextureName();
+  GameTexture GetCurrentTexture();
 
  protected:
   Vector2 Position;

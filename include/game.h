@@ -1,7 +1,7 @@
 #pragma once
 
-#include "math.h"
 #include "SDL.h"
+#include "math.h"
 #include "player.h"
 #include "renderer.h"
 #include "time.h"
@@ -16,7 +16,7 @@ struct Game {
 
   void HandleSDLEvents(Time& Time, Player& Player);
 
-  GameTexture LoadTexture(const char* SpriteLocation, Vector4 CurrentFrame, int FrameOffset, RenderWindow Window) {
+  GameTexture LoadTexture(const char* TextureName, const char* SpriteLocation, Vector4 CurrentFrame, int FrameOffset, RenderWindow Window) {
     SDL_Texture* texture = window.LoadTexture(SpriteLocation);
 
     SDL_Rect currentFrame;
@@ -24,7 +24,7 @@ struct Game {
     currentFrame.y = CurrentFrame.y;
     currentFrame.h = CurrentFrame.h;
     currentFrame.w = CurrentFrame.w;
-    return GameTexture(texture, currentFrame, FrameOffset);
+    return GameTexture(TextureName, texture, currentFrame, FrameOffset);
   }
 
  private:
