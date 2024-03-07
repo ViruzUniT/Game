@@ -16,16 +16,7 @@ struct Game {
 
   void HandleSDLEvents(Time& Time, Player& Player);
 
-  GameTexture LoadTexture(const char* TextureName, const char* SpriteLocation, Vector4 CurrentFrame, int FrameOffset, RenderWindow Window) {
-    SDL_Texture* texture = window.LoadTexture(SpriteLocation);
-
-    SDL_Rect currentFrame;
-    currentFrame.x = CurrentFrame.x;
-    currentFrame.y = CurrentFrame.y;
-    currentFrame.h = CurrentFrame.h;
-    currentFrame.w = CurrentFrame.w;
-    return GameTexture(TextureName, texture, currentFrame, FrameOffset);
-  }
+  GameTexture LoadTexture(const char* TextureName, const char* SpriteLocation, Vector4 CurrentFrame, int FrameOffset, RenderWindow Window);
 
  private:
   const char* WindowName;

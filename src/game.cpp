@@ -1,7 +1,9 @@
-#include "../include/player.h"
 #include "../include/game.h"
 
-// GameTexture Game::LoadTexture(const char* SpriteLocation, const Vector4& CurrentFrame, const int& FrameOffset, const RenderWindow& Window) {
+#include "../include/player.h"
+
+// GameTexture Game::LoadTexture(const char* SpriteLocation, const Vector4& CurrentFrame, const int& FrameOffset, const RenderWindow&
+// Window) {
 // }
 
 struct Direction {
@@ -78,4 +80,16 @@ void Game::HandleSDLEvents(Time& Time, Player& Player) {
   }
   MovePlayer(Time, Player);
   Time.accumulator -= Time.timeStep;
+}
+
+GameTexture Game::LoadTexture(const char* TextureName, const char* SpriteLocation, Vector4 CurrentFrame, int FrameOffset,
+    RenderWindow Window) {
+  SDL_Texture* texture = window.LoadTexture(SpriteLocation);
+
+  SDL_Rect currentFrame;
+  currentFrame.x = CurrentFrame.x;
+  currentFrame.y = CurrentFrame.y;
+  currentFrame.h = CurrentFrame.h;
+  currentFrame.w = CurrentFrame.w;
+  return GameTexture(TextureName, texture, currentFrame, FrameOffset);
 }
