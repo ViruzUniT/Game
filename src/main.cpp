@@ -2,8 +2,8 @@
 #include <iostream>
 #include <ostream>
 
-#include "../include/player.h"
 #include "../include/game.h"
+#include "../include/player.h"
 #include "C:/SDL2-w64/include/SDL2/SDL.h"
 
 struct Timer {
@@ -34,7 +34,7 @@ int main(int argc, char* argv[]) {
 
   // SDL_Texture* playerTexture = window.LoadTexture("./sprites/Fighter/Idle.png");
   GameTexture playerTexture = Game.LoadTexture("./sprites/Fighter/Idle.png", Vector4(46, 47, 30, 81), 98, window);
-                                  Player Player(Vector2(100, 100), playerTexture);
+  Player Player(Vector2(100, 100), playerTexture);
   delete startupTimer;
   while (Game.isRunning == true) {
     Time.StartMeasure();

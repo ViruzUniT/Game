@@ -1,6 +1,6 @@
 #pragma once
-#include "utils.h"
 #include "entity.h"
+#include "texture.h"
 
 class Player : public Entity {
  public:

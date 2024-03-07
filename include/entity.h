@@ -5,7 +5,7 @@
 #include "SDL.h"
 #include "eventhandler.h"
 #include "math.h"
-#include "utils.h"
+#include "texture.h"
 
 class Entity {
  public:
