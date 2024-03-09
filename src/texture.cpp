@@ -2,18 +2,29 @@
 
 #include <cstdint>
 
+#include "../include/time.h"
+
+extern Time Time;
+
 void GameTexture::PlayAnimation() {
-  static uint32_t Frame = 0;
-  if (Frame < Frames) {
-    Frame += 1;
-  }
+  static uint16_t Frame = 0;
 
-  if (Frame == Frames) {
-    Frame = 0;
-    CurrentFrame.x = FrameOffset * 0.5;
-    OnAnimationFinish.invoke();
-    return;
-  }
+  // Capping Animation FPS to 30
+  static float time = 0.0f;
+  time += Time.deltaTime;
+  if (time >= 0.5) {
+    time = 0.0f;
+    if (Frame < Frames) {
+      Frame += 1;
+    }
 
-  CurrentFrame.x += FrameOffset;
+    if (Frame == Frames) {
+      Frame = 0;
+      CurrentFrame.x = FrameOffset * 0.5;
+      OnAnimationFinish.invoke();
+      return;
+    }
+
+    CurrentFrame.x += FrameOffset;
+  }
 }

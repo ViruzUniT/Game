@@ -2,10 +2,6 @@
 
 #include "../include/player.h"
 
-// GameTexture Game::LoadTexture(const char* SpriteLocation, const Vector4& CurrentFrame, const int& FrameOffset, const RenderWindow&
-// Window) {
-// }
-
 struct Direction {
  public:
   bool up;

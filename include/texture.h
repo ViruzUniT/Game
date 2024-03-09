@@ -33,4 +33,7 @@ class GameTexture {
   SDL_Rect CurrentFrame;
   int FrameOffset;
   int Frames;
+
+ private:
+  int FpsLock;
 };
