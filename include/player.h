@@ -16,7 +16,7 @@ class Player : public Entity {
   Player(Vector2 position, GameTexture texture) : Entity(position, texture) {}
   float MovementSpeed = 5.0f;
 
-  void MovePlayer(Time& Time, Player& Player);
+  void Move(Time& Time, Player& Player);
 
  private:
 };

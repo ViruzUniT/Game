@@ -1,7 +1,7 @@
 #include "../include/player.h"
 
 Direction dir;
-void Player::MovePlayer(Time& Time, Player& Player) {
+void Player::Move(Time& Time, Player& Player) {
   if (!dir.up && !dir.down && !dir.left && !dir.right) {
     return;
   }
