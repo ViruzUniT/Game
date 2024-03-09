@@ -27,7 +27,7 @@ class Entity {
   inline SDL_Texture* GetTexture() const { return CurrentTexture.Texture; }
   inline const SDL_Rect* GetCurrentFrame() const { return &CurrentTexture.CurrentFrame; }
 
-  void AddTexture(const char* TextureName, GameTexture Texture);
+  void AddTexture(GameTexture Texture);
   bool SwitchCurrentTexture(const char* NewTextureName);
   char* GetCurrentTextureName();
   GameTexture GetCurrentTexture();

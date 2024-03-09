@@ -1,8 +1,22 @@
 #include "../include/player.h"
 
+#include <cstdio>
+#include <cstring>
+
+#define IDLE_ANIM_NAME "Idle"
+#define WALK_ANIM_NAME "Walk"
+
 Direction dir;
 void Player::Move(Time& Time, Player& Player) {
   if (!dir.up && !dir.down && !dir.left && !dir.right) {
+    if (strcmp(CurrentTexture.TextureName, IDLE_ANIM_NAME) != 0) {
+      SwitchCurrentTexture(IDLE_ANIM_NAME);
+    }
+    return;
+  }
+
+  if (!SwitchCurrentTexture("Walk")) {
+    printf("Texture \"%s\" not found", WALK_ANIM_NAME);
     return;
   }
 

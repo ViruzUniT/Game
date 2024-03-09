@@ -1,8 +1,8 @@
 #include "../include/entity.h"
 
-void Entity::AddTexture(const char* TextureName, GameTexture Texture) {
+void Entity::AddTexture(GameTexture Texture) {
   // Textures[TextureName] = Texture;
-  Textures.insert(std::make_pair(TextureName, Texture));
+  Textures.insert(std::make_pair(Texture.TextureName, Texture));
 }
 
 bool Entity::SwitchCurrentTexture(const char* TextureName) {

@@ -51,8 +51,8 @@ void Game::HandleSDLEvents(Time& Time, Player& Player) {
         break;
     }
   }
-  Player.PlayAnimation();
   Player.Move(Time, Player);
+  Player.PlayAnimation();
   Time.accumulator -= Time.timeStep;
 }
 

@@ -13,6 +13,7 @@ int main(int argc, char* argv[]) {
 
   GameTexture playerIdleTexture = Game.LoadTexture("Idle", "./sprites/Fighter/Idle.png", Vector4(46, 47, 30, 81), 98, 5, window);
   Player Player(Vector2(100, 100), playerIdleTexture);
+  Player.AddTexture(Game.LoadTexture("Walk", "./sprites/Fighter/Walk.png", Vector4(46, 45, 35, 83), 104, 7, window));
 
   delete startupTimer;
 
