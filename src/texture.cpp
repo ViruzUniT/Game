@@ -21,10 +21,12 @@ void GameTexture::PlayAnimation() {
     if (Frame == Frames) {
       Frame = 0;
       CurrentFrame.x = FrameOffset * 0.5;
+      // std::cout << CurrentFrame.x << "\n";
       OnAnimationFinish.invoke();
       return;
     }
 
-    CurrentFrame.x += FrameOffset;
+    CurrentFrame.x += (FrameOffset + CurrentFrame.h);
+    // std::cout << CurrentFrame.x << "\n";
   }
 }

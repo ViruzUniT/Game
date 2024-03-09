@@ -11,7 +11,7 @@ int main(int argc, char* argv[]) {
 
   RenderWindow window = Game.GetWindow();
 
-  GameTexture playerIdleTexture = Game.LoadTexture("Idle", "./sprites/Fighter/Idle.png", Vector4(46, 47, 30, 81), 98, 3, window);
+  GameTexture playerIdleTexture = Game.LoadTexture("Idle", "./sprites/Fighter/Idle.png", Vector4(46, 47, 30, 81), 98, 5, window);
   Player Player(Vector2(100, 100), playerIdleTexture);
   delete startupTimer;
 
@@ -27,7 +27,7 @@ int main(int argc, char* argv[]) {
 
     Time.SecondMeasure();
     Time.FrameLimitPause();
-    Time.ShowFPS();
+    // Time.ShowFPS();
   }
   window.CleanUp();
   window.DestroyWindowAndRenderer();
