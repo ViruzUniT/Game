@@ -1,11 +1,10 @@
 #include "../include/texture.h"
 
 #include <cstdint>
-#include <cstdio>
 
 #include "../include/time.h"
 
-#define FPS 31.0f
+#define FPS 11.0f
 
 extern Time Time;
 
@@ -16,7 +15,6 @@ void GameTexture::PlayAnimation() {
   static float time = 0.0f;
   time += Time.deltaTime;
   float fps = 1 / time;
-  printf("FPS: %f\n", fps);
   if (fps <= FPS) {
     time = 0.0f;
     if (Frame < Frames) {
