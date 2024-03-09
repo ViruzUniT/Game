@@ -1,4 +1,5 @@
 #include "../include/time.h"
+
 #include <iostream>
 
 void Time::StartMeasure() {
@@ -16,7 +17,7 @@ void Time::ShowFPS() {
   static int fps_counter = 0;
 
   fps_timer += deltaTime;
-  fps_counter+= 1;
+  fps_counter += 1;
 
   if (fps_timer >= 1.0f) {
     std::cout << fps_counter << "\n";

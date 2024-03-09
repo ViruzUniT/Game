@@ -1,10 +1,11 @@
 #include "../include/texture.h"
 
 #include <cstdint>
+#include <cstdio>
 
 #include "../include/time.h"
 
-#define FPS_TIME 0.01
+#define FPS 31.0f
 
 extern Time Time;
 
@@ -14,7 +15,9 @@ void GameTexture::PlayAnimation() {
   // Capping Animation FPS to 30
   static float time = 0.0f;
   time += Time.deltaTime;
-  if (time >= FPS_TIME) {
+  float fps = 1 / time;
+  printf("FPS: %f\n", fps);
+  if (fps <= FPS) {
     time = 0.0f;
     if (Frame < Frames) {
       Frame += 1;
