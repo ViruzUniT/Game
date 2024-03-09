@@ -4,6 +4,8 @@
 
 #include "../include/time.h"
 
+#define FPS_TIME 0.01
+
 extern Time Time;
 
 void GameTexture::PlayAnimation() {
@@ -12,7 +14,7 @@ void GameTexture::PlayAnimation() {
   // Capping Animation FPS to 30
   static float time = 0.0f;
   time += Time.deltaTime;
-  if (time >= 0.5) {
+  if (time >= FPS_TIME) {
     time = 0.0f;
     if (Frame < Frames) {
       Frame += 1;
@@ -20,13 +22,11 @@ void GameTexture::PlayAnimation() {
 
     if (Frame == Frames) {
       Frame = 0;
-      CurrentFrame.x = FrameOffset * 0.5;
-      // std::cout << CurrentFrame.x << "\n";
+      CurrentFrame.x = FirstCurrentFramePos;
       OnAnimationFinish.invoke();
       return;
     }
 
-    CurrentFrame.x += (FrameOffset + CurrentFrame.h);
-    // std::cout << CurrentFrame.x << "\n";
+    CurrentFrame.x += FrameOffset + CurrentFrame.w;
   }
 }

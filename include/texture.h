@@ -7,13 +7,19 @@
 class GameTexture {
  public:
   GameTexture(const char* textureName, SDL_Texture* texture, const SDL_Rect& currentFrame, const int& frameOffset, const int& frames)
-      : TextureName(textureName), Texture(texture), CurrentFrame(currentFrame), FrameOffset(frameOffset), Frames(frames) {}
+      : TextureName(textureName),
+        Texture(texture),
+        CurrentFrame(currentFrame),
+        FrameOffset(frameOffset),
+        Frames(frames),
+        FirstCurrentFramePos(currentFrame.x) {}
   GameTexture(const GameTexture& other)
       : TextureName(other.TextureName),
         Texture(other.Texture),
         CurrentFrame(other.CurrentFrame),
         FrameOffset(other.FrameOffset),
-        Frames(other.Frames) {}
+        Frames(other.Frames),
+        FirstCurrentFramePos(other.FirstCurrentFramePos) {}
 
   void operator=(const GameTexture& other) {
     TextureName = other.TextureName;
@@ -21,6 +27,7 @@ class GameTexture {
     CurrentFrame = other.CurrentFrame;
     FrameOffset = other.FrameOffset;
     Frames = other.FrameOffset;
+    FirstCurrentFramePos = other.FirstCurrentFramePos;
   }
 
   Event<> OnAnimationFinish;
@@ -35,5 +42,6 @@ class GameTexture {
   int Frames;
 
  private:
+  int FirstCurrentFramePos;
   int FpsLock;
 };
