@@ -10,12 +10,7 @@
 
 class Entity {
  public:
-  Entity(Vector2 position, GameTexture texture) : Position(position), CurrentTexture(texture) {
-    texture.CurrentFrame.x = CurrentTexture.CurrentFrame.x;
-    texture.CurrentFrame.y = CurrentTexture.CurrentFrame.y;
-    texture.CurrentFrame.w = CurrentTexture.CurrentFrame.w;
-    texture.CurrentFrame.h = CurrentTexture.CurrentFrame.h;
-  }
+  Entity(Vector2 position, GameTexture texture) : Position(position), CurrentTexture(texture) { AddTexture(texture.TextureName, texture); }
   Entity(const Entity&) = delete;
   Entity(Entity&&) = delete;
 
@@ -36,6 +31,8 @@ class Entity {
   bool SwitchCurrentTexture(const char* NewTextureName);
   char* GetCurrentTextureName();
   GameTexture GetCurrentTexture();
+
+  void PlayAnimation() { CurrentTexture.PlayAnimation(); }
 
  protected:
   Vector2 Position;

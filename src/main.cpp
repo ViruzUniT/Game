@@ -10,7 +10,7 @@ int main(int argc, char* argv[]) {
 
   RenderWindow window = Game.GetWindow();
 
-  GameTexture playerIdleTexture = Game.LoadTexture("Idle", "./sprites/Fighter/Idle.png", Vector4(46, 47, 30, 81), 98, window);
+  GameTexture playerIdleTexture = Game.LoadTexture("Idle", "./sprites/Fighter/Idle.png", Vector4(46, 47, 30, 81), 98, 3, window);
   Player Player(Vector2(100, 100), playerIdleTexture);
   delete startupTimer;
   while (Game.isRunning == true) {

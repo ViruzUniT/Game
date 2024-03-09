@@ -19,7 +19,9 @@ static void MovePlayer(Time& Time, Player& Player) {
   if (!dir.up && !dir.down && !dir.left && !dir.right) {
     return;
   }
+
   Vector2 Position = Player.GetPosition();
+
   if (dir.up)
     Position.y -= Player.MovementSpeed * Time.deltaTime * 100;
   if (dir.down)
@@ -78,11 +80,12 @@ void Game::HandleSDLEvents(Time& Time, Player& Player) {
         break;
     }
   }
+  Player.PlayAnimation();
   MovePlayer(Time, Player);
   Time.accumulator -= Time.timeStep;
 }
 
-GameTexture Game::LoadTexture(const char* TextureName, const char* SpriteLocation, Vector4 CurrentFrame, int FrameOffset,
+GameTexture Game::LoadTexture(const char* TextureName, const char* SpriteLocation, Vector4 CurrentFrame, int FrameOffset, int Frames,
     RenderWindow Window) {
   SDL_Texture* texture = window.LoadTexture(SpriteLocation);
 
@@ -91,5 +94,5 @@ GameTexture Game::LoadTexture(const char* TextureName, const char* SpriteLocatio
   currentFrame.y = CurrentFrame.y;
   currentFrame.h = CurrentFrame.h;
   currentFrame.w = CurrentFrame.w;
-  return GameTexture(TextureName, texture, currentFrame, FrameOffset);
+  return GameTexture(TextureName, texture, currentFrame, FrameOffset, Frames);
 }

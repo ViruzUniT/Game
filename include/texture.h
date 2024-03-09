@@ -4,16 +4,33 @@
 #include "SDL.h"
 #include "eventhandler.h"
 
-struct GameTexture {
+class GameTexture {
  public:
   GameTexture(const char* textureName, SDL_Texture* texture, const SDL_Rect& currentFrame, const int& frameOffset, const int& frames)
       : TextureName(textureName), Texture(texture), CurrentFrame(currentFrame), FrameOffset(frameOffset), Frames(frames) {}
+  GameTexture(const GameTexture& other)
+      : TextureName(other.TextureName),
+        Texture(other.Texture),
+        CurrentFrame(other.CurrentFrame),
+        FrameOffset(other.FrameOffset),
+        Frames(other.Frames) {}
 
-  Event<uint32_t> OnAnimationFinish;
+  void operator=(const GameTexture& other) {
+    TextureName = other.TextureName;
+    Texture = other.Texture;
+    CurrentFrame = other.CurrentFrame;
+    FrameOffset = other.FrameOffset;
+    Frames = other.FrameOffset;
+  }
+
+  Event<> OnAnimationFinish;
+  // Event<> CustomAnimationEvent;
+
+  void PlayAnimation();
 
   const char* TextureName;
-  const SDL_Texture* Texture;
-  const SDL_Rect CurrentFrame;
-  const int FrameOffset;
-  const int Frames;
+  SDL_Texture* Texture;
+  SDL_Rect CurrentFrame;
+  int FrameOffset;
+  int Frames;
 };
