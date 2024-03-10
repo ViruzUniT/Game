@@ -1,21 +1,29 @@
 #include "../include/entity.h"
 
 #include <cstdio>
+#include <cstring>
+#include <iostream>
 
 void Entity::AddTexture(GameTexture Texture) {
-  // Textures[TextureName] = Texture;
-  printf("%s\n", Texture.TextureName);
   Textures.insert(std::make_pair(Texture.TextureName, Texture));
   printf("%s\n", Textures.at(Texture.TextureName).TextureName);
 }
 
 bool Entity::SwitchCurrentTexture(const char* TextureName) {
-  auto Texture = Textures.find(TextureName);
-  if (Texture != Textures.end()) {
-    std::cout << "Texture: " << TextureName << " was not found\n";
-    return false;
+  const auto& textures = Textures;
+  // if (textures.find(TextureName) == textures.end()) {
+  //   std::cout << "Texture: " << TextureName << " was not found\n";
+  //   return false;
+  // }
+  for (auto& kv : textures) {
+    std::cout << kv.second.TextureName << ", " << TextureName << ", " << (kv.second.TextureName == TextureName) << ", "
+              << strcmp(kv.second.TextureName, TextureName) << "\n";
+    if (strcmp(kv.first, TextureName) == 0) {
+      CurrentTexture = kv.second;
+      return true;
+    }
   }
-  CurrentTexture = Texture->second;
-  // CurrentTexture = Textures[TextureName];
-  return true;
+
+  std::cout << "Texture: " << TextureName << " was not found\n";
+  return false;
 }
