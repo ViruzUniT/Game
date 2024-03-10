@@ -11,10 +11,16 @@ void Entity::AddTexture(GameTexture Texture) {
 
 bool Entity::SwitchCurrentTexture(const char* TextureName) {
   const auto& textures = Textures;
+
+  // Dont know why the fuck this doesnt work
+
   // if (textures.find(TextureName) == textures.end()) {
   //   std::cout << "Texture: " << TextureName << " was not found\n";
   //   return false;
   // }
+
+  // DO NOT TOUCH IT WORKS SOMEHOW
+  // i know it makes the use of a hashmap obsolete but Im not going to change it
   for (auto& kv : textures) {
     if (strcmp(kv.first, TextureName) == 0) {
       CurrentTexture = kv.second;
