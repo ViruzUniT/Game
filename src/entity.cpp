@@ -16,8 +16,6 @@ bool Entity::SwitchCurrentTexture(const char* TextureName) {
   //   return false;
   // }
   for (auto& kv : textures) {
-    std::cout << kv.second.TextureName << ", " << TextureName << ", " << (kv.second.TextureName == TextureName) << ", "
-              << strcmp(kv.second.TextureName, TextureName) << "\n";
     if (strcmp(kv.first, TextureName) == 0) {
       CurrentTexture = kv.second;
       return true;
