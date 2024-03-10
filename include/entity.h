@@ -10,7 +10,7 @@
 
 class Entity {
  public:
-  Entity(Vector2 position, GameTexture texture) : Position(position), CurrentTexture(texture) { AddTexture(texture.TextureName, texture); }
+  Entity(Vector2 position, GameTexture texture) : Position(position), CurrentTexture(texture) { AddTexture(texture); }
   Entity(const Entity&) = delete;
   Entity(Entity&&) = delete;
 

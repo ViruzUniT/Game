@@ -1,6 +1,5 @@
 #include "../include/player.h"
 
-#include <cstdio>
 #include <cstring>
 
 #define IDLE_ANIM_NAME "Idle"
@@ -16,7 +15,6 @@ void Player::Move(Time& Time, Player& Player) {
   }
 
   if (!SwitchCurrentTexture("Walk")) {
-    printf("Texture \"%s\" not found", WALK_ANIM_NAME);
     return;
   }
 
