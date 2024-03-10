@@ -1,8 +1,16 @@
 #include "../include/entity.h"
 
+#include <cstdint>
 #include <cstdio>
 #include <cstring>
 #include <iostream>
+#include <string>
+
+#include "../include/time.h"
+
+#define FPS 11.0f
+
+extern Time Time;
 
 void Entity::AddTexture(GameTexture Texture) {
   Textures.insert(std::make_pair(Texture.TextureName, Texture));
@@ -30,4 +38,34 @@ bool Entity::SwitchCurrentTexture(const char* TextureName) {
 
   std::cout << "Texture: " << TextureName << " was not found\n";
   return false;
+}
+
+void Entity::PlayAnimation() {
+  static uint16_t Frame = 0;
+
+  static float time = 0.0f;
+  time += Time.deltaTime;
+  float fps = 1 / time;
+  if (fps <= FPS) {
+    // shitty but it does its job
+    static std::string currentAnimName = "";
+    std::cout << currentAnimName << "\n";
+    if (strcmp(CurrentTexture.TextureName, currentAnimName.c_str()) != 0) {
+      Frame = 0;
+    }
+    currentAnimName = CurrentTexture.TextureName;
+    time = 0.0f;
+    if (Frame < CurrentTexture.Frames) {
+      Frame += 1;
+    }
+
+    if (Frame == CurrentTexture.Frames) {
+      Frame = 0;
+      CurrentTexture.CurrentFrame.x = CurrentTexture.FirstCurrentFramePos;
+      CurrentTexture.OnAnimationFinish.invoke();
+      return;
+    }
+
+    CurrentTexture.CurrentFrame.x += CurrentTexture.FrameOffset + CurrentTexture.CurrentFrame.w;
+  }
 }

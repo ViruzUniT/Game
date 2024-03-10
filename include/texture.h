@@ -33,15 +33,13 @@ class GameTexture {
   Event<> OnAnimationFinish;
   // Event<> CustomAnimationEvent;
 
-  void PlayAnimation();
-
   const char* TextureName;
   SDL_Texture* Texture;
   SDL_Rect CurrentFrame;
   int FrameOffset;
   int Frames;
+  int FirstCurrentFramePos;
 
  private:
-  int FirstCurrentFramePos;
   int FpsLock;
 };

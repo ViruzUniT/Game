@@ -32,7 +32,7 @@ class Entity {
   char* GetCurrentTextureName();
   GameTexture GetCurrentTexture();
 
-  void PlayAnimation() { CurrentTexture.PlayAnimation(); }
+  void PlayAnimation();
 
  protected:
   Vector2 Position;
