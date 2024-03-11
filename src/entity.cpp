@@ -3,7 +3,6 @@
 #include <cstdio>
 #include <cstring>
 #include <iostream>
-#include <string>
 
 #include "../include/time.h"
 
@@ -53,12 +52,15 @@ void Entity::PlayAnimation() {
   float fps = 1 / time;
   if (fps <= FPS) {
     // shitty but it does its job
+    if (strcmp(CurrentTexture.TextureName, "Walk") == 0) {
+      std::cout << "yay\n";
+    }
     if (Frame == NEWTEXTURE) {
       Frame = 0;
     }
 
     time = 0.0f;
-    if (Frame < CurrentTexture.Frames) {
+    if (Frame <= CurrentTexture.Frames) {
       Frame += 1;
     }
 
