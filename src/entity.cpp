@@ -8,6 +8,7 @@
 #include "../include/time.h"
 
 #define FPS 11.0f
+#define NEWTEXTURE -1
 
 extern Time Time;
 
@@ -31,7 +32,7 @@ bool Entity::SwitchCurrentTexture(const char* TextureName) {
   for (auto& kv : textures) {
     if (strcmp(kv.first, TextureName) == 0) {
       CurrentTexture = kv.second;
-      OnTextureSwitch.invoke();
+      ResetFrame();
       return true;
     }
   }
@@ -40,30 +41,34 @@ bool Entity::SwitchCurrentTexture(const char* TextureName) {
   return false;
 }
 
+void Entity::SetFrameToStartPos() {
+  Frame = 0;
+  CurrentTexture.CurrentFrame.x = CurrentTexture.FirstCurrentFramePos;
+  CurrentTexture.OnAnimationFinish.invoke();
+}
+
 void Entity::PlayAnimation() {
   static float time = 0.0f;
   time += Time.deltaTime;
   float fps = 1 / time;
   if (fps <= FPS) {
     // shitty but it does its job
-    static std::string currentAnimName = "";
-    std::cout << currentAnimName << "\n";
-    if (strcmp(CurrentTexture.TextureName, currentAnimName.c_str()) != 0) {
+    if (Frame == NEWTEXTURE) {
       Frame = 0;
     }
-    currentAnimName = CurrentTexture.TextureName;
+
     time = 0.0f;
     if (Frame < CurrentTexture.Frames) {
       Frame += 1;
     }
 
     if (Frame == CurrentTexture.Frames) {
-      Frame = 0;
-      CurrentTexture.CurrentFrame.x = CurrentTexture.FirstCurrentFramePos;
-      CurrentTexture.OnAnimationFinish.invoke();
+      SetFrameToStartPos();
       return;
     }
 
     CurrentTexture.CurrentFrame.x += CurrentTexture.FrameOffset + CurrentTexture.CurrentFrame.w;
   }
 }
+
+void Entity::ResetFrame() { Frame = -1; }

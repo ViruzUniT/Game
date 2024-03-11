@@ -11,10 +11,7 @@
 
 class Entity {
  public:
-  Entity(Vector2 position, GameTexture texture) : Position(position), CurrentTexture(texture) {
-    AddTexture(texture);
-    OnTextureSwitch += ResetFrame;
-  }
+  Entity(Vector2 position, GameTexture texture) : Position(position), CurrentTexture(texture) { AddTexture(texture); }
   Entity(const Entity&) = delete;
   Entity(Entity&&) = delete;
 
@@ -40,8 +37,9 @@ class Entity {
 
  protected:
   void ResetFrame();
+  void SetFrameToStartPos();
 
-  uint16_t Frame;
+  short Frame;
   Event<> OnTextureSwitch;
   Vector2 Position;
   GameTexture CurrentTexture;
