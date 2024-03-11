@@ -1,6 +1,5 @@
 #include "../include/entity.h"
 
-#include <cstdint>
 #include <cstdio>
 #include <cstring>
 #include <iostream>
@@ -32,6 +31,7 @@ bool Entity::SwitchCurrentTexture(const char* TextureName) {
   for (auto& kv : textures) {
     if (strcmp(kv.first, TextureName) == 0) {
       CurrentTexture = kv.second;
+      OnTextureSwitch.invoke();
       return true;
     }
   }
@@ -41,8 +41,6 @@ bool Entity::SwitchCurrentTexture(const char* TextureName) {
 }
 
 void Entity::PlayAnimation() {
-  static uint16_t Frame = 0;
-
   static float time = 0.0f;
   time += Time.deltaTime;
   float fps = 1 / time;

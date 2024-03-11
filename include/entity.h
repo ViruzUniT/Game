@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cstdint>
 #include <cstring>
 #include <unordered_map>
 
@@ -10,7 +11,10 @@
 
 class Entity {
  public:
-  Entity(Vector2 position, GameTexture texture) : Position(position), CurrentTexture(texture) { AddTexture(texture); }
+  Entity(Vector2 position, GameTexture texture) : Position(position), CurrentTexture(texture) {
+    AddTexture(texture);
+    OnTextureSwitch += ResetFrame;
+  }
   Entity(const Entity&) = delete;
   Entity(Entity&&) = delete;
 
@@ -35,6 +39,10 @@ class Entity {
   void PlayAnimation();
 
  protected:
+  void ResetFrame();
+
+  uint16_t Frame;
+  Event<> OnTextureSwitch;
   Vector2 Position;
   GameTexture CurrentTexture;
   std::unordered_map<const char*, GameTexture> Textures;
