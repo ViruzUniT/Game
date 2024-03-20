@@ -1,3 +1,4 @@
+#pragma once
 #include <functional>
 #include <iostream>
 #include <vector>
@@ -5,10 +6,10 @@
 template <typename... Args>
 class Event {
  public:
-  Event();
+  Event() = default;
   using Callback = std::function<void(Args...)>;
 
-  void operator+=(const Callback &callback) { callbacks.push_back(callback); }
+  void add(const Callback &callback) { callbacks.push_back(callback); }
 
   void invoke(Args... args) {
     for (auto &callback : callbacks) {

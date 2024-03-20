@@ -1,27 +1,23 @@
 #pragma once
 
-#include <cstdint>
-#include <iostream>
-#include <ostream>
-
 #include "SDL.h"
+#include "math.h"
+#include "player.h"
 #include "renderer.h"
 #include "time.h"
-#include "entity.h"
-#include "player.h"
 
 struct Game {
+ public:
   Game(const char* WindowName, int Width, int Height) : WindowName(WindowName), Width(Width), Height(Height) {}
-  ~Game() {
-    delete WindowName;
-  }
+  ~Game() { delete WindowName; }
   bool isRunning = true;
 
   RenderWindow& GetWindow() { return window; }
 
   void HandleSDLEvents(Time& Time, Player& Player);
 
-  void ControlHandler();
+  GameTexture LoadTexture(const char* TextureName, const char* SpriteLocation, Vector4 CurrentFrame, int FrameOffset, int Frames,
+      RenderWindow Window);
 
  private:
   const char* WindowName;
