@@ -1,5 +1,6 @@
 #pragma once
 #include <cstdint>
+#include <cstdio>
 
 #include "SDL.h"
 #include "eventhandler.h"
@@ -12,7 +13,9 @@ class GameTexture {
         CurrentFrame(currentFrame),
         FrameOffset(frameOffset),
         Frames(frames),
-        FirstCurrentFramePos(currentFrame.x) {}
+        FirstCurrentFramePos(currentFrame.x) {
+    printf("%s, %d\n", TextureName, Frames);
+  }
   GameTexture(const GameTexture& other)
       : TextureName(other.TextureName),
         Texture(other.Texture),
@@ -26,7 +29,7 @@ class GameTexture {
     Texture = other.Texture;
     CurrentFrame = other.CurrentFrame;
     FrameOffset = other.FrameOffset;
-    Frames = other.FrameOffset;
+    Frames = other.Frames;
     FirstCurrentFramePos = other.FirstCurrentFramePos;
   }
 

@@ -39,7 +39,7 @@ class Entity {
   void ResetFrame();
   void SetFrameToStartPos();
 
-  short Frame;
+  int Frame;
   Event<> OnTextureSwitch;
   Vector2 Position;
   GameTexture CurrentTexture;

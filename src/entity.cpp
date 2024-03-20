@@ -17,6 +17,10 @@ void Entity::AddTexture(GameTexture Texture) {
 }
 
 bool Entity::SwitchCurrentTexture(const char* TextureName) {
+  if (strcmp(TextureName, CurrentTexture.TextureName) == 0) {
+    return true;
+  }
+
   const auto& textures = Textures;
 
   // Dont know why the fuck this doesnt work
@@ -53,16 +57,22 @@ void Entity::PlayAnimation() {
   if (fps <= FPS) {
     // shitty but it does its job
     if (strcmp(CurrentTexture.TextureName, "Walk") == 0) {
-      std::cout << "yay\n";
+      printf("CurrentFrame: %d\n", CurrentTexture.CurrentFrame.x);
+    } else {
+      return;
     }
     if (Frame == NEWTEXTURE) {
-      Frame = 0;
+      std::cout << "why\n";
+      SetFrameToStartPos();
     }
 
     time = 0.0f;
+    printf("Old Frame: %d\n", Frame);
+    printf("Max Frames: %d\n", CurrentTexture.Frames);
     if (Frame <= CurrentTexture.Frames) {
       Frame += 1;
     }
+    printf("New Frame: %d\n", Frame);
 
     if (Frame == CurrentTexture.Frames) {
       SetFrameToStartPos();
