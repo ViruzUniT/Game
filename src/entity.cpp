@@ -50,16 +50,11 @@ void Entity::SetFrameToStartPos() {
 }
 
 void Entity::PlayAnimation() {
+  // shitty but it does its job
   static float time = 0.0f;
   time += Time.deltaTime;
   float fps = 1 / time;
   if (fps <= FPS) {
-    // shitty but it does its job
-    if (strcmp(CurrentTexture.TextureName, "Walk") == 0) {
-      printf("CurrentFrame: %d\n", CurrentTexture.CurrentFrame.x);
-    } else {
-      return;
-    }
     if (Frame == NEWTEXTURE) {
       SetFrameToStartPos();
     }
