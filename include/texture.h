@@ -13,9 +13,7 @@ class GameTexture {
         CurrentFrame(currentFrame),
         FrameOffset(frameOffset),
         Frames(frames),
-        FirstCurrentFramePos(currentFrame.x) {
-    printf("%s, %d\n", TextureName, Frames);
-  }
+        FirstCurrentFramePos(currentFrame.x) {}
   GameTexture(const GameTexture& other)
       : TextureName(other.TextureName),
         Texture(other.Texture),

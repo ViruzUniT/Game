@@ -62,17 +62,13 @@ void Entity::PlayAnimation() {
       return;
     }
     if (Frame == NEWTEXTURE) {
-      std::cout << "why\n";
       SetFrameToStartPos();
     }
 
     time = 0.0f;
-    printf("Old Frame: %d\n", Frame);
-    printf("Max Frames: %d\n", CurrentTexture.Frames);
     if (Frame <= CurrentTexture.Frames) {
       Frame += 1;
     }
-    printf("New Frame: %d\n", Frame);
 
     if (Frame == CurrentTexture.Frames) {
       SetFrameToStartPos();
