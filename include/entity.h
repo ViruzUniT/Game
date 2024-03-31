@@ -30,8 +30,8 @@ class Entity {
 
   void AddTexture(GameTexture Texture);
   bool SwitchCurrentTexture(const char* NewTextureName);
-  char* GetCurrentTextureName();
-  GameTexture GetCurrentTexture();
+  inline const char* GetCurrentTextureName() const { return CurrentTexture.TextureName; }
+  inline GameTexture* GetCurrentTexture() { return &CurrentTexture; }
 
   void PlayAnimation();
 
