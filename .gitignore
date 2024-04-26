@@ -30,5 +30,5 @@
 *.out
 *.app
 
-build
+build/*.exe
 .clang-format
