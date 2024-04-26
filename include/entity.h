@@ -11,7 +11,11 @@
 
 class Entity {
  public:
-  Entity(Vector2 position, GameTexture texture) : Position(position), CurrentTexture(texture) { AddTexture(texture); }
+  Entity(Vector2 position, GameTexture texture) : Position(position), CurrentTexture(texture) {
+    extern std::vector<Entity*> EntityList;
+    EntityList.push_back(this);
+    AddTexture(texture);
+  }
   Entity(const Entity&) = delete;
   Entity(Entity&&) = delete;
 

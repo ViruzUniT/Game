@@ -1,7 +1,11 @@
 #pragma once
 
+#include <vector>
+
 #include "../include/SDL.h"
 #include "entity.h"
+
+extern std::vector<Entity*> EntityList;
 class RenderWindow {
  public:
   RenderWindow(const char* WindowName, const int& WindowWidth, const int& WindowHeight);

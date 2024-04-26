@@ -44,13 +44,15 @@ void RenderWindow::CleanUp() { SDL_DestroyWindow(window); }
 void RenderWindow::Clear() { SDL_RenderClear(renderer); }
 
 void RenderWindow::Render(const Entity& Entity) {
-  SDL_Rect dst;
-  dst.x = Entity.GetPosition().x;
-  dst.y = Entity.GetPosition().y;
-  dst.w = 30;
-  dst.h = 81;
+  for (const auto entity : EntityList) {
+    SDL_Rect dst;
+    dst.x = entity->GetPosition().x;
+    dst.y = entity->GetPosition().y;
+    dst.w = 30;
+    dst.h = 81;
 
-  SDL_RenderCopy(renderer, Entity.GetTexture(), Entity.GetCurrentFrame(), &dst);
+    SDL_RenderCopy(renderer, entity->GetTexture(), entity->GetCurrentFrame(), &dst);
+  }
 }
 
 void RenderWindow::Display() { SDL_RenderPresent(renderer); }
