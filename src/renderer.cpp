@@ -19,7 +19,7 @@ int RenderWindow::GetRefreshrate() {
   int displayIndex = SDL_GetWindowDisplayIndex(window);
   SDL_DisplayMode mode;
   SDL_GetDisplayMode(displayIndex, 0, &mode);
-  return mode.refresh_rate;
+  return 60;  // mode.refresh_rate;
 }
 
 float RenderWindow::HiresTimeInSec() {

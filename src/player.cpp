@@ -25,25 +25,25 @@ void Player::Move(Time& Time, Player& Player) {
 
   // I will improve it eventually
   if (dir.up && dir.right) {
-    Position.y -= sqrt(square(Player.MovementSpeed)) * Time.deltaTime * 100;
-    Position.x += sqrt(square(Player.MovementSpeed)) * Time.deltaTime * 100;
+    Position.y -= sqrt(square(Player.MovementSpeed) * 2) * Time.deltaTime * 100;
+    Position.x += sqrt(square(Player.MovementSpeed) * 2) * Time.deltaTime * 100;
   } else if (dir.up && dir.left) {
-    Position.y -= sqrt(square(Player.MovementSpeed)) * Time.deltaTime * 100;
-    Position.x -= sqrt(square(Player.MovementSpeed)) * Time.deltaTime * 100;
+    Position.y -= sqrt(square(Player.MovementSpeed) * 2) * Time.deltaTime * 100;
+    Position.x -= sqrt(square(Player.MovementSpeed) * 2) * Time.deltaTime * 100;
   } else if (dir.down && dir.left) {
-    Position.y += sqrt(square(Player.MovementSpeed)) * Time.deltaTime * 100;
-    Position.x -= sqrt(square(Player.MovementSpeed)) * Time.deltaTime * 100;
+    Position.y += sqrt(square(Player.MovementSpeed) * 2) * Time.deltaTime * 100;
+    Position.x -= sqrt(square(Player.MovementSpeed) * 2) * Time.deltaTime * 100;
   } else if (dir.down && dir.right) {
-    Position.y += sqrt(square(Player.MovementSpeed)) * Time.deltaTime * 100;
-    Position.x += sqrt(square(Player.MovementSpeed)) * Time.deltaTime * 100;
+    Position.y += sqrt(square(Player.MovementSpeed) * 2) * Time.deltaTime * 100;
+    Position.x += sqrt(square(Player.MovementSpeed) * 2) * Time.deltaTime * 100;
   } else if (dir.up) {
-    Position.y -= sqrt(square(Player.MovementSpeed)) * Time.deltaTime * 100;
+    Position.y -= Player.MovementSpeed * Time.deltaTime * 100;
   } else if (dir.down) {
-    Position.y += sqrt(square(Player.MovementSpeed)) * Time.deltaTime * 100;
+    Position.y += Player.MovementSpeed * Time.deltaTime * 100;
   } else if (dir.right) {
-    Position.x += sqrt(square(Player.MovementSpeed)) * Time.deltaTime * 100;
+    Position.x += Player.MovementSpeed * Time.deltaTime * 100;
   } else if (dir.left) {
-    Position.x -= sqrt(square(Player.MovementSpeed)) * Time.deltaTime * 100;
+    Position.x -= Player.MovementSpeed * Time.deltaTime * 100;
   }
 
   Player.SetPosition(Position);
