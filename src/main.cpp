@@ -3,7 +3,6 @@
 #include "../include/game.h"
 #include "../include/player.h"
 #include "../include/timer.h"
-#include "C:/SDL2-w64/include/SDL2/SDL.h"
 
 Game Game("Game v0.1", 825, 480);
 Time Time(Game.GetWindow());
