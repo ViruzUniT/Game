@@ -6,7 +6,7 @@
 
 #include "../include/time.h"
 
-#define FPS 10.0
+#define FPS 10
 #define NEWTEXTURE -1
 
 extern Time Time;
