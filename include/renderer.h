@@ -14,7 +14,7 @@ class RenderWindow {
   inline SDL_Renderer* GetRenderer() { return renderer; };
 
   int GetRefreshrate();
-  float HiresTimeInSec();
+  double HiresTimeInSec();
 
   SDL_Texture* LoadTexture(const char* FilePath);
 

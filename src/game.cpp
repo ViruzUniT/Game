@@ -53,7 +53,6 @@ void Game::HandleSDLEvents(Time& Time, Player& Player) {
   }
   Player.Move(Time, Player);
   Player.PlayAnimation();
-  Time.accumulator -= Time.timeStep;
 }
 
 GameTexture Game::LoadTexture(const char* TextureName, const char* SpriteLocation, Vector4 CurrentFrame, int FrameOffset, int Frames,

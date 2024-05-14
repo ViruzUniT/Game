@@ -8,11 +8,11 @@ struct Time {
   Time(RenderWindow& window) : window(window) {}
 
   const float timeStep = 0.01f;
-  float deltaTime;
-  float accumulator = 0;
+  double deltaTime;
+  double accumulator;
 
   void StartMeasure();
-  inline void SecondMeasure() { frameTicks = SDL_GetTicks() - frameStart; }
+  inline void EndMeasure() { frameTicks = SDL_GetTicks() - frameStart; }
   inline void FrameLimitPause() {
     if (frameTicks < frameDelay) {
       SDL_Delay(frameDelay - frameTicks);
@@ -25,10 +25,10 @@ struct Time {
   RenderWindow window;
 
   const int refreshRate = window.GetRefreshrate();
-  const float frameDelay = 1000.0f / refreshRate;
-  float currentTime = window.HiresTimeInSec();
+  const double frameDelay = 1000.0f / refreshRate;
+  double currentTime = window.HiresTimeInSec();
 
-  float newTime;
+  double newTime;
   int frameStart;
   int frameTicks;
 };

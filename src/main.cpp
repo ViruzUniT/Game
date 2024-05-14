@@ -24,13 +24,14 @@ int main(int argc, char* argv[]) {
     Time.StartMeasure();
     while (Time.accumulator >= Time.timeStep) {
       Game.HandleSDLEvents(Time, Player);
+      Time.accumulator -= Time.timeStep;
     }
 
     window.Clear();
     window.Render(Player);
     window.Display();
 
-    Time.SecondMeasure();
+    Time.EndMeasure();
     Time.FrameLimitPause();
     Time.ShowFPS();
   }

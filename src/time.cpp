@@ -7,7 +7,7 @@ void Time::StartMeasure() {
 
   newTime = window.HiresTimeInSec();
   deltaTime = newTime - currentTime;
-  currentTime = window.HiresTimeInSec();
+  currentTime = newTime;
 
   accumulator += deltaTime;
 }

@@ -3,7 +3,7 @@ g++ -c -std=c++17 -g -Ofast src/*.cpp -Wall -m64 -lstdc++ -I ./external-libs/SDL
 @echo off
 copy "./SDL2.dll" "./build"
 copy "./SDL2_image.dll" "./build"
-robocopy "./sprites" "./build" /E 
+xcopy "./sprites" "./build" /E /Y
 
 move ./*.o ./build-int
 
