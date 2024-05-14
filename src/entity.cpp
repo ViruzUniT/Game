@@ -6,7 +6,7 @@
 
 #include "../include/time.h"
 
-#define FPS 11.0f
+#define FPS 11.0
 #define NEWTEXTURE -1
 
 extern Time Time;
@@ -49,25 +49,22 @@ void Entity::SetFrameToStartPos() {
   CurrentTexture.OnAnimationFinish.invoke();
 }
 
+int hello;
+
 void Entity::PlayAnimation() {
   // shitty but it does its job
-  static float time = 0.0f;
-  time += Time.deltaTime;
-  float fps = 1 / time;
+  static double time;
+  time += Time.accumulator;
+  double fps = 1 / time;
   if (fps <= FPS) {
-    if (Frame == NEWTEXTURE) {
+    time = 0;
+    hello += 1;
+    if (Frame == NEWTEXTURE)
       SetFrameToStartPos();
-    }
-
-    time = 0.0f;
-    if (Frame <= CurrentTexture.Frames) {
+    if (Frame <= CurrentTexture.Frames)
       Frame += 1;
-    }
-
-    if (Frame == CurrentTexture.Frames) {
-      SetFrameToStartPos();
-      return;
-    }
+    if (Frame == CurrentTexture.Frames)
+      return SetFrameToStartPos();
 
     CurrentTexture.CurrentFrame.x += CurrentTexture.FrameOffset + CurrentTexture.CurrentFrame.w;
   }

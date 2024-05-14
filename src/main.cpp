@@ -1,3 +1,4 @@
+#include <cstdio>
 #include <vector>
 
 #include "../include/game.h"
@@ -8,8 +9,10 @@ Game Game("Game v0.1", 825, 480);
 Time Time(Game.GetWindow());
 std::vector<Entity*> EntityList;
 
+extern int hello;
 int main(int argc, char* argv[]) {
   Timer* startupTimer = new Timer();
+  Timer* gameTimer = new Timer();
 
   RenderWindow window = Game.GetWindow();
 
@@ -27,6 +30,11 @@ int main(int argc, char* argv[]) {
       Time.accumulator -= Time.timeStep;
     }
 
+    if (hello == 30) {
+      delete gameTimer;
+      printf("%d", hello);
+      return 0;
+    }
     window.Clear();
     window.Render(Player);
     window.Display();
