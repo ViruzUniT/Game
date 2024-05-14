@@ -49,24 +49,24 @@ void Entity::SetFrameToStartPos() {
   CurrentTexture.OnAnimationFinish.invoke();
 }
 
-int hello;
-
 void Entity::PlayAnimation() {
   // shitty but it does its job
-  static double time;
-  time += Time.accumulator;
-  double fps = 1 / time;
-  if (fps <= FPS) {
-    time = 0;
-    hello += 1;
+  // static double time;
+  // time += Time.deltaTime;
+  // double fps = 1 / time;
+  static int fps;
+  fps += 1;
+  if (fps == FPS) {
+    fps = 0;
     if (Frame == NEWTEXTURE)
       SetFrameToStartPos();
-    if (Frame <= CurrentTexture.Frames)
+    if (Frame < CurrentTexture.Frames)
       Frame += 1;
-    if (Frame == CurrentTexture.Frames)
-      return SetFrameToStartPos();
 
     CurrentTexture.CurrentFrame.x += CurrentTexture.FrameOffset + CurrentTexture.CurrentFrame.w;
+
+    if (Frame == CurrentTexture.Frames)
+      SetFrameToStartPos();
   }
 }
 
