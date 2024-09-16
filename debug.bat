@@ -5,9 +5,9 @@ copy "./SDL2.dll" "./build"
 copy "./SDL2_image.dll" "./build"
 xcopy "./sprites" "./build" /E /Y
 
-move ./*.o ./build-int
+move /Y ./*.o ./build-int
 
-g++ ./build-int/*.o -o build\debug.exe -L ./external-libs/SDL2-w64/lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_image 
+g++ ./*.o -o build\debug.exe -L ./external-libs/SDL2-w64/bin -lmingw32 -lSDL2 -lSDL2_image 
 
 echo starting...
 .\build\debug.exe

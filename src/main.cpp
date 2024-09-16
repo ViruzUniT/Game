@@ -1,3 +1,5 @@
+#include <Windows.h>
+
 #include <vector>
 
 #include "../include/game.h"
@@ -8,7 +10,7 @@ Game Game("Game v0.1", 825, 480);
 Time Time(Game.GetWindow());
 std::vector<Entity*> EntityList;
 
-int main(int argc, char* argv[]) {
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR lpCmdLine, int nCmdShow) {
   Timer* startupTimer = new Timer();
 
   RenderWindow window = Game.GetWindow();
