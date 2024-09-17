@@ -6,14 +6,14 @@
 
 #include "SDL.h"
 #include "eventhandler.h"
+#include "game.h"
 #include "math.h"
 #include "texture.h"
 
 class Entity {
  public:
-  Entity(Vector2 position, GameTexture texture) : Position(position), CurrentTexture(texture) {
-    extern std::vector<Entity*> EntityList;
-    EntityList.push_back(this);
+  Entity(Vector2 position, GameTexture texture, Game Game) : Position(position), CurrentTexture(texture) {
+    Game.EntityList.push_back(this);
     AddTexture(texture);
   }
   Entity(const Entity&) = delete;

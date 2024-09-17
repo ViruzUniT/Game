@@ -8,9 +8,8 @@
 #define IDLE_ANIM_NAME "Idle"
 #define WALK_ANIM_NAME "Walk"
 
-Direction dir;
 void Player::Move(Time& Time, Player& Player) {
-  if (!dir.up && !dir.down && !dir.left && !dir.right) {
+  if (!Dir.up && !Dir.down && !Dir.left && !Dir.right) {
     if (strcmp(CurrentTexture.TextureName, IDLE_ANIM_NAME) != 0) {
       SwitchCurrentTexture(IDLE_ANIM_NAME);
     }
@@ -24,25 +23,25 @@ void Player::Move(Time& Time, Player& Player) {
   Vector2 Position = Player.GetPosition();
 
   // I will improve it eventually
-  if (dir.up && dir.right) {
+  if (Dir.up && Dir.right) {
     Position.y -= sqrt(square(Player.MovementSpeed) * 2) * Player.MovementSpeedMultiplier;
     Position.x += sqrt(square(Player.MovementSpeed) * 2) * Player.MovementSpeedMultiplier;
-  } else if (dir.up && dir.left) {
+  } else if (Dir.up && Dir.left) {
     Position.y -= sqrt(square(Player.MovementSpeed) * 2) * Player.MovementSpeedMultiplier;
     Position.x -= sqrt(square(Player.MovementSpeed) * 2) * Player.MovementSpeedMultiplier;
-  } else if (dir.down && dir.left) {
+  } else if (Dir.down && Dir.left) {
     Position.y += sqrt(square(Player.MovementSpeed) * 2) * Player.MovementSpeedMultiplier;
     Position.x -= sqrt(square(Player.MovementSpeed) * 2) * Player.MovementSpeedMultiplier;
-  } else if (dir.down && dir.right) {
+  } else if (Dir.down && Dir.right) {
     Position.y += sqrt(square(Player.MovementSpeed) * 2) * Player.MovementSpeedMultiplier;
     Position.x += sqrt(square(Player.MovementSpeed) * 2) * Player.MovementSpeedMultiplier;
-  } else if (dir.up) {
+  } else if (Dir.up) {
     Position.y -= Player.MovementSpeed * Player.MovementSpeedMultiplier;
-  } else if (dir.down) {
+  } else if (Dir.down) {
     Position.y += Player.MovementSpeed * Player.MovementSpeedMultiplier;
-  } else if (dir.right) {
+  } else if (Dir.right) {
     Position.x += Player.MovementSpeed * Player.MovementSpeedMultiplier;
-  } else if (dir.left) {
+  } else if (Dir.left) {
     Position.x -= Player.MovementSpeed * Player.MovementSpeedMultiplier;
   }
 

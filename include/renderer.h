@@ -2,10 +2,11 @@
 
 #include <vector>
 
-#include "../include/SDL.h"
-#include "entity.h"
+#include "SDL.h"
 
-extern std::vector<Entity*> EntityList;
+class Entity;
+class Game;
+
 class RenderWindow {
  public:
   RenderWindow(const char* WindowName, const int& WindowWidth, const int& WindowHeight);
@@ -20,7 +21,7 @@ class RenderWindow {
 
   void CleanUp();
   void Clear();
-  void Render(const Entity& Entity);
+  void Render(const Entity& Entity, Game* Game);
   void Display();
 
   void DestroyWindowAndRenderer();

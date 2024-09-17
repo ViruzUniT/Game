@@ -2,28 +2,50 @@
 
 #include "../include/player.h"
 
-extern Direction dir;
+void Game::RunGame() {
+  GameTexture playerIdleTexture = LoadTexture("Idle", "./sprites/Fighter/Idle.png", Vector4(46, 47, 30, 81), 98, 5, Window);
+  Player Player(Vector2(100, 100), playerIdleTexture, *this);
+  Player.AddTexture(LoadTexture("Walk", "./sprites/Fighter/Walk.png", Vector4(46, 45, 24, 83), 104, 7, Window));
 
-void Game::HandleSDLEvents(Time& Time, Player& Player) {
+  while (isRunning == true) {
+    Time->StartMeasure();
+    while (Time->accumulator >= Time->timeStep) {
+      HandleSDLEvents(Player);
+      Time->accumulator -= Time->timeStep;
+    }
+
+    Window.Clear();
+    Window.Render(Player, this);
+    Window.Display();
+
+    Time->EndMeasure();
+    Time->FrameLimitPause();
+    Time->ShowFPS();
+  }
+  Window.CleanUp();
+  Window.DestroyWindowAndRenderer();
+  SDL_Quit();
+}
+
+void Game::HandleSDLEvents(Player& Player) {
   while (SDL_PollEvent(&currentevent)) {
     switch (currentevent.type) {
       case SDL_QUIT:
         isRunning = false;
         break;
       case SDL_KEYDOWN:
-
         switch (currentevent.key.keysym.sym) {
           case SDLK_w:
-            dir.up = true;
+            Player.Dir.up = true;
             break;
           case SDLK_a:
-            dir.left = true;
+            Player.Dir.left = true;
             break;
           case SDLK_s:
-            dir.down = true;
+            Player.Dir.down = true;
             break;
           case SDLK_d:
-            dir.right = true;
+            Player.Dir.right = true;
             break;
           default:
             break;
@@ -32,16 +54,16 @@ void Game::HandleSDLEvents(Time& Time, Player& Player) {
       case SDL_KEYUP:
         switch (currentevent.key.keysym.sym) {
           case SDLK_w:
-            dir.up = false;
+            Player.Dir.up = false;
             break;
           case SDLK_a:
-            dir.left = false;
+            Player.Dir.left = false;
             break;
           case SDLK_s:
-            dir.down = false;
+            Player.Dir.down = false;
             break;
           case SDLK_d:
-            dir.right = false;
+            Player.Dir.right = false;
             break;
           default:
             break;
@@ -51,13 +73,13 @@ void Game::HandleSDLEvents(Time& Time, Player& Player) {
         break;
     }
   }
-  Player.Move(Time, Player);
+  Player.Move(*this->Time, Player);
   Player.PlayAnimation();
 }
 
 GameTexture Game::LoadTexture(const char* TextureName, const char* SpriteLocation, Vector4 CurrentFrame, int FrameOffset, int Frames,
     RenderWindow Window) {
-  SDL_Texture* texture = window.LoadTexture(SpriteLocation);
+  SDL_Texture* texture = Window.LoadTexture(SpriteLocation);
 
   SDL_Rect currentFrame;
   currentFrame.x = CurrentFrame.x;

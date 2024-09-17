@@ -2,6 +2,9 @@
 
 #include <iostream>
 
+#include "../include/entity.h"
+#include "../include/game.h"
+
 RenderWindow::RenderWindow(const char* WindowName, const int& WindowWidth, const int& WindowHeight) : window(nullptr), renderer(nullptr) {
   window = SDL_CreateWindow(WindowName, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WindowWidth, WindowHeight, SDL_WINDOW_SHOWN);
   if (window == nullptr) {
@@ -44,8 +47,8 @@ void RenderWindow::CleanUp() { SDL_DestroyWindow(window); }
 
 void RenderWindow::Clear() { SDL_RenderClear(renderer); }
 
-void RenderWindow::Render(const Entity& Entity) {
-  for (const auto entity : EntityList) {
+void RenderWindow::Render(const Entity& Entity, Game* Game) {
+  for (const auto entity : Game->EntityList) {
     SDL_Rect dst;
     dst.x = entity->GetPosition().x;
     dst.y = entity->GetPosition().y;
