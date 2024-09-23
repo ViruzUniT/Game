@@ -13,7 +13,7 @@ class RenderWindow {
   RenderWindow() {}
 
   inline SDL_Window* GetWindow() { return window; };
-  inline SDL_Renderer* GetRenderer() { return renderer; };
+  inline SDL_Renderer* GetRenderer() { return Renderer; };
 
   int GetRefreshrate();
   double HiresTimeInSec();
@@ -29,5 +29,5 @@ class RenderWindow {
 
  private:
   SDL_Window* window;
-  SDL_Renderer* renderer;
+  SDL_Renderer* Renderer;
 };

@@ -46,7 +46,6 @@ void Game::HandleSDLEvents(Player& Player) {
       case SDL_KEYDOWN:
         switch (currentevent.key.keysym.sym) {
           case SDLK_w:
-            std::cout << "W pressed\n";
             Player.Dir.up = true;
             break;
           case SDLK_a:

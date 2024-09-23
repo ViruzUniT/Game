@@ -5,15 +5,15 @@
 #include "../include/entity.h"
 #include "../include/game.h"
 
-RenderWindow::RenderWindow(const char* WindowName, const int& WindowWidth, const int& WindowHeight) : window(nullptr), renderer(nullptr) {
+RenderWindow::RenderWindow(const char* WindowName, const int& WindowWidth, const int& WindowHeight) : window(nullptr), Renderer(nullptr) {
   window = SDL_CreateWindow(WindowName, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WindowWidth, WindowHeight, SDL_WINDOW_SHOWN);
   if (window == nullptr) {
     std::cout << "Something went wrong: " << SDL_GetError() << std::endl;
     return;
   }
 
-  renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-  if (renderer == nullptr) {
+  Renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+  if (Renderer == nullptr) {
     std::cout << "Something went wrong: " << SDL_GetError() << std::endl;
   }
 }
@@ -22,8 +22,8 @@ int RenderWindow::GetRefreshrate() {
   int displayIndex = SDL_GetWindowDisplayIndex(window);
   SDL_DisplayMode mode;
   SDL_GetDisplayMode(displayIndex, 0, &mode);
-  // return 60;
-  return mode.refresh_rate;
+  return 60;
+  // return mode.refresh_rate;
 }
 
 double RenderWindow::HiresTimeInSec() {
@@ -34,7 +34,7 @@ double RenderWindow::HiresTimeInSec() {
 
 SDL_Texture* RenderWindow::LoadTexture(const char* FilePath) {
   SDL_Texture* texture = nullptr;
-  texture = IMG_LoadTexture(renderer, FilePath);
+  texture = IMG_LoadTexture(Renderer, FilePath);
 
   if (texture == nullptr) {
     std::cout << "Texture load failed" << std::endl;
@@ -45,7 +45,7 @@ SDL_Texture* RenderWindow::LoadTexture(const char* FilePath) {
 
 void RenderWindow::CleanUp() { SDL_DestroyWindow(window); }
 
-void RenderWindow::Clear() { SDL_RenderClear(renderer); }
+void RenderWindow::Clear() { SDL_RenderClear(Renderer); }
 
 void RenderWindow::Render(Game* Game) {
   for (Entity* const entity : Game->GetEntityList()) {
@@ -55,15 +55,15 @@ void RenderWindow::Render(Game* Game) {
     dst.w = 30;
     dst.h = 81;
 
-    SDL_RenderCopy(renderer, entity->GetTexture(), entity->GetCurrentFrame(), &dst);
+    SDL_RenderCopy(Renderer, entity->GetTexture(), entity->GetCurrentFrame(), &dst);
   }
 }
 
-void RenderWindow::Display() { SDL_RenderPresent(renderer); }
+void RenderWindow::Display() { SDL_RenderPresent(Renderer); }
 
 void RenderWindow::DestroyWindowAndRenderer() {
   SDL_DestroyWindow(window);
-  SDL_DestroyRenderer(renderer);
+  SDL_DestroyRenderer(Renderer);
   window = nullptr;
-  renderer = nullptr;
+  Renderer = nullptr;
 }
