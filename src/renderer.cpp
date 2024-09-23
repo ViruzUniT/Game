@@ -47,8 +47,8 @@ void RenderWindow::CleanUp() { SDL_DestroyWindow(window); }
 
 void RenderWindow::Clear() { SDL_RenderClear(renderer); }
 
-void RenderWindow::Render(const Entity& Entity, Game* Game) {
-  for (const auto entity : Game->EntityList) {
+void RenderWindow::Render(Game* Game) {
+  for (Entity* const entity : Game->GetEntityList()) {
     SDL_Rect dst;
     dst.x = entity->GetPosition().x;
     dst.y = entity->GetPosition().y;

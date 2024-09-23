@@ -3,8 +3,8 @@
 #include <iostream>
 struct Timer {
  public:
-  Timer() { m_StartTimePoint = std::chrono::high_resolution_clock::now(); }
-  ~Timer() { Stop(); }
+  Timer() : m_StartTimePoint(std::chrono::high_resolution_clock::now()) {}
+  // ~Timer() { Stop(); }
   void Stop() {
     auto endTimepoint = std::chrono::high_resolution_clock::now();
 

@@ -12,8 +12,10 @@
 extern Time Time;
 
 void Entity::AddTexture(GameTexture Texture) {
-  Textures.insert(std::make_pair(Texture.TextureName, Texture));
-  printf("%s\n", Textures.at(Texture.TextureName).TextureName);
+  std::cout << "Inserting texture: " << Texture.TextureName << std::endl;
+  Textures.insert(std::make_pair(Texture.TextureName, &Texture));
+  std::cout << "Insert success\n";
+  printf("%s\n", Textures.at(Texture.TextureName)->TextureName);
 }
 
 bool Entity::SwitchCurrentTexture(const char* TextureName) {
@@ -33,7 +35,7 @@ bool Entity::SwitchCurrentTexture(const char* TextureName) {
   const auto& textures = Textures;
   for (auto& kv : textures) {
     if (strcmp(kv.first, TextureName) == 0) {
-      CurrentTexture = kv.second;
+      CurrentTexture = *kv.second;
       ResetFrame();
       return true;
     }

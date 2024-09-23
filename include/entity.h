@@ -12,9 +12,11 @@
 
 class Entity {
  public:
-  Entity(Vector2 position, GameTexture texture, Game Game) : Position(position), CurrentTexture(texture) {
-    Game.EntityList.push_back(this);
-    AddTexture(texture);
+  Entity(const Vector2& position, const GameTexture& Texture, Game& Game) : Position(position), CurrentTexture(Texture) {
+    Game.AddEntityToList(this);
+    std::cout << "Added Entity to List\n";
+    AddTexture(Texture);
+    std::cout << "Added Texture to list\n";
   }
   Entity(const Entity&) = delete;
   Entity(Entity&&) = delete;
@@ -47,5 +49,5 @@ class Entity {
   Event<> OnTextureSwitch;
   Vector2 Position;
   GameTexture CurrentTexture;
-  std::unordered_map<const char*, GameTexture> Textures;
+  std::unordered_map<const char*, GameTexture*> Textures;
 };

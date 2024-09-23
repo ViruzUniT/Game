@@ -5,7 +5,9 @@
 
 struct Time {
  public:
-  Time(RenderWindow& window) : window(window) {}
+  // Time(RenderWindow& window) : window(window) {}
+  Time() {}
+  inline void SetWindow(RenderWindow& Window) { window = Window; }
 
   const float timeStep = 0.01f;
   double deltaTime;

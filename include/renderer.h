@@ -10,6 +10,7 @@ class Game;
 class RenderWindow {
  public:
   RenderWindow(const char* WindowName, const int& WindowWidth, const int& WindowHeight);
+  RenderWindow() {}
 
   inline SDL_Window* GetWindow() { return window; };
   inline SDL_Renderer* GetRenderer() { return renderer; };
@@ -21,7 +22,7 @@ class RenderWindow {
 
   void CleanUp();
   void Clear();
-  void Render(const Entity& Entity, Game* Game);
+  void Render(Game* Game);
   void Display();
 
   void DestroyWindowAndRenderer();

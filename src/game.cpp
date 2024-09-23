@@ -2,25 +2,35 @@
 
 #include "../include/player.h"
 
+void Game::StartGame() {
+  Timer startupTimer = Timer();
+  isRunning = true;
+  Timing.SetWindow(GetWindow());
+  startupTimer.Stop();
+}
+
 void Game::RunGame() {
   GameTexture playerIdleTexture = LoadTexture("Idle", "./sprites/Fighter/Idle.png", Vector4(46, 47, 30, 81), 98, 5, Window);
+  std::cout << "Created idle texture\n";
   Player Player(Vector2(100, 100), playerIdleTexture, *this);
+  std::cout << "Created Player\n";
   Player.AddTexture(LoadTexture("Walk", "./sprites/Fighter/Walk.png", Vector4(46, 45, 24, 83), 104, 7, Window));
+  std::cout << "Added Walk Texture\n";
 
   while (isRunning == true) {
-    Time->StartMeasure();
-    while (Time->accumulator >= Time->timeStep) {
+    Timing.StartMeasure();
+    while (Timing.accumulator >= Timing.timeStep) {
       HandleSDLEvents(Player);
-      Time->accumulator -= Time->timeStep;
+      Timing.accumulator -= Timing.timeStep;
     }
 
     Window.Clear();
-    Window.Render(Player, this);
+    Window.Render(this);
     Window.Display();
 
-    Time->EndMeasure();
-    Time->FrameLimitPause();
-    Time->ShowFPS();
+    Timing.EndMeasure();
+    Timing.FrameLimitPause();
+    Timing.ShowFPS();
   }
   Window.CleanUp();
   Window.DestroyWindowAndRenderer();
@@ -36,6 +46,7 @@ void Game::HandleSDLEvents(Player& Player) {
       case SDL_KEYDOWN:
         switch (currentevent.key.keysym.sym) {
           case SDLK_w:
+            std::cout << "W pressed\n";
             Player.Dir.up = true;
             break;
           case SDLK_a:
@@ -73,7 +84,7 @@ void Game::HandleSDLEvents(Player& Player) {
         break;
     }
   }
-  Player.Move(*this->Time, Player);
+  Player.Move(Timing, Player);
   Player.PlayAnimation();
 }
 
