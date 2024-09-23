@@ -23,8 +23,8 @@ struct Game {
 
   void HandleSDLEvents(Player& Player);
 
-  GameTexture LoadTexture(const char* TextureName, const char* SpriteLocation, Vector4 CurrentFrame, int FrameOffset, int Frames,
-      RenderWindow Window);
+  GameTexture LoadTexture(const char* TextureName, const char* SpriteLocation, const Vector4& CurrentFrame, const int& FrameOffset,
+      const int& Frames, RenderWindow& Window);
   inline void AddEntityToList(Entity* Entity) {
     std::cout << "Pushed back Entity: " << Entity << std::endl;
     EntityList.push_back(Entity);

@@ -32,7 +32,7 @@ double RenderWindow::HiresTimeInSec() {
   return time;
 }
 
-SDL_Texture* RenderWindow::LoadTexture(const char* FilePath) {
+SDL_Texture* const RenderWindow::LoadTexture(const char* FilePath) {
   SDL_Texture* texture = nullptr;
   texture = IMG_LoadTexture(Renderer, FilePath);
 
@@ -55,7 +55,10 @@ void RenderWindow::Render(Game* Game) {
     dst.w = 30;
     dst.h = 81;
 
-    SDL_RenderCopy(Renderer, entity->GetTexture(), entity->GetCurrentFrame(), &dst);
+    int Error = SDL_RenderCopy(Renderer, entity->GetTexture(), entity->GetCurrentFrame(), &dst);
+    if (Error != 0) {
+      std::cout << "Render Error: " << Error << std::endl;
+    }
   }
 }
 

@@ -87,8 +87,8 @@ void Game::HandleSDLEvents(Player& Player) {
   Player.PlayAnimation();
 }
 
-GameTexture Game::LoadTexture(const char* TextureName, const char* SpriteLocation, Vector4 CurrentFrame, int FrameOffset, int Frames,
-    RenderWindow Window) {
+GameTexture Game::LoadTexture(const char* TextureName, const char* SpriteLocation, const Vector4& CurrentFrame, const int& FrameOffset,
+    const int& Frames, RenderWindow& Window) {
   SDL_Texture* texture = Window.LoadTexture(SpriteLocation);
 
   SDL_Rect currentFrame;

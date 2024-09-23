@@ -21,6 +21,10 @@ class GameTexture {
         FrameOffset(other.FrameOffset),
         Frames(other.Frames),
         FirstCurrentFramePos(other.FirstCurrentFramePos) {}
+  ~GameTexture() {
+    delete TextureName;
+    SDL_DestroyTexture(Texture);
+  }
 
   void operator=(const GameTexture& other) {
     TextureName = other.TextureName;
@@ -32,7 +36,6 @@ class GameTexture {
   }
 
   Event<> OnAnimationFinish;
-  // Event<> CustomAnimationEvent;
 
   const char* TextureName;
   SDL_Texture* Texture;
