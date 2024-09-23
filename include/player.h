@@ -5,10 +5,10 @@
 
 struct Direction {
  public:
-  bool up;
-  bool down;
-  bool left;
-  bool right;
+  bool up = false;
+  bool down = false;
+  bool left = false;
+  bool right = false;
 };
 
 class Player : public Entity {

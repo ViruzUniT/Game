@@ -16,6 +16,8 @@ class Entity {
     std::cout << "Added Entity to List\n";
     AddTexture(&Texture);
     std::cout << "Added Texture to list\n";
+    ResetFrame();
+    // SwitchCurrentTexture(Texture.TextureName);
   }
   Entity(const Entity&) = delete;
   Entity(Entity&&) = delete;

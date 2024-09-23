@@ -1,6 +1,5 @@
 #include "../include/player.h"
 
-#include <cmath>
 #include <cstring>
 
 #include "../include/math.h"
@@ -16,32 +15,25 @@ void Player::Move(Time& Time, Player& Player) {
     return;
   }
 
-  if (!SwitchCurrentTexture(WALK_ANIM_NAME)) {
-    return;
+  if (strcmp(CurrentTexture.TextureName, WALK_ANIM_NAME) != 0) {
+    if (!SwitchCurrentTexture(WALK_ANIM_NAME)) {
+      return;
+    }
   }
 
   Vector2 Position = Player.GetPosition();
 
   // I will improve it eventually
-  if (Dir.up && Dir.right) {
-    Position.y -= sqrt(square(Player.MovementSpeed) * 2) * Player.MovementSpeedMultiplier;
-    Position.x += sqrt(square(Player.MovementSpeed) * 2) * Player.MovementSpeedMultiplier;
-  } else if (Dir.up && Dir.left) {
-    Position.y -= sqrt(square(Player.MovementSpeed) * 2) * Player.MovementSpeedMultiplier;
-    Position.x -= sqrt(square(Player.MovementSpeed) * 2) * Player.MovementSpeedMultiplier;
-  } else if (Dir.down && Dir.left) {
-    Position.y += sqrt(square(Player.MovementSpeed) * 2) * Player.MovementSpeedMultiplier;
-    Position.x -= sqrt(square(Player.MovementSpeed) * 2) * Player.MovementSpeedMultiplier;
-  } else if (Dir.down && Dir.right) {
-    Position.y += sqrt(square(Player.MovementSpeed) * 2) * Player.MovementSpeedMultiplier;
-    Position.x += sqrt(square(Player.MovementSpeed) * 2) * Player.MovementSpeedMultiplier;
-  } else if (Dir.up) {
+  if (Dir.up) {
     Position.y -= Player.MovementSpeed * Player.MovementSpeedMultiplier;
-  } else if (Dir.down) {
+  }
+  if (Dir.down) {
     Position.y += Player.MovementSpeed * Player.MovementSpeedMultiplier;
-  } else if (Dir.right) {
+  }
+  if (Dir.right) {
     Position.x += Player.MovementSpeed * Player.MovementSpeedMultiplier;
-  } else if (Dir.left) {
+  }
+  if (Dir.left) {
     Position.x -= Player.MovementSpeed * Player.MovementSpeedMultiplier;
   }
 
