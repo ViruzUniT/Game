@@ -2,7 +2,6 @@
 
 #include <cstdint>
 #include <cstring>
-#include <unordered_map>
 
 #include "SDL.h"
 #include "eventhandler.h"
@@ -12,10 +11,10 @@
 
 class Entity {
  public:
-  Entity(const Vector2& position, const GameTexture& Texture, Game& Game) : Position(position), CurrentTexture(Texture) {
+  Entity(const Vector2& position, GameTexture& Texture, Game& Game) : Position(position), CurrentTexture(Texture) {
     Game.AddEntityToList(this);
     std::cout << "Added Entity to List\n";
-    AddTexture(Texture);
+    AddTexture(&Texture);
     std::cout << "Added Texture to list\n";
   }
   Entity(const Entity&) = delete;
@@ -34,7 +33,7 @@ class Entity {
   inline SDL_Texture* GetTexture() const { return CurrentTexture.Texture; }
   inline const SDL_Rect* GetCurrentFrame() const { return &CurrentTexture.CurrentFrame; }
 
-  void AddTexture(GameTexture Texture);
+  void AddTexture(GameTexture* Texture);
   bool SwitchCurrentTexture(const char* NewTextureName);
   inline const char* GetCurrentTextureName() const { return CurrentTexture.TextureName; }
   inline GameTexture* GetCurrentTexture() { return &CurrentTexture; }
@@ -49,5 +48,5 @@ class Entity {
   Event<> OnTextureSwitch;
   Vector2 Position;
   GameTexture CurrentTexture;
-  std::unordered_map<const char*, GameTexture*> Textures;
+  std::vector<GameTexture*> Textures;
 };

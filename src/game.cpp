@@ -14,7 +14,8 @@ void Game::RunGame() {
   std::cout << "Created idle texture\n";
   Player Player(Vector2(100, 100), playerIdleTexture, *this);
   std::cout << "Created Player\n";
-  Player.AddTexture(LoadTexture("Walk", "./sprites/Fighter/Walk.png", Vector4(46, 45, 24, 83), 104, 7, Window));
+  GameTexture playerWalkTexture = LoadTexture("Walk", "./sprites/Fighter/Walk.png", Vector4(46, 45, 24, 83), 104, 7, Window);
+  Player.AddTexture(&playerWalkTexture);
   std::cout << "Added Walk Texture\n";
 
   while (isRunning == true) {

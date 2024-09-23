@@ -16,7 +16,7 @@ void Player::Move(Time& Time, Player& Player) {
     return;
   }
 
-  if (!SwitchCurrentTexture("Walk")) {
+  if (!SwitchCurrentTexture(WALK_ANIM_NAME)) {
     return;
   }
 

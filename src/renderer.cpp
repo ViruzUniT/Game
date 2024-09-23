@@ -49,6 +49,7 @@ void RenderWindow::Clear() { SDL_RenderClear(Renderer); }
 
 void RenderWindow::Render(Game* Game) {
   for (Entity* const entity : Game->GetEntityList()) {
+    // std::cout << "Current EntityTexture: " << entity->GetTexture() << std::endl;
     SDL_Rect dst;
     dst.x = entity->GetPosition().x;
     dst.y = entity->GetPosition().y;

@@ -13,7 +13,7 @@ struct Direction {
 
 class Player : public Entity {
  public:
-  Player(const Vector2& position, const GameTexture& texture, Game& Game) : Entity(position, texture, Game) {}
+  Player(const Vector2& position, GameTexture& texture, Game& Game) : Entity(position, texture, Game) {}
   float MovementSpeed = 5.0f;
   float MovementSpeedMultiplier = 1.0f;
 

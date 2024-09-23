@@ -1,6 +1,5 @@
 #include "../include/entity.h"
 
-#include <cstdio>
 #include <cstring>
 #include <iostream>
 
@@ -11,21 +10,20 @@
 
 extern Time Time;
 
-void Entity::AddTexture(GameTexture Texture) {
-  std::cout << "Inserting texture: " << Texture.TextureName << std::endl;
-  Textures.insert(std::make_pair(Texture.TextureName, &Texture));
+void Entity::AddTexture(GameTexture* Texture) {
+  Textures.push_back(Texture);
   std::cout << "Insert success\n";
-  printf("%s\n", Textures.at(Texture.TextureName)->TextureName);
 }
 
 bool Entity::SwitchCurrentTexture(const char* TextureName) {
+  std::cout << "Switching Texture to: " << TextureName << std::endl;
   if (strcmp(TextureName, CurrentTexture.TextureName) == 0) {
     return true;
   }
 
   // Dont know why the fuck this doesnt work
 
-  // if (textures.find(TextureName) == textures.end()) {
+  // if (Textures.find(TextureName) == Textures.end()) {
   //   std::cout << "Texture: " << TextureName << " was not found\n";
   //   return false;
   // }
@@ -34,8 +32,8 @@ bool Entity::SwitchCurrentTexture(const char* TextureName) {
   // i know it makes the use of a hashmap obsolete but Im not going to change it
   const auto& textures = Textures;
   for (auto& kv : textures) {
-    if (strcmp(kv.first, TextureName) == 0) {
-      CurrentTexture = *kv.second;
+    if (strcmp(kv->TextureName, TextureName) == 0) {
+      CurrentTexture = *kv;
       ResetFrame();
       return true;
     }
@@ -72,4 +70,4 @@ void Entity::PlayAnimation() {
   }
 }
 
-void Entity::ResetFrame() { Frame = -1; }
+void Entity::ResetFrame() { Frame = NEWTEXTURE; }
