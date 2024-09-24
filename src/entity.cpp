@@ -16,7 +16,7 @@ void Entity::AddTexture(GameTexture* Texture) {
 }
 
 bool Entity::SwitchCurrentTexture(const char* TextureName) {
-  std::cout << "Switching Texture to: " << TextureName << std::endl;
+  // std::cout << "Switching Texture to: " << TextureName << std::endl;
   if (strcmp(TextureName, CurrentTexture.TextureName) == 0) {
     return true;
   }
