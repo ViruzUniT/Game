@@ -25,8 +25,6 @@ struct Game {
 
   GameTexture LoadTexture(const char* TextureName, const char* SpriteLocation, const Vector4& CurrentFrame, const int& FrameOffset,
       const int& Frames, RenderWindow& Window);
-  inline void AddEntityToList(Entity* Entity) { EntityList.push_back(Entity); }
-  inline std::vector<Entity*> GetEntityList() { return EntityList; }
 
   Time Timing;
 
@@ -40,6 +38,4 @@ struct Game {
   RenderWindow Window;
 
   SDL_Event currentevent;
-
-  std::vector<Entity*> EntityList;
 };

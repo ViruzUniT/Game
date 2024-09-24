@@ -12,8 +12,6 @@
 class Entity {
  public:
   Entity(const Vector2& position, GameTexture& Texture, Game& Game) : Position(position), CurrentTexture(Texture) {
-    Game.AddEntityToList(this);
-    std::cout << "Added Entity to List\n";
     AddTexture(&Texture);
     std::cout << "Added Texture to list\n";
     ResetFrame();
