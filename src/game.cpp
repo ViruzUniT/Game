@@ -12,16 +12,16 @@ void Game::StartGame() {
 void Game::RunGame() {
   GameTexture playerIdleTexture = LoadTexture("Idle", "./sprites/Fighter/Idle.png", Vector4(46, 47, 30, 81), 98, 5, Window);
   std::cout << "Created idle texture\n";
-  Player Player(Vector2(100, 100), playerIdleTexture, *this);
+  Player* player = new Player(Vector2(100, 100), playerIdleTexture, *this);
   std::cout << "Created Player\n";
   GameTexture playerWalkTexture = LoadTexture("Walk", "./sprites/Fighter/Walk.png", Vector4(46, 45, 24, 83), 104, 7, Window);
-  Player.AddTexture(&playerWalkTexture);
+  player->AddTexture(&playerWalkTexture);
   std::cout << "Added Walk Texture\n";
 
   while (isRunning == true) {
     Timing.StartMeasure();
     while (Timing.accumulator >= Timing.timeStep) {
-      HandleSDLEvents(Player);
+      HandleSDLEvents(*player);
       Timing.accumulator -= Timing.timeStep;
     }
 
