@@ -23,9 +23,8 @@ class Entity {
   Entity(Entity&&) = delete;
 
   ~Entity() {
-    if (CurrentTexture.Texture != nullptr) {
-      SDL_DestroyTexture(CurrentTexture.Texture);
-      CurrentTexture.Texture = nullptr;
+    for (auto& texture : EntityTextures) {
+      delete texture;
     }
   }
 
@@ -49,8 +48,8 @@ class Entity {
   void SetFrameToStartPos();
 
   int Frame;
-  Event<> OnTextureSwitch;
+  Event<GameTexture, GameTexture> OnTextureSwitch;
   Vector2 Position;
   GameTexture CurrentTexture;
-  std::vector<GameTexture*> Textures;
+  std::vector<GameTexture*> EntityTextures;
 };

@@ -11,7 +11,7 @@
 extern Time Time;
 
 void Entity::AddTexture(GameTexture* Texture) {
-  Textures.push_back(Texture);
+  EntityTextures.push_back(Texture);
   std::cout << "Insert success\n";
 }
 
@@ -32,7 +32,7 @@ bool Entity::SwitchCurrentTexture(const char* TextureName) {
    * DO NOT TOUCH IT WORKS SOMEHOW
    * i know it makes the use of a hashmap obsolete but Im not going to change it ... its not a hashmap anymore
    */
-  const auto& textures = Textures;
+  const auto& textures = EntityTextures;
   for (auto& kv : textures) {
     if (strcmp(kv->TextureName, TextureName) == 0) {
       CurrentTexture = *kv;
