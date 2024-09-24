@@ -1,6 +1,7 @@
 #include "../include/game.h"
 
 #include "../include/player.h"
+#include "../include/world.h"
 
 void Game::StartGame() {
   Timer startupTimer = Timer();
@@ -12,7 +13,7 @@ void Game::StartGame() {
 void Game::RunGame() {
   GameTexture playerIdleTexture = LoadTexture("Idle", "./sprites/Fighter/Idle.png", Vector4(46, 47, 30, 81), 98, 5, Window);
   std::cout << "Created idle texture\n";
-  Player* player = new Player(Vector2(100, 100), playerIdleTexture, *this);
+  Player* player = World::CreatePlayer(Vector2(100, 100), playerIdleTexture, *this);
   std::cout << "Created Player\n";
   GameTexture playerWalkTexture = LoadTexture("Walk", "./sprites/Fighter/Walk.png", Vector4(46, 45, 24, 83), 104, 7, Window);
   player->AddTexture(&playerWalkTexture);
@@ -33,6 +34,7 @@ void Game::RunGame() {
     Timing.FrameLimitPause();
     Timing.ShowFPS();
   }
+  World::DestroyAllEntities();
   Window.CleanUp();
   Window.DestroyWindowAndRenderer();
   SDL_Quit();

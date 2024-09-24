@@ -1,6 +1,17 @@
 #include "../include/world.h"
+
 namespace World {
 std::vector<Entity*> EntityList;
+
+Entity* FindEntityByName(const char* NameToFind) {
+  for (auto& entity : EntityList) {
+    if (strcmp(entity->Name, NameToFind) == 0) {
+      return entity;
+    }
+  }
+  return nullptr;
+}
+
 Entity* CreateEntity(const char* Name, const Vector2& position, GameTexture& Texture, Game& Game) {
   Entity* entity = new Entity(Name, position, Texture, Game);
   EntityList.push_back(entity);
@@ -14,22 +25,31 @@ Player* CreatePlayer(const char* Name, const Vector2& position, GameTexture& Tex
   return player;
 }
 
-bool DestroyEntity(Entity* Entity) {
+bool DestroyEntity(Entity*& Entity) {
   if (Entity == nullptr)
     return false;
 
   EntityList.erase(std::remove(EntityList.begin(), EntityList.end(), Entity), EntityList.end());
 
   delete Entity;
+  Entity = nullptr;
   return true;
 }
-bool DestroyPlayer(Entity* Player) {
+bool DestroyPlayer(Entity*& Player) {
   if (Player == nullptr)
     return false;
 
   EntityList.erase(std::remove(EntityList.begin(), EntityList.end(), Player), EntityList.end());
 
   delete Player;
+  Player = nullptr;
   return true;
+}
+
+void DestroyAllEntities() {
+  for (auto& entity : EntityList) {
+    DestroyEntity(entity);
+  }
+  EntityList.clear();
 }
 }  // namespace World

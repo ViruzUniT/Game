@@ -12,7 +12,7 @@
 class Entity {
  public:
   Entity(const char* EntityName, const Vector2& position, GameTexture& Texture, Game& Game)
-      : EntityName(EntityName), Position(position), CurrentTexture(Texture) {
+      : Name(EntityName), Position(position), CurrentTexture(Texture) {
     AddTexture(&Texture);
     std::cout << "Added Texture to list\n";
     ResetFrame();
@@ -25,7 +25,7 @@ class Entity {
     for (auto& texture : EntityTextures) {
       delete texture;
     }
-    delete EntityName;
+    delete Name;
   }
 
   inline Vector2 GetPosition() const { return Position; }
@@ -41,7 +41,7 @@ class Entity {
 
   void PlayAnimation();
 
-  const char* EntityName;
+  const char* Name;
   Event<GameTexture&> OnAnimationFinish;
 
  protected:
