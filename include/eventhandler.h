@@ -4,9 +4,12 @@
 #include <vector>
 
 template <typename... Args>
-class Event {
+struct Event {
  public:
   Event() = default;
+  Event(const Event &) = delete;
+  const Event *operator=(const Event &) = delete;
+
   using Callback = std::function<void(Args...)>;
 
   void add(const Callback &callback) { callbacks.push_back(callback); }
@@ -16,9 +19,6 @@ class Event {
       callback(args...);
     }
   }
-
-  Event(const Event &) = delete;
-  const Event *operator=(const Event &) = delete;
 
  private:
   std::vector<Callback> callbacks;

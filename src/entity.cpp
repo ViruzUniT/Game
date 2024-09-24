@@ -28,8 +28,10 @@ bool Entity::SwitchCurrentTexture(const char* TextureName) {
   //   return false;
   // }
 
-  // DO NOT TOUCH IT WORKS SOMEHOW
-  // i know it makes the use of a hashmap obsolete but Im not going to change it
+  /*
+   * DO NOT TOUCH IT WORKS SOMEHOW
+   * i know it makes the use of a hashmap obsolete but Im not going to change it ... its not a hashmap anymore
+   */
   const auto& textures = Textures;
   for (auto& kv : textures) {
     if (strcmp(kv->TextureName, TextureName) == 0) {
@@ -46,7 +48,7 @@ bool Entity::SwitchCurrentTexture(const char* TextureName) {
 void Entity::SetFrameToStartPos() {
   Frame = 0;
   CurrentTexture.CurrentFrame.x = CurrentTexture.FirstCurrentFramePos;
-  CurrentTexture.OnAnimationFinish.invoke();
+  OnAnimationFinish.invoke(CurrentTexture);
 }
 
 void Entity::PlayAnimation() {
@@ -65,7 +67,7 @@ void Entity::PlayAnimation() {
 
     CurrentTexture.CurrentFrame.x += CurrentTexture.FrameOffset + CurrentTexture.CurrentFrame.w;
 
-    if (Frame == CurrentTexture.Frames)
+    if (Frame >= CurrentTexture.Frames)
       SetFrameToStartPos();
   }
 }

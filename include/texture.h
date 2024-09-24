@@ -35,8 +35,6 @@ class GameTexture {
     FirstCurrentFramePos = other.FirstCurrentFramePos;
   }
 
-  Event<> OnAnimationFinish;
-
   const char* TextureName;
   SDL_Texture* Texture;
   SDL_Rect CurrentFrame;

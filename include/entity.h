@@ -42,6 +42,8 @@ class Entity {
 
   void PlayAnimation();
 
+  Event<GameTexture&> OnAnimationFinish;
+
  protected:
   void ResetFrame();
   void SetFrameToStartPos();
