@@ -16,6 +16,7 @@ void Game::RunGame() {
       LoadTexture("Idle", "./sprites/Fighter/Idle.png", Vector4(46, 47, 30, 81), 98, 5, Window), *this);
   std::cout << "Created Player\n";
   player->AddTexture(LoadTexture("Walk", "./sprites/Fighter/Walk.png", Vector4(46, 45, 24, 83), 104, 7, Window));
+  player->AddTexture(LoadTexture("Punch", "./sprites/Fighter/Attack_1.png", Vector4(38, 81, 36, 81), 128, 4, Window));
   std::cout << "Added Walk Texture\n";
 
   while (isRunning == true) {
@@ -63,6 +64,8 @@ void Game::HandleSDLEvents(Player*& Player) {
           case SDLK_d:
             Player->Dir.right = true;
             break;
+          case SDLK_SPACE:
+            Player->Punch();
           case SDLK_F3:
             isRunning = false;
             break;
@@ -95,7 +98,7 @@ void Game::HandleSDLEvents(Player*& Player) {
   if (Player == nullptr)
     return;
 
-  Player->Move(Timing, *Player);
+  Player->Move(Timing);
   Player->PlayAnimation();
 }
 

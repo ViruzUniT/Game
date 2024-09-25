@@ -18,7 +18,8 @@ class Player : public Entity {
   float MovementSpeed = 5.0f;
   float MovementSpeedMultiplier = 1.0f;
 
-  void Move(Time& Time, Player& Player);
+  void Move(Time& Time);
+  void Punch();
 
   Direction Dir;
 

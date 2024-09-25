@@ -7,7 +7,7 @@
 #define IDLE_ANIM_NAME "Idle"
 #define WALK_ANIM_NAME "Walk"
 
-void Player::Move(Time& Time, Player& Player) {
+void Player::Move(Time& Time) {
   if (!Dir.up && !Dir.down && !Dir.left && !Dir.right) {
     if (strcmp(CurrentTexture.TextureName, IDLE_ANIM_NAME) != 0) {
       SwitchCurrentTexture(IDLE_ANIM_NAME);
@@ -21,21 +21,21 @@ void Player::Move(Time& Time, Player& Player) {
     }
   }
 
-  Vector2 Position = Player.GetPosition();
+  Vector2 Position = GetPosition();
 
   // I will improve it eventually
   if (Dir.up) {
-    Position.y -= Player.MovementSpeed * Player.MovementSpeedMultiplier;
+    Position.y -= MovementSpeed * MovementSpeedMultiplier;
   }
   if (Dir.down) {
-    Position.y += Player.MovementSpeed * Player.MovementSpeedMultiplier;
+    Position.y += MovementSpeed * MovementSpeedMultiplier;
   }
   if (Dir.right) {
-    Position.x += Player.MovementSpeed * Player.MovementSpeedMultiplier;
+    Position.x += MovementSpeed * MovementSpeedMultiplier;
   }
   if (Dir.left) {
-    Position.x -= Player.MovementSpeed * Player.MovementSpeedMultiplier;
+    Position.x -= MovementSpeed * MovementSpeedMultiplier;
   }
 
-  Player.SetPosition(Position);
+  SetPosition(Position);
 }
