@@ -25,7 +25,7 @@ Player* CreatePlayer(const char* Name, const Vector2& position, GameTexture& Tex
   return player;
 }
 
-bool DestroyEntity(Entity*& Entity) {
+bool DestroyEntity(Entity* Entity) {
   if (Entity == nullptr)
     return false;
 
@@ -35,7 +35,7 @@ bool DestroyEntity(Entity*& Entity) {
   Entity = nullptr;
   return true;
 }
-bool DestroyPlayer(Entity*& Player) {
+bool DestroyPlayer(Entity* Player) {
   if (Player == nullptr)
     return false;
 
@@ -47,7 +47,7 @@ bool DestroyPlayer(Entity*& Player) {
 }
 
 void DestroyAllEntities() {
-  for (auto& entity : EntityList) {
+  for (auto entity : EntityList) {
     DestroyEntity(entity);
   }
   EntityList.clear();
