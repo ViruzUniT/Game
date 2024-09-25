@@ -3,6 +3,11 @@
 namespace World {
 std::vector<Entity*> EntityList;
 
+/**
+ * Returns first Entity with the given Name
+ *
+ * Returns nullptr if not found
+ */
 Entity* FindEntityByName(const char* NameToFind) {
   for (auto& entity : EntityList) {
     if (strcmp(entity->Name, NameToFind) == 0) {
@@ -47,7 +52,7 @@ bool DestroyPlayer(Entity* Player) {
 }
 
 void DestroyAllEntities() {
-  for (auto entity : EntityList) {
+  for (auto& entity : EntityList) {
     DestroyEntity(entity);
   }
   EntityList.clear();
