@@ -4,6 +4,7 @@
 
 #include "../include/entity.h"
 #include "../include/game.h"
+#include "../include/world.h"
 
 RenderWindow::RenderWindow(const char* WindowName, const int& WindowWidth, const int& WindowHeight) : window(nullptr), Renderer(nullptr) {
   window = SDL_CreateWindow(WindowName, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WindowWidth, WindowHeight, SDL_WINDOW_SHOWN);
@@ -48,7 +49,7 @@ void RenderWindow::CleanUp() { SDL_DestroyWindow(window); }
 void RenderWindow::Clear() { SDL_RenderClear(Renderer); }
 
 void RenderWindow::Render(Game* Game) {
-  for (Entity* const entity : Game->GetEntityList()) {
+  for (auto& entity : World::GetEntities()) {
     // std::cout << "Current EntityTexture: " << entity->GetTexture() << std::endl;
     SDL_Rect dst;
     dst.x = entity->GetPosition().x;

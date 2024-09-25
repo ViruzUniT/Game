@@ -21,10 +21,7 @@ class GameTexture {
         FrameOffset(other.FrameOffset),
         Frames(other.Frames),
         FirstCurrentFramePos(other.FirstCurrentFramePos) {}
-  ~GameTexture() {
-    delete TextureName;
-    SDL_DestroyTexture(Texture);
-  }
+  ~GameTexture() { SDL_DestroyTexture(Texture); }
 
   void operator=(const GameTexture& other) {
     TextureName = other.TextureName;

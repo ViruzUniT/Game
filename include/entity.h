@@ -11,9 +11,9 @@
 
 class Entity {
  public:
-  Entity(const char* EntityName, const Vector2& position, GameTexture& Texture, Game& Game)
-      : Name(EntityName), Position(position), CurrentTexture(Texture) {
-    AddTexture(&Texture);
+  Entity(const char* EntityName, const Vector2& position, GameTexture* Texture, Game& Game)
+      : Name(EntityName), Position(position), CurrentTexture(*Texture) {
+    AddTexture(Texture);
     std::cout << "Added Texture to list\n";
     ResetFrame();
     // SwitchCurrentTexture(Texture.TextureName);
@@ -22,10 +22,9 @@ class Entity {
   Entity(Entity&&) = delete;
 
   ~Entity() {
-    for (auto& texture : EntityTextures) {
+    for (GameTexture* texture : EntityTextures) {
       delete texture;
     }
-    delete Name;
   }
 
   inline Vector2 GetPosition() const { return Position; }

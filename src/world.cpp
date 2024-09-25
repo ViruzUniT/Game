@@ -2,6 +2,7 @@
 
 namespace World {
 std::vector<Entity*> EntityList;
+std::vector<Entity*> GetEntities() { return EntityList; }
 
 /**
  * Returns first Entity with the given Name
@@ -17,13 +18,13 @@ Entity* FindEntityByName(const char* NameToFind) {
   return nullptr;
 }
 
-Entity* CreateEntity(const char* Name, const Vector2& position, GameTexture& Texture, Game& Game) {
+Entity* CreateEntity(const char* Name, const Vector2& position, GameTexture* Texture, Game& Game) {
   Entity* entity = new Entity(Name, position, Texture, Game);
   EntityList.push_back(entity);
   std::cout << "Added Entity to List\n";
   return entity;
 }
-Player* CreatePlayer(const char* Name, const Vector2& position, GameTexture& Texture, Game& Game) {
+Player* CreatePlayer(const char* Name, const Vector2& position, GameTexture* Texture, Game& Game) {
   Player* player = new Player(Name, position, Texture, Game);
   EntityList.push_back(player);
   std::cout << "Added Player to List\n";
@@ -40,14 +41,13 @@ bool DestroyEntity(Entity* Entity) {
   Entity = nullptr;
   return true;
 }
-bool DestroyPlayer(Entity* Player) {
+bool DestroyPlayer(Player* Player) {
   if (Player == nullptr)
     return false;
 
   EntityList.erase(std::remove(EntityList.begin(), EntityList.end(), Player), EntityList.end());
 
   delete Player;
-  Player = nullptr;
   return true;
 }
 

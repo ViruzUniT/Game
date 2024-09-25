@@ -13,7 +13,7 @@ struct Game {
  public:
   Game(const char* WindowName, int Width, int Height)
       : WindowName(WindowName), Width(Width), Height(Height), Window(RenderWindow(WindowName, Width, Height)) {}
-  ~Game() { delete WindowName; }
+  ~Game() {}
 
   void StartGame();
   void RunGame();
@@ -21,7 +21,7 @@ struct Game {
   inline bool IsGameRunning() { return isRunning; }
   RenderWindow& GetWindow() { return Window; }
 
-  void HandleSDLEvents(Player& Player);
+  void HandleSDLEvents(Player*& Player);
 
   GameTexture* LoadTexture(const char* TextureName, const char* SpriteLocation, const Vector4& CurrentFrame, const int& FrameOffset,
       const int& Frames, RenderWindow& Window);

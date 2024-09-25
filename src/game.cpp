@@ -12,7 +12,7 @@ void Game::StartGame() {
 
 void Game::RunGame() {
   std::cout << "Created idle texture\n";
-  Player* player = World::CreatePlayer(Vector2(100, 100),
+  Player* player = World::CreatePlayer("Main Player", Vector2(100, 100),
       LoadTexture("Idle", "./sprites/Fighter/Idle.png", Vector4(46, 47, 30, 81), 98, 5, Window), *this);
   std::cout << "Created Player\n";
   player->AddTexture(LoadTexture("Walk", "./sprites/Fighter/Walk.png", Vector4(46, 45, 24, 83), 104, 7, Window));
@@ -21,7 +21,7 @@ void Game::RunGame() {
   while (isRunning == true) {
     Timing.StartMeasure();
     while (Timing.accumulator >= Timing.timeStep) {
-      HandleSDLEvents(*player);
+      HandleSDLEvents(player);
       Timing.accumulator -= Timing.timeStep;
     }
 
@@ -39,8 +39,11 @@ void Game::RunGame() {
   SDL_Quit();
 }
 
-void Game::HandleSDLEvents(Player& Player) {
+void Game::HandleSDLEvents(Player*& Player) {
   while (SDL_PollEvent(&currentevent)) {
+    if (Player == nullptr)
+      continue;
+
     switch (currentevent.type) {
       case SDL_QUIT:
         isRunning = false;
@@ -48,17 +51,20 @@ void Game::HandleSDLEvents(Player& Player) {
       case SDL_KEYDOWN:
         switch (currentevent.key.keysym.sym) {
           case SDLK_w:
-            Player.Dir.up = true;
+            Player->Dir.up = true;
             break;
           case SDLK_a:
-            Player.Dir.left = true;
+            Player->Dir.left = true;
             break;
           case SDLK_s:
-            Player.Dir.down = true;
+            Player->Dir.down = true;
             break;
           case SDLK_d:
-            Player.Dir.right = true;
+            Player->Dir.right = true;
             break;
+          case SDLK_F1:
+            World::DestroyPlayer(Player);
+            Player = nullptr;
           default:
             break;
         }
@@ -66,16 +72,16 @@ void Game::HandleSDLEvents(Player& Player) {
       case SDL_KEYUP:
         switch (currentevent.key.keysym.sym) {
           case SDLK_w:
-            Player.Dir.up = false;
+            Player->Dir.up = false;
             break;
           case SDLK_a:
-            Player.Dir.left = false;
+            Player->Dir.left = false;
             break;
           case SDLK_s:
-            Player.Dir.down = false;
+            Player->Dir.down = false;
             break;
           case SDLK_d:
-            Player.Dir.right = false;
+            Player->Dir.right = false;
             break;
           default:
             break;
@@ -85,8 +91,8 @@ void Game::HandleSDLEvents(Player& Player) {
         break;
     }
   }
-  Player.Move(Timing, Player);
-  Player.PlayAnimation();
+  Player->Move(Timing, *Player);
+  Player->PlayAnimation();
 }
 
 GameTexture* Game::LoadTexture(const char* TextureName, const char* SpriteLocation, const Vector4& CurrentFrame, const int& FrameOffset,
