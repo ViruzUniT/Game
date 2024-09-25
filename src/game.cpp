@@ -37,13 +37,14 @@ void Game::RunGame() {
   Window.CleanUp();
   Window.DestroyWindowAndRenderer();
   SDL_Quit();
+  std::cout << "Game Quitted\n";
 }
 
 void Game::HandleSDLEvents(Player*& Player) {
-  while (SDL_PollEvent(&currentevent)) {
-    if (Player == nullptr)
-      continue;
+  if (Player == nullptr)
+    return;
 
+  while (SDL_PollEvent(&currentevent)) {
     switch (currentevent.type) {
       case SDL_QUIT:
         isRunning = false;
@@ -62,9 +63,9 @@ void Game::HandleSDLEvents(Player*& Player) {
           case SDLK_d:
             Player->Dir.right = true;
             break;
-          case SDLK_F1:
-            World::DestroyPlayer(Player);
-            Player = nullptr;
+          case SDLK_F3:
+            isRunning = false;
+            break;
           default:
             break;
         }
@@ -91,6 +92,9 @@ void Game::HandleSDLEvents(Player*& Player) {
         break;
     }
   }
+  if (Player == nullptr)
+    return;
+
   Player->Move(Timing, *Player);
   Player->PlayAnimation();
 }
