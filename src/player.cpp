@@ -4,21 +4,23 @@
 
 #include "../include/math.h"
 
-#define IDLE_ANIM_NAME "Idle"
-#define WALK_ANIM_NAME "Walk"
-
 void Player::Move(Time& Time) {
-  if (!Dir.up && !Dir.down && !Dir.left && !Dir.right) {
-    if (strcmp(CurrentTexture.TextureName, IDLE_ANIM_NAME) != 0) {
-      SwitchCurrentTexture(IDLE_ANIM_NAME);
-    }
-    return;
-  }
-
-  if (strcmp(CurrentTexture.TextureName, WALK_ANIM_NAME) != 0) {
-    if (!SwitchCurrentTexture(WALK_ANIM_NAME)) {
+  if (!IsPunching) {
+    if (!Dir.up && !Dir.down && !Dir.left && !Dir.right) {
+      if (strcmp(CurrentTexture.TextureName, "Idle") != 0) {
+        SwitchCurrentTexture("Idle");
+      }
       return;
     }
+
+    if (strcmp(CurrentTexture.TextureName, "Walk") != 0) {
+      if (!SwitchCurrentTexture("Walk")) {
+        return;
+      }
+    }
+  } else {
+    if (strcmp(CurrentTexture.TextureName, "Punch") != 0)
+      SwitchCurrentTexture("Punch");
   }
 
   Vector2 Position = GetPosition();
@@ -38,4 +40,12 @@ void Player::Move(Time& Time) {
   }
 
   SetPosition(Position);
+}
+
+void Player::Punch() { IsPunching = true; }
+void Player::StopPunch(GameTexture& Texture) {
+  // std::cout << "Called Stop Punch with name: " << Texture.TextureName << std::endl;
+  if (strcmp(Texture.TextureName, "Punch") == 0) {
+    IsPunching = false;
+  }
 }

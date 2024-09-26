@@ -45,7 +45,7 @@ class Entity {
 
  protected:
   void ResetFrame();
-  void SetFrameToStartPos();
+  void SetFrameToStartPos(bool IsNewTexture);
 
   int Frame;
   Event<GameTexture, GameTexture> OnTextureSwitch;

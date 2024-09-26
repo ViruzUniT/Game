@@ -45,10 +45,12 @@ bool Entity::SwitchCurrentTexture(const char* TextureName) {
   return false;
 }
 
-void Entity::SetFrameToStartPos() {
+void Entity::SetFrameToStartPos(bool IsNewTexture) {
   Frame = 0;
   CurrentTexture.CurrentFrame.x = CurrentTexture.FirstCurrentFramePos;
-  OnAnimationFinish.invoke(CurrentTexture);
+  if (!IsNewTexture) {
+    OnAnimationFinish.invoke(CurrentTexture);
+  }
 }
 
 void Entity::PlayAnimation() {
@@ -61,14 +63,14 @@ void Entity::PlayAnimation() {
   if (fps == FPS) {
     fps = 0;
     if (Frame == NEWTEXTURE)
-      SetFrameToStartPos();
+      SetFrameToStartPos(true);
     if (Frame < CurrentTexture.Frames)
       Frame += 1;
 
     CurrentTexture.CurrentFrame.x += CurrentTexture.FrameOffset + CurrentTexture.CurrentFrame.w;
 
     if (Frame >= CurrentTexture.Frames)
-      SetFrameToStartPos();
+      SetFrameToStartPos(false);
   }
 }
 
