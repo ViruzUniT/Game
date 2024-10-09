@@ -2,7 +2,7 @@ name: Compile Game
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push]
 jobs:
-  Test Build Game:
+  Test-Build-Game:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
