@@ -5,6 +5,7 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: windows-latest
     steps:
+      - uses: actions/checkout@v3
       - run: curl.exe -LO https://github.com/libsdl-org/SDL/releases/download/release-2.30.8/SDL2-devel-2.30.8-mingw.zip
       - run: tar -xf SDL2-devel-2.30.8-mingw.zip
       - run: cp SDL2-2.30.8\x86_64-w64-mingw32\bin\SDL2.dll .\build
