@@ -25,8 +25,9 @@ jobs:
         with:
           version: 12.2.0
           platform: x64
+      - run: refreshenv
       - shell: powershell
-        run: refreshenv & .\pipeline.bat
+        run: .\pipeline.bat
       - run: rm build\libgcc_s_sjlj-1.dll
       - run: ls ./build
       - uses: actions/upload-artifact@v4
