@@ -11,7 +11,7 @@ jobs:
       - run: curl -LO  "https://downloads.sourceforge.net/project/mingw-w64/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/8.1.0/threads-win32/seh/x86_64-8.1.0-release-win32-seh-rt_v6-rev0.7z?ts=gAAAAABnBmagDFfAuid5yGUE9nMbUKUq1u7v2WWJYHJJHBSYjswxaxMD1fZSvWAslcj0WwU1Nezr46xR7d5aH_PRXNx6qfXgbg%3D%3D&r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Fmingw-w64%2Ffiles%2FToolchains%2520targetting%2520Win64%2FPersonal%2520Builds%2Fmingw-builds%2F8.1.0%2Fthreads-win32%2Fseh%2Fx86_64-8.1.0-release-win32-seh-rt_v6-rev0.7z%2Fdownload%3Fuse_mirror%3Daltushost-swe%26use_mirror%3Daltushost-swe%26r%3Dhttps%253A%252F%252Fwww.youtube.com%252F"
       - run: tar -xf SDL2-devel-2.30.8-mingw.zip
       - run: tar -xf SDL2_image-devel-2.8.2-mingw.zip
-      - uses: edgarrc/action-7z@v1
+      - uses: milliewalky/setup-7-zip@v1
       - run: 7z -x x86_64-8.1.0-release-win32-seh-rt_v6-rev0.7z.7z
       - run: rm -r x86_64-8.1.0-release-win32-seh-rt_v6-rev0.7z.7z
       - run: cp SDL2_image-2.8.2\x86_64-w64-mingw32\bin\SDL2_image.dll .\build
