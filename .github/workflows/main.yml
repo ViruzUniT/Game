@@ -12,8 +12,8 @@ jobs:
       - run: tar -xf SDL2-devel-2.30.8-mingw.zip
       - run: tar -xf SDL2_image-devel-2.8.2-mingw.zip
       - uses: milliewalky/setup-7-zip@v1
-      - run: 7z x x86_64-8.1.0-release-win32-seh-rt_v6-rev0.7z.7z
-      - run: rm -r x86_64-8.1.0-release-win32-seh-rt_v6-rev0.7z.7z
+      - run: 7z x x86_64-8.1.0-release-win32-seh-rt_v6-rev0.7z
+      - run: rm -r x86_64-8.1.0-release-win32-seh-rt_v6-rev0.7z
       - run: cp SDL2_image-2.8.2\x86_64-w64-mingw32\bin\SDL2_image.dll .\build
       - run: cp SDL2-2.30.8\x86_64-w64-mingw32\bin\SDL2.dll .\build
       - run: rm -r SDL2-2.30.8 
