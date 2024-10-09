@@ -25,9 +25,10 @@ jobs:
         with:
           version: 12.2.0
           platform: x64
+      - run: g++ -c -std=c++17 -g -Ofast src/*.cpp -Wall -m64 -lstdc++ -I ./build
       - shell: powershell
         run: .\pipeline.bat
-      - run: rm build\libgcc_s_sjlj-1.dll
+      - run: g++ ./*.o -o build\debug.exe -L ./build -lmingw32 -lSDL2 -lSDL2_image
       - run: ls ./build
       - uses: actions/upload-artifact@v4
         with:
