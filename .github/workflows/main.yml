@@ -26,8 +26,6 @@ jobs:
           version: 12.2.0
           platform: x64
       - shell: powershell
-        run: refreshenv
-      - shell: powershell
         run: .\pipeline.bat
       - run: rm build\libgcc_s_sjlj-1.dll
       - run: ls ./build
