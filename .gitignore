@@ -30,7 +30,6 @@
 *.out
 *.app
 
-build/*.exe
+*.exe
 .clang-format
-bin
 Makefile
