@@ -26,10 +26,9 @@
 *.lib
 
 # Executables
-*.exe
+MainGame.exe
 *.out
 *.app
 
-*.exe
 .clang-format
-Makefile
+*Makefile*
