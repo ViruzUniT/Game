@@ -1,7 +1,7 @@
-vendor\premake5.exe gmake2
+.\vendor\premake5.exe gmake2
+mkdir "./bin-int"
 make
 
-mkdir "./bin-int"
 copy "./MainGame/external-libs/SDL2-w64/bin/SDL2.dll" "./bin/Debug-windows/MainGame"
 copy "./MainGame/external-libs/SDL2-w64/bin/SDL2_image.dll" "./bin/Debug-windows/MainGame"
 mkdir "./bin/Debug-windows/MainGame/sprites"
