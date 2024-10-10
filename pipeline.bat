@@ -1,12 +1,7 @@
-@echo compiling
-g++ -c -std=c++17 -g -Ofast src/*.cpp -Wall -m64 -lstdc++ -I ./build
-@echo compiling success
+vendor\premake5.exe gmake2
+make
 
-mkdir "./build/sprites"
-xcopy "./sprites" "./build/sprites" /E /Y
-
-move /Y "./*.o" "./build-int"
-
-@echo Linking
-g++ ./*.o -o build\debug.exe -L ./build -lmingw32 -lSDL2 -lSDL2_image 
-@echo Linking success
+copy "./MainGame/external-libs/SDL2-w64/bin/SDL2.dll" "./bin/Debug-windows/MainGame"
+copy "./MainGame/external-libs/SDL2-w64/bin/SDL2_image.dll" "./bin/Debug-windows/MainGame"
+mkdir "./bin/Debug-windows/MainGame/sprites"
+xcopy "./MainGame/sprites" "./bin/Debug-windows/MainGame/sprites" /E /Y
