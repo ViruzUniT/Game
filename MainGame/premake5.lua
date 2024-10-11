@@ -29,7 +29,7 @@ extDir["SDL2"] = "external-libs/SDL2-w64/include/SDL2"
 filter { "configurations:Debug" }
 libdirs { "./external-libs/SDL2-w64/bin" }
 links { "SDL2", "SDL2_image" }
-buildoptions { "-static" }
+linkoptions { "-static" }
 --buildoptions "/MTd"
 runtime "Debug"
 symbols "on"
@@ -38,7 +38,7 @@ optimize "on"
 filter { "configurations:Release" }
 libdirs { "./external-libs/SDL2-w64/bin" }
 links { "SDL2", "SDL2_image" }
-buildoptions { "-static" }
+linkoptions { "-static" }
 --buildoptions "/MT"
 runtime "Release"
 optimize "on"
