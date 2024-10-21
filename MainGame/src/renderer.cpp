@@ -54,8 +54,8 @@ void RenderWindow::Render(Game* Game) {
     SDL_Rect dst;
     dst.x = entity->GetPosition().x;
     dst.y = entity->GetPosition().y;
-    dst.w = 30;
-    dst.h = 81;
+    dst.w = entity->GetCurrentTexture()->CurrentFrame.w;
+    dst.h = entity->GetCurrentTexture()->CurrentFrame.w;
 
     int Error = SDL_RenderCopy(Renderer, entity->GetTexture(), entity->GetCurrentFrame(), &dst);
     if (Error != 0) {

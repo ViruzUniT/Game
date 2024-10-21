@@ -20,7 +20,6 @@ bool Entity::SwitchCurrentTexture(const char* TextureName) {
   if (strcmp(TextureName, CurrentTexture.TextureName) == 0) {
     return true;
   }
-
   // Dont know why the fuck this doesnt work
 
   // if (Textures.find(TextureName) == Textures.end()) {
@@ -32,8 +31,7 @@ bool Entity::SwitchCurrentTexture(const char* TextureName) {
    * DO NOT TOUCH IT WORKS SOMEHOW
    * i know it makes the use of a hashmap obsolete but Im not going to change it ... its not a hashmap anymore
    */
-  const auto& textures = EntityTextures;
-  for (auto& kv : textures) {
+  for (auto& kv : EntityTextures) {
     if (strcmp(kv->TextureName, TextureName) == 0) {
       CurrentTexture = *kv;
       ResetFrame();
