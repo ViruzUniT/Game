@@ -4,8 +4,8 @@ language "C++"
 cppdialect "C++17"
 staticruntime "on"
 
-targetdir("../bin/" .. outputdir .. "/%{prj.name}")
-objdir("../bin-int/" .. outputdir .. "/%{prj.name}")
+targetdir("../bin/" .. outputdir)
+objdir("../bin-int/" .. outputdir)
 
 files {
   "src/**.cpp",
@@ -27,7 +27,7 @@ extDir = {}
 extDir["SDL2"] = "external-libs/SDL2-w64/include/SDL2"
 
 filter { "configurations:Debug" }
-libdirs { "../" }
+libdirs { "./external-libs/SDL2-w64/bin" }
 links { "SDL2", "SDL2_image" }
 linkoptions { "-static-libgcc", "-static-libstdc++" }
 --buildoptions "/MTd"
@@ -36,7 +36,7 @@ symbols "on"
 optimize "on"
 
 filter { "configurations:Release" }
-libdirs { "../" }
+libdirs { "./external-libs/SDL2-w64/bin" }
 links { "SDL2", "SDL2_image" }
 linkoptions { "-static-libgcc", "-static-libstdc++" }
 --buildoptions "/MT"

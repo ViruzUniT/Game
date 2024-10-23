@@ -8,7 +8,7 @@ configurations {
 
 startproject "MainGame"
 
-outputdir = "%{cfg.buildcfg}-%{cfg.system}"
+outputdir = "%{cfg.buildcfg}"
 
 include "MainGame"
 
