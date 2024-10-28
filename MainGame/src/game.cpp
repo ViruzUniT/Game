@@ -11,14 +11,12 @@ void Game::StartGame() {
 }
 
 void Game::RunGame() {
-  std::cout << "Created idle texture\n";
   Player* player = World::CreatePlayer("Main Player", Vector2(100, 100),
       LoadTexture("Idle", "./sprites/Fighter/Idle.png", Vector4(46, 47, 30, 81), 98, 5, Window), *this);
   std::cout << "Created Player\n";
   player->AddTexture(LoadTexture("Walk", "./sprites/Fighter/Walk.png", Vector4(46, 45, 24, 83), 104, 7, Window));
-  player->AddTexture(LoadTexture("Punch", "./sprites/Fighter/Attack_1.png", Vector4(38, 47, 53, 81), 92-17, 4, Window));
+  player->AddTexture(LoadTexture("Punch", "./sprites/Fighter/Attack_1.png", Vector4(38, 47, 53, 81), 92 - 17, 4, Window));
   player->OnAnimationFinish.add(std::bind(&Player::StopPunch, player, std::placeholders::_1));
-  std::cout << "Added Walk Texture\n";
 
   while (isRunning == true) {
     Timing.StartMeasure();
@@ -107,6 +105,9 @@ void Game::HandleSDLEvents(Player*& Player) {
 GameTexture* Game::LoadTexture(const char* TextureName, const char* SpriteLocation, const Vector4& CurrentFrame, const int& FrameOffset,
     const int& Frames, RenderWindow& Window) {
   SDL_Texture* texture = Window.LoadTexture(SpriteLocation);
+  if (texture == nullptr) {
+    return nullptr;
+  }
 
   SDL_Rect currentFrame;
   currentFrame.x = CurrentFrame.x;

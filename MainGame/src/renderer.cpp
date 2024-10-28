@@ -55,11 +55,11 @@ void RenderWindow::Render(Game* Game) {
     dst.x = entity->GetPosition().x;
     dst.y = entity->GetPosition().y;
     dst.w = entity->GetCurrentTexture()->CurrentFrame.w;
-    dst.h = entity->GetCurrentTexture()->CurrentFrame.w;
+    dst.h = entity->GetCurrentTexture()->CurrentFrame.h;
 
-    int Error = SDL_RenderCopy(Renderer, entity->GetTexture(), entity->GetCurrentFrame(), &dst);
+    int Error = SDL_RenderCopy(Renderer, entity->GetCurrentTexture()->Texture, entity->GetCurrentFrame(), &dst);
     if (Error != 0) {
-      std::cout << "Render Error: " << Error << std::endl;
+      std::cout << "Render Error: " << SDL_GetError() << std::endl;
     }
   }
 }

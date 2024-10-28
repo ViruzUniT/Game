@@ -4,8 +4,8 @@ language "C++"
 cppdialect "C++17"
 staticruntime "on"
 
-targetdir("../bin/" .. outputdir)
-objdir("../bin-int/" .. outputdir)
+targetdir("../bin/" .. outputdir .. "/%{prj.name}")
+objdir("../bin-int/" .. outputdir .. "/%{prj.name}")
 
 files {
   "src/**.cpp",
