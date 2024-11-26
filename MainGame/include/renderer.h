@@ -12,17 +12,17 @@ class RenderWindow {
   RenderWindow(const char* WindowName, const int& WindowWidth, const int& WindowHeight);
   RenderWindow() {}
 
-  inline SDL_Window* GetWindow() { return window; };
-  inline SDL_Renderer* GetRenderer() { return Renderer; };
+  inline SDL_Window* GetWindow() const { return window; };
+  inline SDL_Renderer* GetRenderer() const { return Renderer; };
 
-  int GetRefreshrate();
-  double HiresTimeInSec();
+  int GetRefreshrate() const;
+  inline double HiresTimeInSec() const { return SDL_GetTicks() * 0.001f; }
 
-  SDL_Texture* const LoadTexture(const char* FilePath);
+  const SDL_Texture* const LoadTexture(const char* FilePath) const;
 
-  void CleanUp();
-  void Clear();
-  void Render(Game* Game);
+  inline void CleanUp() const { SDL_DestroyWindow(window); }
+  inline void Clear() const { SDL_RenderClear(Renderer); }
+  void Render(const Game* const Game);
   void Display();
 
   void DestroyWindowAndRenderer();

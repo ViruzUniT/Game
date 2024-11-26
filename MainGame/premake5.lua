@@ -33,7 +33,7 @@ linkoptions { "-static-libgcc", "-static-libstdc++" }
 --buildoptions "/MTd"
 runtime "Debug"
 symbols "on"
-optimize "on"
+optimize "Debug"
 
 filter { "configurations:Release" }
 libdirs { "./external-libs/SDL2-w64/bin" }
@@ -41,4 +41,4 @@ links { "SDL2", "SDL2_image" }
 linkoptions { "-static-libgcc", "-static-libstdc++" }
 --buildoptions "/MT"
 runtime "Release"
-optimize "on"
+optimize "Speed"

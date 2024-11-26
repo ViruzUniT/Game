@@ -19,7 +19,7 @@ RenderWindow::RenderWindow(const char* WindowName, const int& WindowWidth, const
   }
 }
 
-int RenderWindow::GetRefreshrate() {
+int RenderWindow::GetRefreshrate() const {
   int displayIndex = SDL_GetWindowDisplayIndex(window);
   SDL_DisplayMode mode;
   SDL_GetDisplayMode(displayIndex, 0, &mode);
@@ -27,13 +27,7 @@ int RenderWindow::GetRefreshrate() {
   // return mode.refresh_rate;
 }
 
-double RenderWindow::HiresTimeInSec() {
-  double ticks = SDL_GetTicks();
-  double time = ticks * 0.001f;
-  return time;
-}
-
-SDL_Texture* const RenderWindow::LoadTexture(const char* FilePath) {
+const SDL_Texture* const RenderWindow::LoadTexture(const char* FilePath) const {
   SDL_Texture* texture = nullptr;
   texture = IMG_LoadTexture(Renderer, FilePath);
 
@@ -44,13 +38,10 @@ SDL_Texture* const RenderWindow::LoadTexture(const char* FilePath) {
   return texture;
 }
 
-void RenderWindow::CleanUp() { SDL_DestroyWindow(window); }
-
-void RenderWindow::Clear() { SDL_RenderClear(Renderer); }
-
-void RenderWindow::Render(Game* Game) {
+void RenderWindow::Render(const Game* const Game) {
   for (auto& entity : World::GetEntities()) {
     // std::cout << "Current EntityTexture: " << entity->GetTexture() << std::endl;
+
     SDL_Rect dst;
     dst.x = entity->GetPosition().x;
     dst.y = entity->GetPosition().y;
