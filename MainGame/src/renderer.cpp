@@ -2,8 +2,8 @@
 
 #include <iostream>
 
-#include "../include/entity.h"
 #include "../include/game.h"
+#include "../include/object.h"
 #include "../include/world.h"
 
 RenderWindow::RenderWindow(const char* WindowName, const int& WindowWidth,

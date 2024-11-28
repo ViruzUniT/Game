@@ -4,7 +4,7 @@
 
 #include "SDL.h"
 
-class Entity;
+class Object;
 class Game;
 
 class RenderWindow {

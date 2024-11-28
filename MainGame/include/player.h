@@ -1,5 +1,5 @@
 #pragma once
-#include "entity.h"
+#include "object.h"
 #include "texture.h"
 #include "time.h"
 
@@ -10,11 +10,11 @@ struct Direction {
   bool right = false;
 };
 
-class Player : public Entity {
+class Player : public Object {
  public:
   Player(const char* PlayerName, const Vector2& position, GameTexture* texture,
       Game& Game)
-      : Entity(PlayerName, position, texture, Game), IsPunching(false) {}
+      : Object(PlayerName, position, texture, Game), IsPunching(false) {}
   ~Player() {}
   float MovementSpeed = 5.0f;
   float MovementSpeedMultiplier = 1.0f;
