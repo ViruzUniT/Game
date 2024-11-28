@@ -2,7 +2,7 @@
 
 namespace World {
 std::vector<Object*> ObjectList;
-std::vector<Object*> GetEntities() { return ObjectList; }
+std::vector<Object*> GetObjects() { return ObjectList; }
 
 /**
  * Returns first Object with the given Name
@@ -14,6 +14,13 @@ Object* FindObjectByName(const char* NameToFind) {
     if (strcmp(entity->Name, NameToFind) == 0) {
       return entity;
     }
+  }
+  return nullptr;
+}
+
+Object* FindObjectByID(const size_t& Id) {
+  if (ObjectList.size() - 1 <= Id) {
+    return ObjectList[Id];
   }
   return nullptr;
 }

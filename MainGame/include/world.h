@@ -1,14 +1,15 @@
 #include "player.h"
 namespace World {
-std::vector<Object*> GetEntities();
-Object* FindEntityByName(const char* NameToFind);
+// std::vector<Object*> GetEntities();
+Object* FindObjectByName(const char* NameToFind);
+Object* FindObjectByID(const size_t& Id);
 
-Object* CreateEntity(const char* Name, const Vector2& position, GameTexture* Texture,
+Object* CreateObject(const char* Name, const Vector2& position, GameTexture* Texture,
     Game& Game);
 Player* CreatePlayer(const char* Name, const Vector2& position, GameTexture* Texture,
     Game& Game);
 
-bool DestroyEntity(Object* Entity);
+bool DestroyObject(Object* Object);
 bool DestroyPlayer(Player* Player);
 
 void DestroyAllEntities();
