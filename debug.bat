@@ -5,8 +5,14 @@ REM move /Y "./*.o" "./build-int"
 
 IF "%~1" == "" GOTO PrintHelp
 IF "%~1" == "compile" GOTO Compile
+IF "%~1" == "run" GOTO Run
 
 vendor\premake5.exe %1
+GOTO Done
+
+:Run
+cd ./bin/Debug-windows/MainGame
+MainGame.exe
 GOTO Done
 
 :Compile
