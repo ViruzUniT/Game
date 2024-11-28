@@ -18,7 +18,7 @@ class RenderWindow {
   int GetRefreshrate() const;
   inline double HiresTimeInSec() const { return SDL_GetTicks() * 0.001f; }
 
-  const SDL_Texture* const LoadTexture(const char* FilePath) const;
+  SDL_Texture* const LoadTexture(const char* FilePath) const;
 
   inline void CleanUp() const { SDL_DestroyWindow(window); }
   inline void Clear() const { SDL_RenderClear(Renderer); }

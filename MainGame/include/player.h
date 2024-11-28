@@ -4,7 +4,6 @@
 #include "time.h"
 
 struct Direction {
- public:
   bool up = false;
   bool down = false;
   bool left = false;
@@ -13,18 +12,22 @@ struct Direction {
 
 class Player : public Entity {
  public:
-  Player(const char* PlayerName, const Vector2& position, GameTexture* texture, Game& Game)
+  Player(const char* PlayerName, const Vector2& position, GameTexture* texture,
+      Game& Game)
       : Entity(PlayerName, position, texture, Game), IsPunching(false) {}
   ~Player() {}
   float MovementSpeed = 5.0f;
   float MovementSpeedMultiplier = 1.0f;
 
-  void Move(Time& Time);
+  void Move();
   void Punch();
   void StopPunch(GameTexture& Texture);
+
+  void HandleSDLEvents(Game* Game);
 
   Direction Dir;
 
  private:
+  SDL_Event currentevent;
   bool IsPunching;
 };

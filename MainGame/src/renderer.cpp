@@ -6,8 +6,11 @@
 #include "../include/game.h"
 #include "../include/world.h"
 
-RenderWindow::RenderWindow(const char* WindowName, const int& WindowWidth, const int& WindowHeight) : window(nullptr), Renderer(nullptr) {
-  window = SDL_CreateWindow(WindowName, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WindowWidth, WindowHeight, SDL_WINDOW_SHOWN);
+RenderWindow::RenderWindow(const char* WindowName, const int& WindowWidth,
+    const int& WindowHeight)
+    : window(nullptr), Renderer(nullptr) {
+  window = SDL_CreateWindow(WindowName, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+      WindowWidth, WindowHeight, SDL_WINDOW_SHOWN);
   if (window == nullptr) {
     std::cout << "Something went wrong: " << SDL_GetError() << std::endl;
     return;
@@ -27,7 +30,7 @@ int RenderWindow::GetRefreshrate() const {
   // return mode.refresh_rate;
 }
 
-const SDL_Texture* const RenderWindow::LoadTexture(const char* FilePath) const {
+SDL_Texture* const RenderWindow::LoadTexture(const char* FilePath) const {
   SDL_Texture* texture = nullptr;
   texture = IMG_LoadTexture(Renderer, FilePath);
 
@@ -48,7 +51,8 @@ void RenderWindow::Render(const Game* const Game) {
     dst.w = entity->GetCurrentTexture()->CurrentFrame.w;
     dst.h = entity->GetCurrentTexture()->CurrentFrame.h;
 
-    int Error = SDL_RenderCopy(Renderer, entity->GetCurrentTexture()->Texture, entity->GetCurrentFrame(), &dst);
+    int Error = SDL_RenderCopy(Renderer, entity->GetCurrentTexture()->Texture,
+        entity->GetCurrentFrame(), &dst);
     if (Error != 0) {
       std::cout << "Render Error: " << SDL_GetError() << std::endl;
     }
