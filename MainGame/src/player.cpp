@@ -6,7 +6,8 @@
 
 void Player::Move() {
   if (!IsPunching) {
-    if (!Dir.up && !Dir.down && !Dir.left && !Dir.right) {
+    if (!MovementDirection.up && !MovementDirection.down && !MovementDirection.left &&
+        !MovementDirection.right) {
       if (strcmp(CurrentTexture.TextureName, "Idle") != 0) {
         SwitchCurrentTexture("Idle");
       }
@@ -26,16 +27,16 @@ void Player::Move() {
   Vector2 Position = GetPosition();
 
   // I will improve it eventually
-  if (Dir.up) {
+  if (MovementDirection.up) {
     Position.y -= MovementSpeed * MovementSpeedMultiplier;
   }
-  if (Dir.down) {
+  if (MovementDirection.down) {
     Position.y += MovementSpeed * MovementSpeedMultiplier;
   }
-  if (Dir.right) {
+  if (MovementDirection.right) {
     Position.x += MovementSpeed * MovementSpeedMultiplier;
   }
-  if (Dir.left) {
+  if (MovementDirection.left) {
     Position.x -= MovementSpeed * MovementSpeedMultiplier;
   }
 
@@ -59,16 +60,16 @@ void Player::HandleSDLEvents(Game* Game) {
       case SDL_KEYDOWN:
         switch (currentevent.key.keysym.sym) {
           case SDLK_w:
-            Dir.up = true;
+            MovementDirection.up = true;
             break;
           case SDLK_a:
-            Dir.left = true;
+            MovementDirection.left = true;
             break;
           case SDLK_s:
-            Dir.down = true;
+            MovementDirection.down = true;
             break;
           case SDLK_d:
-            Dir.right = true;
+            MovementDirection.right = true;
             break;
           case SDLK_SPACE:
             Punch();
@@ -83,16 +84,16 @@ void Player::HandleSDLEvents(Game* Game) {
       case SDL_KEYUP:
         switch (currentevent.key.keysym.sym) {
           case SDLK_w:
-            Dir.up = false;
+            MovementDirection.up = false;
             break;
           case SDLK_a:
-            Dir.left = false;
+            MovementDirection.left = false;
             break;
           case SDLK_s:
-            Dir.down = false;
+            MovementDirection.down = false;
             break;
           case SDLK_d:
-            Dir.right = false;
+            MovementDirection.right = false;
             break;
           default:
             break;

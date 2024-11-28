@@ -25,7 +25,7 @@ class Player : public Entity {
 
   void HandleSDLEvents(Game* Game);
 
-  Direction Dir;
+  Direction MovementDirection;
 
  private:
   SDL_Event currentevent;
