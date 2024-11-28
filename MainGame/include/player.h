@@ -28,6 +28,6 @@ class Player : public Entity {
   Direction MovementDirection;
 
  private:
-  SDL_Event currentevent;
+  SDL_Event CurrentEvent;
   bool IsPunching;
 };

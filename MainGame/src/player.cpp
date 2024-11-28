@@ -52,13 +52,13 @@ void Player::StopPunch(GameTexture& Texture) {
 }
 
 void Player::HandleSDLEvents(Game* Game) {
-  while (SDL_PollEvent(&currentevent)) {
-    switch (currentevent.type) {
+  while (SDL_PollEvent(&CurrentEvent)) {
+    switch (CurrentEvent.type) {
       case SDL_QUIT:
         Game->StopGame();
         break;
       case SDL_KEYDOWN:
-        switch (currentevent.key.keysym.sym) {
+        switch (CurrentEvent.key.keysym.sym) {
           case SDLK_w:
             MovementDirection.up = true;
             break;
@@ -82,7 +82,7 @@ void Player::HandleSDLEvents(Game* Game) {
         }
         break;
       case SDL_KEYUP:
-        switch (currentevent.key.keysym.sym) {
+        switch (CurrentEvent.key.keysym.sym) {
           case SDLK_w:
             MovementDirection.up = false;
             break;
