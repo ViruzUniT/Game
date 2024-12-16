@@ -30,5 +30,4 @@ MainGame.exe
 *.out
 *.app
 
-.clang-format
 *Makefile*
