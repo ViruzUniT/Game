@@ -34,8 +34,21 @@ Object* CreateObject(const char* Name, const Vector2& position, GameTexture* Tex
   std::cout << "Added Object to List\n";
   return entity;
 }
+Object* CreateObject(const char* Name, const Vector2& position) {
+  Object* entity = new Object(Name, position);
+  ObjectList.push_back(entity);
+  std::cout << "Added Object to List\n";
+  return entity;
+}
+
 Player* CreatePlayer(const char* Name, const Vector2& position, GameTexture* Texture) {
   Player* player = new Player(Name, position, Texture);
+  ObjectList.push_back(player);
+  std::cout << "Added Player to List\n";
+  return player;
+}
+Player* CreatePlayer(const char* Name, const Vector2& position) {
+  Player* player = new Player(Name, position);
   ObjectList.push_back(player);
   std::cout << "Added Player to List\n";
   return player;
@@ -45,8 +58,7 @@ bool DestroyObject(Object* Object) {
   if (Object == nullptr)
     return false;
 
-  ObjectList.erase(std::remove(ObjectList.begin(), ObjectList.end(), Object),
-      ObjectList.end());
+  ObjectList.erase(std::remove(ObjectList.begin(), ObjectList.end(), Object), ObjectList.end());
 
   delete Object;
   Object = nullptr;
@@ -56,8 +68,7 @@ bool DestroyPlayer(Player* Player) {
   if (Player == nullptr)
     return false;
 
-  ObjectList.erase(std::remove(ObjectList.begin(), ObjectList.end(), Player),
-      ObjectList.end());
+  ObjectList.erase(std::remove(ObjectList.begin(), ObjectList.end(), Player), ObjectList.end());
 
   delete Player;
   return true;

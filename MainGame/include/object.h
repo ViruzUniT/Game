@@ -9,6 +9,12 @@
 
 class Object {
  public:
+  Object(const char* EntityName, const Vector2& position) : Name(EntityName), Position(position) {
+    std::cout << "Added Texture to list\n";
+    ResetFrame();
+
+    RunTick = false;
+  }
   Object(const char* EntityName, const Vector2& position, GameTexture* Texture)
       : Name(EntityName), Position(position), CurrentTexture(Texture) {
     AddTexture(Texture);
@@ -37,6 +43,8 @@ class Object {
   inline SDL_Texture* GetTexture() const { return CurrentTexture->Texture; }
   inline const SDL_Rect* GetCurrentFrame() const { return &CurrentTexture->CurrentFrame; }
 
+  GameTexture* LoadTexture(const char* TextureName, const char* SpriteLocation,
+      const Vector4& CurrentFrame, const int& FrameOffset, const int& Frames);
   void AddTexture(GameTexture* Texture);
   bool SwitchCurrentTexture(std::string NewTextureName);
   inline std::string GetCurrentTextureName() const { return CurrentTexture->TextureName; }

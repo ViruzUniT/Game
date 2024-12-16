@@ -27,10 +27,6 @@ struct Game {
   inline bool IsGameRunning() { return isRunning; }
   RenderWindow& GetWindow() { return Window; }
 
-  GameTexture* LoadTexture(const char* TextureName, const char* SpriteLocation,
-      const Vector4& CurrentFrame, const int& FrameOffset, const int& Frames,
-      RenderWindow& Window);
-
   void ObjectsRunStart();
   void ObjectsRunTick();
 

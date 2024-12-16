@@ -4,7 +4,18 @@
 #include "../include/math.h"
 #include "../include/world.h"
 
-void Player::Start() { RunTick = true; }
+void Player::Start() {
+  AddTexture(LoadTexture("Idle", "./sprites/Fighter/Idle.png", Vector4(46, 47, 30, 81), 98, 5));
+  AddTexture(LoadTexture("Walk", "./sprites/Fighter/Walk.png", Vector4(46, 45, 24, 83), 104, 7));
+
+  AddTexture(
+      LoadTexture("Punch", "./sprites/Fighter/Attack_1.png", Vector4(38, 47, 53, 81), 92 - 17, 4));
+  OnAnimationFinish.add(std::bind(&Player::StopPunch, this, std::placeholders::_1));
+
+  SwitchCurrentTexture("Idle");
+
+  RunTick = true;
+}
 
 void Player::Tick() { HandleSDLEvents(World::CurrentGame); }
 

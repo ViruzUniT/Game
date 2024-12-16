@@ -12,6 +12,8 @@ struct Direction {
 
 class Player : public Object {
  public:
+  Player(const char* PlayerName, const Vector2& position)
+      : Object(PlayerName, position), IsPunching(false) {}
   Player(const char* PlayerName, const Vector2& position, GameTexture* texture)
       : Object(PlayerName, position, texture), IsPunching(false) {}
   ~Player() {}

@@ -9,7 +9,9 @@ std::vector<Object*> GetObjects();
 Object* FindObjectByName(const char* NameToFind);
 Object* FindObjectByID(const size_t& Id);
 
+Object* CreateObject(const char* Name, const Vector2& position);
 Object* CreateObject(const char* Name, const Vector2& position, GameTexture* Texture);
+Player* CreatePlayer(const char* Name, const Vector2& position);
 Player* CreatePlayer(const char* Name, const Vector2& position, GameTexture* Texture);
 
 bool DestroyObject(Object* Object);
