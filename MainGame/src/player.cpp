@@ -4,7 +4,7 @@
 #include "../include/math.h"
 #include "../include/world.h"
 
-void Player::Start() { this->RunTick = true; }
+void Player::Start() { RunTick = true; }
 
 void Player::Tick() { HandleSDLEvents(World::CurrentGame); }
 
