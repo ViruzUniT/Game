@@ -1,6 +1,9 @@
 #include "../include/world.h"
 
+#include "../include/player.h"
+
 namespace World {
+Game* CurrentGame;
 std::vector<Object*> ObjectList;
 std::vector<Object*> GetObjects() { return ObjectList; }
 
@@ -25,16 +28,14 @@ Object* FindObjectByID(const size_t& Id) {
   return nullptr;
 }
 
-Object* CreateObject(const char* Name, const Vector2& position, GameTexture* Texture,
-    Game& Game) {
-  Object* entity = new Object(Name, position, Texture, Game);
+Object* CreateObject(const char* Name, const Vector2& position, GameTexture* Texture) {
+  Object* entity = new Object(Name, position, Texture);
   ObjectList.push_back(entity);
   std::cout << "Added Object to List\n";
   return entity;
 }
-Player* CreatePlayer(const char* Name, const Vector2& position, GameTexture* Texture,
-    Game& Game) {
-  Player* player = new Player(Name, position, Texture, Game);
+Player* CreatePlayer(const char* Name, const Vector2& position, GameTexture* Texture) {
+  Player* player = new Player(Name, position, Texture);
   ObjectList.push_back(player);
   std::cout << "Added Player to List\n";
   return player;

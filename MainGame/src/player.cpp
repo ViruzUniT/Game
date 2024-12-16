@@ -1,6 +1,12 @@
 #include "../include/player.h"
 
+#include "../include/game.h"
 #include "../include/math.h"
+#include "../include/world.h"
+
+void Player::Start() { this->RunTick = true; }
+
+void Player::Tick() { HandleSDLEvents(World::CurrentGame); }
 
 void Player::Move() {
   if (!IsPunching) {

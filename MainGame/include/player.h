@@ -12,12 +12,12 @@ struct Direction {
 
 class Player : public Object {
  public:
-  Player(const char* PlayerName, const Vector2& position, GameTexture* texture,
-      Game& Game)
-      : Object(PlayerName, position, texture, Game), IsPunching(false) {}
+  Player(const char* PlayerName, const Vector2& position, GameTexture* texture)
+      : Object(PlayerName, position, texture), IsPunching(false) {}
   ~Player() {}
-  float MovementSpeed = 5.0f;
-  float MovementSpeedMultiplier = 1.0f;
+
+  void Start() override;
+  void Tick() override;
 
   void Move();
   void Punch();
@@ -26,6 +26,8 @@ class Player : public Object {
   void HandleSDLEvents(Game* Game);
 
   Direction MovementDirection;
+  float MovementSpeed = 5.0f;
+  float MovementSpeedMultiplier = 1.0f;
 
  private:
   SDL_Event CurrentEvent;

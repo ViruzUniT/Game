@@ -13,8 +13,7 @@ void Game::StartGame() {
 void Game::RunGame() {
   Player* player = World::CreatePlayer("Main Player", Vector2(100, 100),
       LoadTexture("Idle", "./sprites/Fighter/Idle.png", Vector4(46, 47, 30, 81), 98, 5,
-          Window),
-      *this);
+          Window));
   std::cout << "Created Player\n";
   player->AddTexture(LoadTexture("Walk", "./sprites/Fighter/Walk.png",
       Vector4(46, 45, 24, 83), 104, 7, Window));
@@ -23,10 +22,12 @@ void Game::RunGame() {
   player->OnAnimationFinish.add(
       std::bind(&Player::StopPunch, player, std::placeholders::_1));
 
+  ObjectsRunStart();
+
   while (isRunning == true) {
     Timing.StartMeasure();
     while (Timing.accumulator >= Timing.timeStep) {
-      player->HandleSDLEvents(this);
+      ObjectsRunTick();
       Timing.accumulator -= Timing.timeStep;
     }
 
@@ -59,4 +60,17 @@ GameTexture* Game::LoadTexture(const char* TextureName, const char* SpriteLocati
   currentFrame.h = CurrentFrame.h;
   currentFrame.w = CurrentFrame.w;
   return new GameTexture(TextureName, texture, currentFrame, FrameOffset, Frames);
+}
+
+void Game::ObjectsRunStart() {
+  for (Object*& object : World::GetObjects()) {
+    object->Start();
+  }
+}
+
+void Game::ObjectsRunTick() {
+  for (Object*& object : World::GetObjects()) {
+    if (object->GetRunTick())
+      object->Tick();
+  }
 }

@@ -1,23 +1,21 @@
 #pragma once
-
 #include <cstdint>
 #include <cstring>
 
 #include "SDL.h"
 #include "eventhandler.h"
-#include "game.h"
 #include "math.h"
 #include "texture.h"
 
 class Object {
  public:
-  Object(const char* EntityName, const Vector2& position, GameTexture* Texture,
-      Game& Game)
+  Object(const char* EntityName, const Vector2& position, GameTexture* Texture)
       : Name(EntityName), Position(position), CurrentTexture(Texture) {
     AddTexture(Texture);
     std::cout << "Added Texture to list\n";
     ResetFrame();
-    // SwitchCurrentTexture(Texture.TextureName);
+
+    RunTick = false;
   }
   Object(const Object&) = delete;
   Object(Object&&) = delete;
@@ -27,6 +25,11 @@ class Object {
       delete texture.second;
     }
   }
+
+  virtual void Start() {}
+  virtual void Tick() {}
+
+  inline bool GetRunTick() { return RunTick; }
 
   inline Vector2 GetPosition() const { return Position; }
   inline void SetPosition(Vector2& NewPosition) { Position = NewPosition; }
@@ -45,8 +48,7 @@ class Object {
   Event<GameTexture&> OnAnimationFinish;
 
  protected:
-  virtual void Start();
-  virtual void Tick();
+  bool RunTick;
 
   void ResetFrame();
   void SetFrameToStartPos(bool IsNewTexture);
