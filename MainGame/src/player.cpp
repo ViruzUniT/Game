@@ -6,20 +6,13 @@ void Player::Move() {
   if (!IsPunching) {
     if (!MovementDirection.up && !MovementDirection.down && !MovementDirection.left &&
         !MovementDirection.right) {
-      if (CurrentTexture->TextureName != "Idle") {
-        SwitchCurrentTexture("Idle");
-      }
+      SwitchCurrentTexture("Idle");
       return;
     }
+    SwitchCurrentTexture("Walk");
 
-    if (CurrentTexture->TextureName != "Walk") {
-      if (!SwitchCurrentTexture("Walk")) {
-        return;
-      }
-    }
   } else {
-    if (CurrentTexture->TextureName != "Punch")
-      SwitchCurrentTexture("Punch");
+    SwitchCurrentTexture("Punch");
   }
 
   Vector2 Position = GetPosition();

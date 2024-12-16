@@ -45,6 +45,9 @@ class Object {
   Event<GameTexture&> OnAnimationFinish;
 
  protected:
+  virtual void Start();
+  virtual void Tick();
+
   void ResetFrame();
   void SetFrameToStartPos(bool IsNewTexture);
 

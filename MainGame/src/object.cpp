@@ -22,14 +22,10 @@ bool Object::SwitchCurrentTexture(std::string TextureName) {
   if (EntityTextures.find(TextureName) == EntityTextures.end()) {
     std::cout << "Texture: " << TextureName << " was not found 0x1\n";
     return false;
-  } else {
-    CurrentTexture = EntityTextures.find(TextureName)->second;
-    ResetFrame();
-    return true;
   }
-
-  std::cout << "Texture: " << TextureName << " was not found 0x2\n";
-  return false;
+  CurrentTexture = EntityTextures.find(TextureName)->second;
+  ResetFrame();
+  return true;
 }
 
 void Object::SetFrameToStartPos(bool IsNewTexture) {
