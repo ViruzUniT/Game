@@ -42,7 +42,7 @@ SDL_Texture* const RenderWindow::LoadTexture(const char* FilePath) const {
 }
 
 void RenderWindow::Render(const Game* const Game) {
-  for (auto& entity : World::GetEntities()) {
+  for (auto& entity : World::GetObjects()) {
     // std::cout << "Current EntityTexture: " << entity->GetTexture() << std::endl;
 
     SDL_Rect dst;

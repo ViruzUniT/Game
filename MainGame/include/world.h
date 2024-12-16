@@ -1,6 +1,11 @@
+#pragma once
+
+#include <iostream>
+
 #include "player.h"
+
 namespace World {
-// std::vector<Object*> GetEntities();
+std::vector<Object*> GetObjects();
 Object* FindObjectByName(const char* NameToFind);
 Object* FindObjectByID(const size_t& Id);
 

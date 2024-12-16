@@ -4,7 +4,7 @@ namespace World {
 std::vector<Object*> ObjectList;
 std::vector<Object*> GetObjects() { return ObjectList; }
 
-/**
+/*
  * Returns first Object with the given Name
  *
  * Returns nullptr if not found
