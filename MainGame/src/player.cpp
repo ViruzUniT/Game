@@ -1,26 +1,24 @@
 #include "../include/player.h"
 
-#include <cstring>
-
 #include "../include/math.h"
 
 void Player::Move() {
   if (!IsPunching) {
     if (!MovementDirection.up && !MovementDirection.down && !MovementDirection.left &&
         !MovementDirection.right) {
-      if (strcmp(CurrentTexture.TextureName, "Idle") != 0) {
+      if (CurrentTexture->TextureName != "Idle") {
         SwitchCurrentTexture("Idle");
       }
       return;
     }
 
-    if (strcmp(CurrentTexture.TextureName, "Walk") != 0) {
+    if (CurrentTexture->TextureName != "Walk") {
       if (!SwitchCurrentTexture("Walk")) {
         return;
       }
     }
   } else {
-    if (strcmp(CurrentTexture.TextureName, "Punch") != 0)
+    if (CurrentTexture->TextureName != "Punch")
       SwitchCurrentTexture("Punch");
   }
 
@@ -46,7 +44,7 @@ void Player::Move() {
 void Player::Punch() { IsPunching = true; }
 void Player::StopPunch(GameTexture& Texture) {
   // std::cout << "Called Stop Punch with name: " << Texture.TextureName << std::endl;
-  if (strcmp(Texture.TextureName, "Punch") == 0) {
+  if (Texture.TextureName == "Punch") {
     IsPunching = false;
   }
 }

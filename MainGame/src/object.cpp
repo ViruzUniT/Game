@@ -1,6 +1,5 @@
 #include "../include/object.h"
 
-#include <cstring>
 #include <iostream>
 
 #include "../include/time.h"
@@ -11,44 +10,33 @@
 extern Time Time;
 
 void Object::AddTexture(GameTexture* Texture) {
-  EntityTextures.push_back(Texture);
+  EntityTextures[Texture->TextureName] = Texture;
   std::cout << "Insert success\n";
 }
 
-bool Object::SwitchCurrentTexture(const char* TextureName) {
-  // std::cout << "Switching Texture to: " << TextureName << std::endl;
-  if (strcmp(TextureName, CurrentTexture.TextureName) == 0) {
+bool Object::SwitchCurrentTexture(std::string TextureName) {
+  if (CurrentTexture->TextureName == TextureName) {
     return true;
   }
-  // Dont know why the fuck this doesnt work
 
-  // if (Textures.find(TextureName) == Textures.end()) {
-  //   std::cout << "Texture: " << TextureName << " was not found\n";
-  //   return false;
-  // }
-
-  /*
-   * DO NOT TOUCH IT WORKS SOMEHOW
-   * i know it makes the use of a hashmap obsolete but Im not going to change it ... its
-   * not a hashmap anymore
-   */
-  for (auto& kv : EntityTextures) {
-    if (strcmp(kv->TextureName, TextureName) == 0) {
-      CurrentTexture = *kv;
-      ResetFrame();
-      return true;
-    }
+  if (EntityTextures.find(TextureName) == EntityTextures.end()) {
+    std::cout << "Texture: " << TextureName << " was not found 0x1\n";
+    return false;
+  } else {
+    CurrentTexture = EntityTextures.find(TextureName)->second;
+    ResetFrame();
+    return true;
   }
 
-  std::cout << "Texture: " << TextureName << " was not found\n";
+  std::cout << "Texture: " << TextureName << " was not found 0x2\n";
   return false;
 }
 
 void Object::SetFrameToStartPos(bool IsNewTexture) {
   Frame = 0;
-  CurrentTexture.CurrentFrame.x = CurrentTexture.FirstCurrentFramePos;
+  CurrentTexture->CurrentFrame.x = CurrentTexture->FirstCurrentFramePos;
   if (!IsNewTexture) {
-    OnAnimationFinish.invoke(CurrentTexture);
+    OnAnimationFinish.invoke(*CurrentTexture);
   }
 }
 
@@ -63,13 +51,13 @@ void Object::PlayAnimation() {
     fps = 0;
     if (Frame == NEWTEXTURE)
       SetFrameToStartPos(true);
-    if (Frame < CurrentTexture.Frames)
+    if (Frame < CurrentTexture->Frames)
       Frame += 1;
 
-    CurrentTexture.CurrentFrame.x +=
-        CurrentTexture.FrameOffset + CurrentTexture.CurrentFrame.w;
+    CurrentTexture->CurrentFrame.x +=
+        CurrentTexture->FrameOffset + CurrentTexture->CurrentFrame.w;
 
-    if (Frame >= CurrentTexture.Frames)
+    if (Frame >= CurrentTexture->Frames)
       SetFrameToStartPos(false);
   }
 }

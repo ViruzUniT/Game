@@ -7,7 +7,8 @@
 
 class GameTexture {
  public:
-  GameTexture(const char* textureName, SDL_Texture* texture, const SDL_Rect& currentFrame, const int& frameOffset, const int& frames)
+  GameTexture(const char* textureName, SDL_Texture* texture, const SDL_Rect& currentFrame,
+      const int& frameOffset, const int& frames)
       : TextureName(textureName),
         Texture(texture),
         CurrentFrame(currentFrame),
@@ -32,7 +33,7 @@ class GameTexture {
     FirstCurrentFramePos = other.FirstCurrentFramePos;
   }
 
-  const char* TextureName;
+  std::string TextureName;
   SDL_Texture* Texture;
   SDL_Rect CurrentFrame;
   int FrameOffset;
