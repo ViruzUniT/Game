@@ -6,8 +6,7 @@
 #include "../include/object.h"
 #include "../include/world.h"
 
-RenderWindow::RenderWindow(const char* WindowName, const int& WindowWidth,
-    const int& WindowHeight)
+RenderWindow::RenderWindow(const char* WindowName, const int& WindowWidth, const int& WindowHeight)
     : window(nullptr), Renderer(nullptr) {
   window = SDL_CreateWindow(WindowName, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
       WindowWidth, WindowHeight, SDL_WINDOW_SHOWN);
@@ -41,15 +40,18 @@ SDL_Texture* const RenderWindow::LoadTexture(const char* FilePath) const {
   return texture;
 }
 
-void RenderWindow::Render(const Game* const Game) {
+void RenderWindow::Render() {
   for (auto& entity : World::GetObjects()) {
-    // std::cout << "Current EntityTexture: " << entity->GetTexture() << std::endl;
+    // std::cout << "Entityptr: " << &entity << std::endl;
+    // std::cout << "XPos: " << entity->GetPosition().x << std::endl;
+    // std::cout << "Current EntityTexture: " << entity->GetCurrentTexture() << std::endl;
 
     SDL_Rect dst;
     dst.x = entity->GetPosition().x;
     dst.y = entity->GetPosition().y;
     dst.w = entity->GetCurrentTexture()->CurrentFrame.w;
     dst.h = entity->GetCurrentTexture()->CurrentFrame.h;
+    // std::cout << "Position set\n";
 
     int Error = SDL_RenderCopy(Renderer, entity->GetCurrentTexture()->Texture,
         entity->GetCurrentFrame(), &dst);

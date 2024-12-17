@@ -21,7 +21,7 @@ class RenderWindow {
 
   inline void CleanUp() const { SDL_DestroyWindow(window); }
   inline void Clear() const { SDL_RenderClear(Renderer); }
-  void Render(const Game* const Game);
+  void Render();
   void Display();
 
   void DestroyWindowAndRenderer();

@@ -5,7 +5,7 @@
 void Time::StartMeasure() {
   frameStart = SDL_GetTicks();
 
-  newTime = window.HiresTimeInSec();
+  newTime = window->HiresTimeInSec();
   deltaTime = newTime - currentTime;
   currentTime = newTime;
 

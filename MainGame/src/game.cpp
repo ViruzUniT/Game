@@ -11,10 +11,14 @@ void Game::StartGame() {
 }
 
 void Game::RunGame() {
+  World::CurrentGame = this;
+  std::cout << "Set CurrentGame to: " << World::CurrentGame << std::endl;
+
   Player* player = World::CreatePlayer("Main Player", Vector2(100, 100));
   std::cout << "Created Player\n";
 
   ObjectsRunStart();
+  std::cout << "Called ObjectsRunStart()\n";
 
   while (isRunning == true) {
     Timing.StartMeasure();
@@ -22,9 +26,8 @@ void Game::RunGame() {
       ObjectsRunTick();
       Timing.accumulator -= Timing.timeStep;
     }
-
     Window.Clear();
-    Window.Render(this);
+    Window.Render();
     Window.Display();
 
     Timing.EndMeasure();
@@ -36,21 +39,6 @@ void Game::RunGame() {
   Window.DestroyWindowAndRenderer();
   SDL_Quit();
   std::cout << "Game Quitted\n";
-}
-
-GameTexture* Game::LoadTexture(const char* TextureName, const char* SpriteLocation,
-    const Vector4& CurrentFrame, const int& FrameOffset, const int& Frames) {
-  SDL_Texture* texture = Window.LoadTexture(SpriteLocation);
-  if (texture == nullptr) {
-    return nullptr;
-  }
-
-  SDL_Rect currentFrame;
-  currentFrame.x = CurrentFrame.x;
-  currentFrame.y = CurrentFrame.y;
-  currentFrame.h = CurrentFrame.h;
-  currentFrame.w = CurrentFrame.w;
-  return new GameTexture(TextureName, texture, currentFrame, FrameOffset, Frames);
 }
 
 void Game::ObjectsRunStart() {

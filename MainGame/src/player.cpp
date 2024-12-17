@@ -12,7 +12,7 @@ void Player::Start() {
       LoadTexture("Punch", "./sprites/Fighter/Attack_1.png", Vector4(38, 47, 53, 81), 92 - 17, 4));
   OnAnimationFinish.add(std::bind(&Player::StopPunch, this, std::placeholders::_1));
 
-  SwitchCurrentTexture("Idle");
+  std::cout << "SwitchCurrentTexture was " << SwitchCurrentTexture("Idle") << std::endl;
 
   RunTick = true;
 }

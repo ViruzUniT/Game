@@ -15,9 +15,7 @@ struct Game {
       : WindowName(WindowName),
         Width(Width),
         Height(Height),
-        Window(RenderWindow(WindowName, Width, Height)) {
-    World::CurrentGame = this;
-  }
+        Window(RenderWindow(WindowName, Width, Height)) {}
   ~Game() {}
 
   void StartGame();
@@ -25,7 +23,7 @@ struct Game {
   inline void StopGame() { isRunning = false; }
 
   inline bool IsGameRunning() { return isRunning; }
-  RenderWindow& GetWindow() { return Window; }
+  inline RenderWindow* GetWindow() { return &Window; }
 
   void ObjectsRunStart();
   void ObjectsRunTick();

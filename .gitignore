@@ -26,7 +26,8 @@
 *.lib
 
 # Executables
-MainGame.exe
+/bin/
+/bin-int/
 *.out
 *.app
 

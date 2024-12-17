@@ -7,7 +7,12 @@ struct Time {
  public:
   // Time(RenderWindow& window) : window(window) {}
   Time() {}
-  inline void SetWindow(RenderWindow& Window) { window = Window; }
+  inline void SetWindow(RenderWindow* Window) {
+    window = Window;
+    refreshRate = window->GetRefreshrate();
+    frameDelay = 1000.0f / refreshRate;
+    currentTime = window->HiresTimeInSec();
+  }
 
   const float timeStep = 0.01f;
   double deltaTime;
@@ -16,19 +21,18 @@ struct Time {
   void StartMeasure();
   inline void EndMeasure() { frameTicks = SDL_GetTicks() - frameStart; }
   inline void FrameLimitPause() {
-    if (frameTicks < frameDelay) {
+    if (frameTicks < frameDelay)
       SDL_Delay(frameDelay - frameTicks);
-    }
   }
 
   void ShowFPS();
 
  private:
-  RenderWindow window;
+  RenderWindow* window;
 
-  const int refreshRate = window.GetRefreshrate();
-  const double frameDelay = 1000.0f / refreshRate;
-  double currentTime = window.HiresTimeInSec();
+  int refreshRate;
+  double frameDelay;
+  double currentTime;
 
   double newTime;
   int frameStart;

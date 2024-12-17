@@ -2,23 +2,45 @@
 
 #include <iostream>
 
+#include "../include/game.h"
 #include "../include/time.h"
+#include "../include/world.h"
 
 #define FPS 10
 #define NEWTEXTURE -1
 
 extern Time Time;
 
+GameTexture* Object::LoadTexture(const char* TextureName, const char* SpriteLocation,
+    const Vector4& CurrentFrame, const int& FrameOffset, const int& Frames) {
+  SDL_Texture* texture = World::CurrentGame->GetWindow()->LoadTexture(SpriteLocation);
+  if (texture == nullptr) {
+    std::cout << "Texture Creation failed\n";
+    return nullptr;
+  }
+
+  SDL_Rect currentFrame;
+  currentFrame.x = CurrentFrame.x;
+  currentFrame.y = CurrentFrame.y;
+  currentFrame.h = CurrentFrame.h;
+  currentFrame.w = CurrentFrame.w;
+  return new GameTexture(TextureName, texture, currentFrame, FrameOffset, Frames);
+}
+
 void Object::AddTexture(GameTexture* Texture) {
+  if (Texture == nullptr) {
+    return;
+  }
   EntityTextures[Texture->TextureName] = Texture;
   std::cout << "Insert success\n";
 }
 
 bool Object::SwitchCurrentTexture(std::string TextureName) {
-  if (CurrentTexture->TextureName == TextureName) {
-    return true;
+  if (CurrentTexture != nullptr) {
+    if (CurrentTexture->TextureName == TextureName) {
+      return true;
+    }
   }
-
   if (EntityTextures.find(TextureName) == EntityTextures.end()) {
     std::cout << "Texture: " << TextureName << " was not found 0x1\n";
     return false;
@@ -50,8 +72,7 @@ void Object::PlayAnimation() {
     if (Frame < CurrentTexture->Frames)
       Frame += 1;
 
-    CurrentTexture->CurrentFrame.x +=
-        CurrentTexture->FrameOffset + CurrentTexture->CurrentFrame.w;
+    CurrentTexture->CurrentFrame.x += CurrentTexture->FrameOffset + CurrentTexture->CurrentFrame.w;
 
     if (Frame >= CurrentTexture->Frames)
       SetFrameToStartPos(false);

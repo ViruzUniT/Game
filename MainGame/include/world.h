@@ -3,6 +3,8 @@
 
 #include "player.h"
 
+struct Game;
+
 namespace World {
 extern Game* CurrentGame;
 std::vector<Object*> GetObjects();

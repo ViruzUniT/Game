@@ -29,8 +29,7 @@ extDir["SDL2"] = "external-libs/SDL2-w64/include/SDL2"
 filter { "configurations:Debug" }
 libdirs { "./external-libs/SDL2-w64/bin" }
 links { "SDL2", "SDL2_image" }
-linkoptions { "-static-libgcc", "-static-libstdc++" }
---buildoptions "/MTd"
+-- linkoptions { "-static-libgcc", "-static-libstdc++" }
 runtime "Debug"
 symbols "on"
 optimize "Debug"
@@ -38,7 +37,6 @@ optimize "Debug"
 filter { "configurations:Release" }
 libdirs { "./external-libs/SDL2-w64/bin" }
 links { "SDL2", "SDL2_image" }
-linkoptions { "-static-libgcc", "-static-libstdc++" }
---buildoptions "/MT"
+--linkoptions { "-static-libgcc", "-static-libstdc++" }
 runtime "Release"
 optimize "Speed"
