@@ -24,6 +24,8 @@
 *.la
 *.a
 *.lib
+*.sln
+*.vcxproj*
 
 # Executables
 /bin/
