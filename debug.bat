@@ -24,9 +24,6 @@ copy "./SDL2_image.dll" "./bin/Debug-windows/MainGame"
 mkdir "./bin/Debug-windows/MainGame/sprites"
 xcopy "./MainGame/sprites" "./bin/Debug-windows/MainGame/sprites" /E /Y
 
-REM echo starting...
-REM .\build\debug.exe
-
 REM if not defined DevEnvDir (
 REM     call "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools\VsDevCmd.bat"
 REM )
