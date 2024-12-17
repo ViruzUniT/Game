@@ -13,7 +13,7 @@ extern Time Time;
 
 GameTexture* Object::LoadTexture(const char* TextureName, const char* SpriteLocation,
     const Vector4& CurrentFrame, const int& FrameOffset, const int& Frames) {
-  SDL_Texture* texture = World::CurrentGame->GetWindow()->LoadTexture(SpriteLocation);
+  SDL_Texture* texture = World::GetCurrentGame()->GetWindow()->LoadTexture(SpriteLocation);
   if (texture == nullptr) {
     std::cout << "Texture Creation failed\n";
     return nullptr;

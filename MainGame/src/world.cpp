@@ -1,18 +1,20 @@
 #include "../include/world.h"
 
-#include "../include/player.h"
+using namespace World;
 
-namespace World {
 Game* CurrentGame;
+void World::SetCurrentGame(Game* Game) { CurrentGame = Game; }
+Game* World::GetCurrentGame() { return CurrentGame; }
+
 std::vector<Object*> ObjectList;
-std::vector<Object*> GetObjects() { return ObjectList; }
+std::vector<Object*> World::GetObjects() { return ObjectList; }
 
 /*
  * Returns first Object with the given Name
  *
  * Returns nullptr if not found
  */
-Object* FindObjectByName(const char* NameToFind) {
+Object* World::FindObjectByName(const char* NameToFind) {
   for (auto& entity : ObjectList) {
     if (strcmp(entity->Name, NameToFind) == 0) {
       return entity;
@@ -21,40 +23,40 @@ Object* FindObjectByName(const char* NameToFind) {
   return nullptr;
 }
 
-Object* FindObjectByID(const size_t& Id) {
+Object* World::FindObjectByID(const size_t& Id) {
   if (ObjectList.size() - 1 <= Id) {
     return ObjectList[Id];
   }
   return nullptr;
 }
 
-Object* CreateObject(const char* Name, const Vector2& position, GameTexture* Texture) {
+Object* World::CreateObject(const char* Name, const Vector2& position, GameTexture* Texture) {
   Object* entity = new Object(Name, position, Texture);
   ObjectList.push_back(entity);
   std::cout << "Added Object to List\n";
   return entity;
 }
-Object* CreateObject(const char* Name, const Vector2& position) {
+Object* World::CreateObject(const char* Name, const Vector2& position) {
   Object* entity = new Object(Name, position);
   ObjectList.push_back(entity);
   std::cout << "Added Object to List\n";
   return entity;
 }
 
-Player* CreatePlayer(const char* Name, const Vector2& position, GameTexture* Texture) {
+Player* World::CreatePlayer(const char* Name, const Vector2& position, GameTexture* Texture) {
   Player* player = new Player(Name, position, Texture);
   ObjectList.push_back(player);
   std::cout << "Added Player to List\n";
   return player;
 }
-Player* CreatePlayer(const char* Name, const Vector2& position) {
+Player* World::CreatePlayer(const char* Name, const Vector2& position) {
   Player* player = new Player(Name, position);
   ObjectList.push_back(player);
   std::cout << "Added Player to List\n";
   return player;
 }
 
-bool DestroyObject(Object* Object) {
+bool World::DestroyObject(Object* Object) {
   if (Object == nullptr)
     return false;
 
@@ -64,7 +66,7 @@ bool DestroyObject(Object* Object) {
   Object = nullptr;
   return true;
 }
-bool DestroyPlayer(Player* Player) {
+bool World::DestroyPlayer(Player* Player) {
   if (Player == nullptr)
     return false;
 
@@ -74,10 +76,9 @@ bool DestroyPlayer(Player* Player) {
   return true;
 }
 
-void DestroyAllEntities() {
+void World::DestroyAllEntities() {
   for (auto& entity : ObjectList) {
     DestroyObject(entity);
   }
   ObjectList.clear();
 }
-}  // namespace World

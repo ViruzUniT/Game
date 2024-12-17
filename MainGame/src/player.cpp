@@ -17,7 +17,7 @@ void Player::Start() {
   RunTick = true;
 }
 
-void Player::Tick() { HandleSDLEvents(World::CurrentGame); }
+void Player::Tick() { HandleSDLEvents(World::GetCurrentGame()); }
 
 void Player::Move() {
   if (!IsPunching) {

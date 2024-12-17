@@ -1,10 +1,10 @@
 workspace "Game"
 architecture "x64"
-
 configurations {
   "Debug",
   "Release"
 }
+toolset "clang"
 
 startproject "MainGame"
 

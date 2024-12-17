@@ -1,6 +1,3 @@
-#include "../include/game.h"
-
-#include "../include/player.h"
 #include "../include/world.h"
 
 void Game::StartGame() {
@@ -11,10 +8,10 @@ void Game::StartGame() {
 }
 
 void Game::RunGame() {
-  World::CurrentGame = this;
-  std::cout << "Set CurrentGame to: " << World::CurrentGame << std::endl;
+  World::SetCurrentGame(this);
+  std::cout << "Set CurrentGame to: " << World::GetCurrentGame() << std::endl;
 
-  Player* player = World::CreatePlayer("Main Player", Vector2(100, 100));
+  World::CreatePlayer("Main Player", Vector2(100, 100));
   std::cout << "Created Player\n";
 
   ObjectsRunStart();

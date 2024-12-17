@@ -4,7 +4,7 @@
 #include "SDL.h"
 
 class Object;
-class Game;
+struct Game;
 
 class RenderWindow {
  public:

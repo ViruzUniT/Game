@@ -12,9 +12,9 @@ class Player;
 struct Game {
  public:
   Game(const char* WindowName, int Width, int Height)
-      : WindowName(WindowName),
-        Width(Width),
-        Height(Height),
+      : /* WindowName(WindowName), */
+        // Width(Width),
+        // Height(Height),
         Window(RenderWindow(WindowName, Width, Height)) {}
   ~Game() {}
 
@@ -33,9 +33,9 @@ struct Game {
  private:
   bool isRunning;
 
-  const char* WindowName;
-  int Width;
-  int Height;
+  // std::string WindowName;
+  // int Width;
+  // int Height;
 
   RenderWindow Window;
 };

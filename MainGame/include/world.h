@@ -1,12 +1,12 @@
 #pragma once
 #include <iostream>
 
+#include "game.h"
 #include "player.h"
 
-struct Game;
-
 namespace World {
-extern Game* CurrentGame;
+void SetCurrentGame(Game* Game);
+Game* GetCurrentGame();
 std::vector<Object*> GetObjects();
 Object* FindObjectByName(const char* NameToFind);
 Object* FindObjectByID(const size_t& Id);

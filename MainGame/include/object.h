@@ -26,7 +26,7 @@ class Object {
   Object(const Object&) = delete;
   Object(Object&&) = delete;
 
-  ~Object() {
+  virtual ~Object() {
     for (const auto& texture : EntityTextures) {
       delete texture.second;
     }

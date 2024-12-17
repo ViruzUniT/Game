@@ -1,4 +1,16 @@
 #pragma once
+#include <concepts>
+
+namespace Math {
+template <typename T>
+  requires std::is_arithmetic_v<T>
+bool Clamp(T& value, const T& min, const T& max) {
+  if constexpr (std::is_arithmetic<T>::value) {
+  }
+}
+
+}  // namespace Math
+
 struct Vector2 {
  public:
   Vector2() : x(0), y(0) {}
