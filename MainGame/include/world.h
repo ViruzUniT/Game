@@ -7,7 +7,7 @@
 namespace World {
 void SetCurrentGame(Game* Game);
 Game* GetCurrentGame();
-std::vector<Object*> GetObjects();
+std::vector<Object*>& GetObjects();
 Object* FindObjectByName(const char* NameToFind);
 Object* FindObjectByID(const size_t& Id);
 

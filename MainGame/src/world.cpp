@@ -7,7 +7,7 @@ void World::SetCurrentGame(Game* Game) { CurrentGame = Game; }
 Game* World::GetCurrentGame() { return CurrentGame; }
 
 std::vector<Object*> ObjectList;
-std::vector<Object*> World::GetObjects() { return ObjectList; }
+std::vector<Object*>& World::GetObjects() { return ObjectList; }
 
 /*
  * Returns first Object with the given Name
