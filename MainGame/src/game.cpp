@@ -39,13 +39,13 @@ void Game::RunGame() {
 }
 
 void Game::ObjectsRunStart() {
-  for (Object*& object : World::GetObjects()) {
+  for (Object* object : World::GetObjects()) {
     object->Start();
   }
 }
 
 void Game::ObjectsRunTick() {
-  for (Object*& object : World::GetObjects()) {
+  for (Object* object : World::GetObjects()) {
     if (object->GetRunTick())
       object->Tick();
   }
