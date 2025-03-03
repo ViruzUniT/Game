@@ -11,7 +11,8 @@ jobs:
           version: 12.2.0
           platform: x64
       - shell: powershell
-        run: .\pipeline.bat
+        run: ./vendor/premake5.exe gmake2
+        run: make
       - run: ls ./bin
       - uses: actions/upload-artifact@v4
         with:
