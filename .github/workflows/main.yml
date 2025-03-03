@@ -18,7 +18,7 @@ jobs:
         run: |
           ./vendor/premake5.exe gmake2
           make
-      - name: Copy Dependencies
+      - shell: powershell
         run: |
           cp "./SDL2.dll" "./bin/Debug-windows/MainGame"
           cp "./SDL2_image.dll" "./bin/Debug-windows/MainGame"
