@@ -10,8 +10,10 @@ jobs:
         with:
           version: 12.2.0
           platform: x64
-      - run: mkdir ./bin-int/Debug-windows/MainGame
-      - run: mkdir ./bin/Debug-windows/MainGame
+      - name: Create bin Directories
+        run: |
+          mkdir ./bin-int/Debug-windows/MainGame
+          mkdir ./bin/Debug-windows/MainGame
       - shell: powershell
         run: |
           ./vendor/premake5.exe gmake2
