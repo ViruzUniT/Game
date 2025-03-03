@@ -2,7 +2,6 @@
 
 #include <iostream>
 
-#include "../include/game.h"
 #include "../include/object.h"
 #include "../include/world.h"
 
