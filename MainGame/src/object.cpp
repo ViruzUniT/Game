@@ -60,9 +60,6 @@ void Object::SetFrameToStartPos(bool IsNewTexture) {
 
 void Object::PlayAnimation() {
   // shitty but it does its job
-  // static double time;
-  // time += Time.deltaTime;
-  // double fps = 1 / time;
   static int fps;
   fps += 1;
   if (fps == FPS) {

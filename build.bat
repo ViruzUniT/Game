@@ -25,10 +25,10 @@ mkdir "./bin/Debug-windows/MainGame/sprites"
 xcopy "./MainGame/sprites" "./bin/Debug-windows/MainGame/sprites" /E /Y
 
 REM if not defined DevEnvDir (
-REM     call "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools\VsDevCmd.bat"
+REM     call "C:\Program Files\Microsoft Visual Studio\2022\Preview\Common7\Tools\VsDevCmd.bat"
 REM )
 REM
-REM set solutionFile="Westhunter.sln"
+REM set solutionFile="Game.sln"
 REM msbuild /t:Build /p:Configuration=Debug %solutionFile%
 
 GOTO Done

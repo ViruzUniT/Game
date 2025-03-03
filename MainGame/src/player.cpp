@@ -34,18 +34,23 @@ void Player::Move() {
 
   Vector2 Position = GetPosition();
 
+  float diagonalSlowness = ((MovementDirection.up != MovementDirection.down) &&
+                               (MovementDirection.right != MovementDirection.left))
+                               ? 0.5f
+                               : 1.0f;
+
   // I will improve it eventually
   if (MovementDirection.up) {
-    Position.y -= MovementSpeed * MovementSpeedMultiplier;
+    Position.y -= MovementSpeed * MovementSpeedMultiplier * diagonalSlowness;
   }
   if (MovementDirection.down) {
-    Position.y += MovementSpeed * MovementSpeedMultiplier;
+    Position.y += MovementSpeed * MovementSpeedMultiplier * diagonalSlowness;
   }
   if (MovementDirection.right) {
-    Position.x += MovementSpeed * MovementSpeedMultiplier;
+    Position.x += MovementSpeed * MovementSpeedMultiplier * diagonalSlowness;
   }
   if (MovementDirection.left) {
-    Position.x -= MovementSpeed * MovementSpeedMultiplier;
+    Position.x -= MovementSpeed * MovementSpeedMultiplier * diagonalSlowness;
   }
 
   SetPosition(Position);
@@ -60,7 +65,7 @@ void Player::StopPunch(GameTexture& Texture) {
 }
 
 void Player::HandleSDLEvents(Game* Game) {
-  while (SDL_PollEvent(&CurrentEvent)) {
+  while (SDL_WaitEvent(&CurrentEvent)) {
     switch (CurrentEvent.type) {
       case SDL_QUIT:
         Game->StopGame();

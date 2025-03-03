@@ -4,7 +4,7 @@ configurations {
   "Debug",
   "Release"
 }
-toolset "clang"
+toolset "msc"
 
 startproject "MainGame"
 
