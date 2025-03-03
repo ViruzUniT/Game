@@ -20,13 +20,6 @@ jobs:
         run: |
           ./vendor/premake5.exe gmake2
           make
-      - name: Copy DLLs and Sprites
-        shell: powershell
-        run: |
-          Copy-Item -Path "./SDL2.dll" -Destination "./bin/Debug-windows/MainGame"
-          Copy-Item -Path "./SDL2_image.dll" -Destination "./bin/Debug-windows/MainGame"
-          mkdir -Force "./bin/Debug-windows/MainGame/sprites"
-          xcopy "./MainGame/sprites" "./bin/Debug-windows/MainGame/sprites" /E /Y
       - name: List Directory Contents
         shell: powershell
         run: |
